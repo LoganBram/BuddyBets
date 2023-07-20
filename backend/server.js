@@ -1,12 +1,12 @@
 const express = require("express");
-const routing = require("./routes/routingfile.js");
+const routing = require("./routes/baserouting.js");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-app.use("/hi", routing);
+app.use("/database", routing);
 
 app.get("/", (req, res) => res.send("hello"));
 

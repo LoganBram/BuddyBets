@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const controller = require("../controllers/controllerfile.js");
+const controller = require("../controllers/basecontroller.js");
 
 router.get("/", controller.getGames);
 
