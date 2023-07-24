@@ -1,10 +1,16 @@
 const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
+const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
 
 const getGames = (req, res) => {
-  pool.query(queries.getAllTest, (error, results) => {
-    if (error) throw error;
-    res.status(200).json(results.rows);
+  const games = GamesForNext7DaysCall();
+  games.map((game) => {
+    pool.query(queries.addGames, [
+      game.ID,
+      game.startdate,
+      game.homeid,
+      game.awayid,
+    ]);
   });
 };
 
