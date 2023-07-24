@@ -1,6 +1,7 @@
 const axios = require("axios");
 const pool = require("../db");
 const { next7days } = require("./dates");
+require("dotenv").config();
 
 class GameObject {
   constructor(id, date, time, homeid, awayid) {
@@ -11,6 +12,34 @@ class GameObject {
     this.date = date;
   }
 }
+
+//gets scores for game on certain day and updates table
+
+GetScoresCall = async (date, gameids) => {
+  try {
+    const call = await axios({
+      method: "GET",
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
+      headers: {
+        "x-rapidapi-host": "api-basketball.p.rapidapi.com",
+        "x-rapidapi-key": process.env.APIKEY,
+      },
+    });
+
+    //filter response to only include specified games
+    const response = call.data.response;
+    const filteredResponse = response.filter((game) =>
+      gameids.includes(game.id)
+    );
+
+    console.log(filteredResponse);
+    return filteredResponse;
+  } catch (error) {
+    // Handle any errors here
+    console.error(error);
+    throw error;
+  }
+};
 
 const GamesForNext7DaysCall = async () => {
   try {
@@ -27,8 +56,7 @@ const GamesForNext7DaysCall = async () => {
         url: `https://api-basketball.p.rapidapi.com/games?date=${date}&timezone=canada/vancouver`,
         headers: {
           "x-rapidapi-host": "api-basketball.p.rapidapi.com",
-          "x-rapidapi-key":
-            "17c1c2bc80msh0edbcbc5e8d8cbap178151jsnb0abea9d94a3",
+          "x-rapidapi-key": process.env.APIKEY,
         },
       };
       return axios(options);
@@ -85,4 +113,5 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
 
 module.exports = {
   GamesForNext7DaysCall,
+  GetScoresCall,
 };
