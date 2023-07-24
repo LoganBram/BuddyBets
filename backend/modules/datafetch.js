@@ -2,13 +2,24 @@ const axios = require("axios");
 const pool = require("../db");
 const { next7days } = require("./dates");
 
-const updateGames = async () => {
+class GameObject {
+  constructor(ID, startdate, homeid, awayid) {
+    this.ID = ID;
+    this.homeid = homeid;
+    this.awayid = awayid;
+    this.startdate = startdate;
+  }
+}
+
+const GamesForNext7DaysCall = async () => {
   try {
+    //gets the next 7 days
     const thisweek = await next7days();
 
     //calls the api to get the games for each day in the week
     //api only allows calling the games for individual days but not for a range of days
     //this is required otherwise the display on front page would only be one day at a time
+
     const apiCalls = thisweek.map((date) => {
       const options = {
         method: "GET",
@@ -23,19 +34,29 @@ const updateGames = async () => {
     });
 
     //handles all the promises from the api call
-    const responses = await Promise.all(apiCalls);
+    const respfortheweek = await Promise.all(apiCalls);
     //once all promises are fulfilled,  we obtain the game dates
     //this process is to keep the dates in order
-    for (const response of responses) {
-      const apiResponse = response.data;
-      const gameDates = apiResponse.response.map((game) => game.date);
-      console.log(gameDates);
-      console.log("break");
-      console.log("");
-    }
+    const gamesfortheweek = respfortheweek.map((resp) => resp.data.response);
+    const filteredgames = FilteringGamesForNext7DaysCall(gamesfortheweek);
   } catch (error) {
     console.error("Error fetching games:", error.message);
   }
 };
 
-updateGames();
+const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
+  //array to store filtered data for each game
+  const gameObjectsArr = [];
+
+  var NBAfilter = JSON.parse(gamesfortheweek).filter(function (entry) {
+    return entry.league.id === 13;
+  });
+
+  //creates a new game object with the filtered data
+  const gameObject = new GameObject(ID, startdate, homeid, awayid);
+
+  //pushes the game object to the gameObjects array
+  gameObjects.push(gameObject);
+};
+
+GamesForNext7DaysCall();
