@@ -69,8 +69,8 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
       if (game.league.id === 13) {
         const date = thisweek[daytracker];
         const { id, time } = game;
-        const homeid = 1;
-        const awayid = 2;
+        const homeid = game.teams.home.id;
+        const awayid = game.teams.away.id;
 
         //creates a new game object with the filtered data
         const gameObject = new GameObject(id, date, time, homeid, awayid);
