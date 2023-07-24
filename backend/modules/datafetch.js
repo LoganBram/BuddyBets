@@ -43,24 +43,35 @@ const GamesForNext7DaysCall = async () => {
 
     const gamesfortheweek = respfortheweek.map((resp) => resp.data.response);
 
-    const filteredgames = FilteringGamesForNext7DaysCall(gamesfortheweek);
+    const filteredgames = FilteringGamesForNext7DaysCall(
+      gamesfortheweek,
+      thisweek
+    );
+
     return filteredgames;
   } catch (error) {
     console.error("Error fetching games:", error.message);
   }
 };
 
-const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
+const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //array to store filtered data for each game
   const gameObjectsArr = [];
+  //date from api is in wrong format, so using my own date array
+  let daytracker = 0;
 
   //for loop into 6 indexed array, with each index containing game objects for the day
   for (const day of gamesfortheweek) {
+    //goes to next day on every iteration
+    daytracker++;
     for (const game of day) {
       console.log(game);
       if (game.league.id === 13) {
-        const { id, date, time } = game;
-        const { homeid, awayid } = game.teams;
+        const date = thisweek[daytracker];
+        const { id, time } = game;
+        const homeid = 1;
+        const awayid = 2;
+
         //creates a new game object with the filtered data
         const gameObject = new GameObject(id, date, time, homeid, awayid);
 
