@@ -59,7 +59,8 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
       console.log(game);
       if (game.league.id === 13) {
         const { id, date, time } = game;
-        const { homeid, awayid } = game.teams;
+        const homeid = game.home.id;
+        const awayid = game.away.id;
         //creates a new game object with the filtered data
         const gameObject = new GameObject(id, date, time, homeid, awayid);
 
@@ -68,7 +69,7 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
       }
     }
   }
-  console.log(gameObjectsArr);
+  return gameObjectsArr;
 };
 
 GamesForNext7DaysCall();
