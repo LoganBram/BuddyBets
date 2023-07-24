@@ -3,11 +3,12 @@ const pool = require("../db");
 const { next7days } = require("./dates");
 
 class GameObject {
-  constructor(ID, startdate, homeid, awayid) {
-    this.ID = ID;
+  constructor(id, date, time, homeid, awayid) {
+    this.id = id;
     this.homeid = homeid;
     this.awayid = awayid;
-    this.startdate = startdate;
+    this.time = time;
+    this.date = date;
   }
 }
 
@@ -34,10 +35,14 @@ const GamesForNext7DaysCall = async () => {
     });
 
     //handles all the promises from the api call
+
     const respfortheweek = await Promise.all(apiCalls);
+
     //once all promises are fulfilled,  we obtain the game dates
     //this process is to keep the dates in order
+
     const gamesfortheweek = respfortheweek.map((resp) => resp.data.response);
+
     const filteredgames = FilteringGamesForNext7DaysCall(gamesfortheweek);
   } catch (error) {
     console.error("Error fetching games:", error.message);
@@ -48,15 +53,22 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
   //array to store filtered data for each game
   const gameObjectsArr = [];
 
-  var NBAfilter = JSON.parse(gamesfortheweek).filter(function (entry) {
-    return entry.league.id === 13;
-  });
+  //for loop into 6 indexed array, with each index containing game objects for the day
+  for (const day of gamesfortheweek) {
+    for (const game of day) {
+      console.log(game);
+      if (game.league.id === 13) {
+        const { id, date, time } = game;
+        const { homeid, awayid } = game.teams;
+        //creates a new game object with the filtered data
+        const gameObject = new GameObject(id, date, time, homeid, awayid);
 
-  //creates a new game object with the filtered data
-  const gameObject = new GameObject(ID, startdate, homeid, awayid);
-
-  //pushes the game object to the gameObjects array
-  gameObjects.push(gameObject);
+        //pushes the game object to the gameObjects array
+        gameObjectsArr.push(gameObject);
+      }
+    }
+  }
+  console.log(gameObjectsArr);
 };
 
 GamesForNext7DaysCall();
