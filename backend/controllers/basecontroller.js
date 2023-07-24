@@ -10,10 +10,10 @@ const getGames = async (req, res) => {
     games.map((game) => {
       pool.query(queries.addGames, [
         game.id,
+        game.date,
         game.homeid,
         game.awayid,
         game.time,
-        game.startdate,
       ]);
     });
     res.send(games);
