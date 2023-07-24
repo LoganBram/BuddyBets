@@ -44,6 +44,7 @@ const GamesForNext7DaysCall = async () => {
     const gamesfortheweek = respfortheweek.map((resp) => resp.data.response);
 
     const filteredgames = FilteringGamesForNext7DaysCall(gamesfortheweek);
+    return filteredgames;
   } catch (error) {
     console.error("Error fetching games:", error.message);
   }
@@ -59,8 +60,7 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
       console.log(game);
       if (game.league.id === 13) {
         const { id, date, time } = game;
-        const homeid = game.home.id;
-        const awayid = game.away.id;
+        const { homeid, awayid } = game.teams;
         //creates a new game object with the filtered data
         const gameObject = new GameObject(id, date, time, homeid, awayid);
 
@@ -72,4 +72,6 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek) => {
   return gameObjectsArr;
 };
 
-GamesForNext7DaysCall();
+module.exports = {
+  GamesForNext7DaysCall,
+};
