@@ -25,8 +25,8 @@ const getGamesController = async (req, res) => {
 };
 
 const getScoresController = async (req, res) => {
-  const date = "2023-07-23";
-  const gameids = [341677, 341676, 341680];
+  const date = "2023-07-28";
+  const gameids = [341584, 341689, 341690];
   const response = await GetScoresCall(date, gameids);
   //response contains array of game objects for the specified day
   response.map((game) => {
@@ -35,10 +35,8 @@ const getScoresController = async (req, res) => {
       game.scores.away.total,
       game.id,
     ]);
-    console.log(game.id);
-    console.log(game.scores.home.total);
-    console.log(game.scores.away.total);
   });
+  res.send(response);
 };
 
 module.exports = {
