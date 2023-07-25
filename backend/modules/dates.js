@@ -25,6 +25,8 @@ const next7days = async () => {
   return next7Days;
 };
 
+next7days();
+
 module.exports = {
   next7days,
 };

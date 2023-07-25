@@ -32,7 +32,6 @@ GetScoresCall = async (date, gameids) => {
       gameids.includes(game.id)
     );
 
-    console.log(filteredResponse);
     return filteredResponse;
   } catch (error) {
     // Handle any errors here
@@ -90,21 +89,19 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
 
   //for loop into 6 indexed array, with each index containing game objects for the day
   for (const day of gamesfortheweek) {
-    //goes to next day on every iteration
-    daytracker++;
     for (const game of day) {
       console.log(game);
       if (game.league.id === 13) {
-        const date = thisweek[daytracker];
-        const { id, time } = game;
+        const { id, time, date } = game;
         const homeid = game.teams.home.id;
         const awayid = game.teams.away.id;
-
         //creates a new game object with the filtered data
         const gameObject = new GameObject(id, date, time, homeid, awayid);
 
         //pushes the game object to the gameObjects array
         gameObjectsArr.push(gameObject);
+        //increment to next day
+        daytracker++;
       }
     }
   }

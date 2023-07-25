@@ -4,8 +4,9 @@ const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
 const { GetScoresCall } = require("../modules/datafetch.js");
 
 //updates games for next 7 days
-const getGames = async (req, res) => {
+const getGamesController = async (req, res) => {
   try {
+    //returns array of objects containing games for next 7 days
     const games = await GamesForNext7DaysCall();
     games.map((game) => {
       pool.query(queries.addGames, [
@@ -23,14 +24,24 @@ const getGames = async (req, res) => {
   }
 };
 
-const getScores = async (req, res) => {
+const getScoresController = async (req, res) => {
   const date = "2023-07-23";
   const gameids = [341677, 341676, 341680];
   const response = await GetScoresCall(date, gameids);
-  res.send(response);
+  //response contains array of game objects for the specified day
+  response.map((game) => {
+    pool.query(queries.updateDayScores, [
+      game.scores.home.total,
+      game.scores.away.total,
+      game.id,
+    ]);
+    console.log(game.id);
+    console.log(game.scores.home.total);
+    console.log(game.scores.away.total);
+  });
 };
 
 module.exports = {
-  getGames,
-  getScores,
+  getGamesController,
+  getScoresController,
 };
