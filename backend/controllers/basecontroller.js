@@ -25,18 +25,24 @@ const getGamesController = async (req, res) => {
 };
 
 const getScoresController = async (req, res) => {
-  const date = "2023-07-28";
-  const gameids = [341584, 341689, 341690];
-  const response = await GetScoresCall(date, gameids);
-  //response contains array of game objects for the specified day
-  response.map((game) => {
-    pool.query(queries.updateDayScores, [
-      game.scores.home.total,
-      game.scores.away.total,
-      game.id,
-    ]);
-  });
-  res.send(response);
+  const date = "2023-07-26";
+  const gameids = [341685, 341684];
+  try {
+    const response = await GetScoresCall(date, gameids);
+    // Response contains an array of game objects for the specified day
+    for (const game of response) {
+      console.log(game.scores.home);
+      //updates scores based on gameid
+      await pool.query(queries.updateDayScores, [
+        game.scores.home.total,
+        game.scores.away.total,
+        game.id,
+      ]);
+    }
+  } catch (error) {
+    console.error("Error updating scores:", error.message);
+    res.status(500).send("Error updating scores");
+  }
 };
 
 module.exports = {

@@ -19,7 +19,7 @@ GetScoresCall = async (date, gameids) => {
   try {
     const call = await axios({
       method: "GET",
-      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}&timezone=canada/vancouver`,
       headers: {
         "x-rapidapi-host": "api-basketball.p.rapidapi.com",
         "x-rapidapi-key": process.env.APIKEY,
