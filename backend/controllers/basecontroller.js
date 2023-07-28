@@ -5,6 +5,10 @@ const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
 const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
 const { GetScoresCall } = require("../modules/datafetch.js");
+const { getYesterdayDate } = require("../modules/dates.js");
+const {
+  getStoredGameid_BasedOnDate,
+} = require("../modules/fetchingstoredata.js");
 
 //updates games for next 7 days
 const getGamesController = async (req, res) => {
@@ -28,13 +32,16 @@ const getGamesController = async (req, res) => {
 };
 
 const getScoresController = async (req, res) => {
-  const date = "2023-07-26";
-  const gameids = [341685, 341684];
+  const date = await getYesterdayDate();
+  //uses yesterdays date to get all gameids matching that date
+  const gameids = await getStoredGameid_BasedOnDate(date);
+  console.log(gameids);
   try {
-    const response = await GetScoresCall(date, gameids);
+    const gameIdsArray = gameids.map((game) => game.gameid);
+    const response = await GetScoresCall(date, gameIdsArray);
     // Response contains an array of game objects for the specified day
     for (const game of response) {
-      console.log(game.scores.home);
+      console.log(game);
       //updates scores based on gameid
       await pool.query(queries.updateDayScores, [
         game.scores.home.total,
