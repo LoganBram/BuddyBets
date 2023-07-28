@@ -13,7 +13,7 @@ class GameObject {
   }
 }
 
-//gets scores for game on certain day and updates table
+//gets scores for game on specified day and updates table
 
 GetScoresCall = async (date, gameids) => {
   try {
@@ -39,6 +39,8 @@ GetScoresCall = async (date, gameids) => {
     throw error;
   }
 };
+
+//calls the next 7 days, then obtains all the games for the next 7 days and stores in database
 
 const GamesForNext7DaysCall = async () => {
   try {
@@ -80,6 +82,9 @@ const GamesForNext7DaysCall = async () => {
     console.error("Error fetching games:", error.message);
   }
 };
+
+/*helper function that takes in api call of all games for next 7 days
+then filters it for nba games and stores it in database*/
 
 const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //array to store filtered data for each game

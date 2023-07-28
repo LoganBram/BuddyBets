@@ -1,3 +1,6 @@
+/* uses functions defined in modules to get the data, this file takes the data and stores it in the database
+using queries from the queries folder*/
+
 const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
 const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
