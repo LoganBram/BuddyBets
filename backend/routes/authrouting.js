@@ -11,4 +11,6 @@ authrouter.post("/login", validInfo, usercontroller.LoginUser);
 
 authrouter.get("/is-verify", authorize, usercontroller.Verified);
 
+authrouter.get("/dashboard", authorize, usercontroller.Dashboard);
+
 module.exports = authrouter;

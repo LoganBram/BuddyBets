@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
     const verify = jwt.verify(jwtToken, process.env.JWTSECRET);
     //if token valid, extracts user property to req.user
     req.user = verify.user;
+
     next();
   } catch (err) {
     console.error(err.message);

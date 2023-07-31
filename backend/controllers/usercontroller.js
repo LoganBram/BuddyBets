@@ -3,11 +3,6 @@ const queries = require("../queries/queriesfile.js");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("./../utils/jwtgenerator.js");
 
-//send bet request
-const BetReq = async (req, res) => {
-  res.json({ requestBody: req.body.color });
-};
-
 //user registration
 const RegisterUser = async (req, res) => {
   try {
@@ -75,12 +70,26 @@ const LoginUser = async (req, res) => {
 const Verified = async (req, res) => {
   try {
     res.json(true);
-  } catch (error) {}
+  } catch (error) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+};
+
+const Dashboard = async (req, res) => {
+  try {
+    //after authrization methid runs via the routing to this controller (check routes, authrouting)
+    //req.user holds the verifed payload of user data
+    res.send(req.user);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("server error");
+  }
 };
 
 module.exports = {
-  BetReq,
   RegisterUser,
   LoginUser,
   Verified,
+  Dashboard,
 };
