@@ -49,9 +49,22 @@ const RegisterUser = async (req, res) => {
 const LoginUser = async (req, res) => {
   try {
     //1. destructure req.body
+    const { email, password } = req.body;
     //2. check if user exists, throw error if not
+    const user = await pool.query(queries.CheckIfUserExists, [email]);
+
+    if (user.rows.length === 0) {
+      return res.status(401).json("Email not found");
+    }
     //3. check if incoming pass matches db pass
+    //bcrypt compare uses your hashing when comparing automatically
+    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+    if (!validPassword) {
+      return res.status(401).json("Password Incorrect");
+    }
     //4. give jwt token
+    const token = jwtGenerator(user.rows[0].user_id);
+    res.json(token);
   } catch (err) {
     res.send(err.message);
   }
