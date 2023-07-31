@@ -5,7 +5,7 @@ const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
 const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
 const { GetScoresCall } = require("../modules/datafetch.js");
-const { getYesterdayDate } = require("../modules/dates.js");
+const { getYesterdayDate } = require("../utils/dates.js");
 const {
   getStoredGameid_BasedOnDate,
 } = require("../modules/fetchingstoredata.js");

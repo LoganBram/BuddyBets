@@ -1,6 +1,6 @@
 const axios = require("axios");
 const pool = require("../db");
-const { next7days } = require("./dates");
+const { next7days } = require("../utils/dates");
 require("dotenv").config();
 
 class GameObject {

@@ -6,9 +6,13 @@ const updateDayScores =
 const getGameidForDay =
   "SELECT gameid FROM games WHERE startdate::text LIKE $1";
 
+//JWT QUERIES
+const CheckIfUserExists = "SELECT * FROM users WHERE email = $1";
+
 module.exports = {
   getAllTest,
   addGames,
   updateDayScores,
   getGameidForDay,
+  CheckIfUserExists,
 };
