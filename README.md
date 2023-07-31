@@ -2,3 +2,4 @@
 - Platform meant for sports betting between friends
 - node, postgre, express, axios, routing,
 - UUID for user ID's in SQL
+- JWT for user auth
