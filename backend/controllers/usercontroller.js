@@ -70,8 +70,17 @@ const LoginUser = async (req, res) => {
   }
 };
 
+//verification done in authorization file in middleware folder which is called beforehand
+//via routing
+const Verified = async (req, res) => {
+  try {
+    res.json(true);
+  } catch (error) {}
+};
+
 module.exports = {
   BetReq,
   RegisterUser,
   LoginUser,
+  Verified,
 };
