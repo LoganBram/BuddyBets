@@ -9,6 +9,9 @@ router.get("/getscores", controller.getScoresController);
 
 router.post("/sendbetrequest", usercontroller.BetReq);
 
+// -> auth/
 router.post("/register", usercontroller.RegisterUser);
+
+router.post("/login", usercontroller.LoginUser);
 
 module.exports = router;

@@ -9,10 +9,14 @@ const getGameidForDay =
 //JWT QUERIES
 const CheckIfUserExists = "SELECT * FROM users WHERE email = $1";
 
+const InsertUser =
+  "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
+
 module.exports = {
   getAllTest,
   addGames,
   updateDayScores,
   getGameidForDay,
   CheckIfUserExists,
+  InsertUser,
 };
