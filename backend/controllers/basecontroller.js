@@ -15,6 +15,7 @@ const getGamesController = async (req, res) => {
   try {
     //returns array of objects containing games for next 7 days
     const games = await GamesForNext7DaysCall();
+    //stores games into DB
     games.map((game) => {
       pool.query(queries.addGames, [
         game.id,
@@ -31,18 +32,21 @@ const getGamesController = async (req, res) => {
   }
 };
 
+//gets scores for yesterdays games as final check before deciding bets
+
 const getScoresController = async (req, res) => {
   const date = await getYesterdayDate();
-  //uses yesterdays date to get all gameids matching that date
+  //uses yesterdays date to get all gameids matching that date, returned as
+  //array of objs
   const gameids = await getStoredGameid_BasedOnDate(date);
-  console.log(gameids);
+  //convert to array
+  const gameIdsArray = gameids.map((game) => game.gameid);
   try {
-    const gameIdsArray = gameids.map((game) => game.gameid);
+    //gets scores for given date and specified gameids
     const response = await GetScoresCall(date, gameIdsArray);
     // Response contains an array of game objects for the specified day
     for (const game of response) {
-      console.log(game);
-      //updates scores based on gameid
+      //updates scores based on gameid for each game
       await pool.query(queries.updateDayScores, [
         game.scores.home.total,
         game.scores.away.total,
