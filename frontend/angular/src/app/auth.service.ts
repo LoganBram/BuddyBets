@@ -9,8 +9,8 @@ export class AuthService {
   constructor() { }
 
   // Call this method to set the user as authenticated after successful login
-  setAuthenticated(status: boolean) {
-    this.isAuthenticated = status;
+  setAuthenticated() {
+    this.isAuthenticated = !this.isAuthenticated;
   }
 
   // Call this method to check if the user is authenticated

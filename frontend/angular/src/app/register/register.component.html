@@ -1,4 +1,6 @@
+<!-- your-component.component.html -->
+
 <p>register works!</p>
 
-<button (click)="IsAuth = !IsAuth">Toggle</button>
-<p>{{ IsAuth }}</p>
+<button (click)="toggleAuth()">Toggle</button>
+<p>{{ isAuthenticated() }}</p>

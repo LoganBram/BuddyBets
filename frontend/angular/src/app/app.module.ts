@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './loginguard.guard';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     RouterModule.forRoot([
       {path: '', component : RegisterComponent},
-      {path: 'dashboard', component : DashboardComponent},
-      {path: 'login', component : LoginComponent}
+      {path: 'dashboard', component : DashboardComponent, canActivate: [AuthGuard]},
+      {path: 'login', component : LoginComponent},
+
     ])
   ],
   providers: [],

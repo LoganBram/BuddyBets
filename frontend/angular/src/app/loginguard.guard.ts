@@ -15,10 +15,7 @@ export class AuthGuard  {
   ): boolean {
     if (this.authService.Authenticated()) {
       return true; // Allow access if authenticated
-    } else {
-      // Store the attempted URL to redirect the user back after successful login
-      this.authService.setRedirectUrl(state.url);
-      
+    } else {     
       // Redirect to the login page if not authenticated
       this.router.navigate(['/login']);
       
