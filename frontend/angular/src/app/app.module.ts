@@ -24,7 +24,7 @@ import { AuthGuard } from './loginguard.guard';
 
     ])
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

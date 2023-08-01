@@ -7,19 +7,13 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard  {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor( private router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (this.authService.Authenticated()) {
-      return true; // Allow access if authenticated
-    } else {     
-      // Redirect to the login page if not authenticated
-      this.router.navigate(['/login']);
-      
-      return false;
+  canActivate(): boolean{
+    if(localStorage.getItem('token')){
+      return true
     }
+    this.router.navigate(['/login'])
+    return false
   }
 }

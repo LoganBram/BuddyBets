@@ -4,22 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
-
-  constructor() { }
-
-  // Call this method to set the user as authenticated after successful login
-  setAuthenticated() {
-    this.isAuthenticated = !this.isAuthenticated;
-  }
-
-  // Call this method to check if the user is authenticated
-  Authenticated(): boolean {
-    return this.isAuthenticated;
-  }
-
-  // Call this method to clear the user's authentication status after logout
-  clearAuthentication() {
-    this.isAuthenticated = false;
-  }
+  
 }
