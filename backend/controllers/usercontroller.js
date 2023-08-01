@@ -79,8 +79,14 @@ const Verified = async (req, res) => {
 const Dashboard = async (req, res) => {
   try {
     //after authrization methid runs via the routing to this controller (check routes, authrouting)
-    //req.user holds the verifed payload of user data
-    res.send(req.user);
+    //req.user holds the verifed payload of user data aka the user id
+    //res.send(req.user);
+
+    const user = await pool.query("SELECT * FROM users WHERE user_id = $1", [
+      req.user,
+    ]);
+
+    res.json(user.rows[0]);
   } catch (error) {
     console.log(error.message);
     res.status(500).send("server error");
