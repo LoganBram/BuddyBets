@@ -9,8 +9,11 @@ import { Input } from '@angular/core';
 })
 export class RegisterComponent {
 
+  registerUserData = {email: '', password: ''};
   constructor(private authService: AuthService) { }
 
-  
+  registerUser(){
+    console.log(this.registerUserData);
+  }
 
 }
