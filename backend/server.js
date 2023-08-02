@@ -5,6 +5,7 @@ const authrouter = require("./routes/authrouting.js");
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.set("view engine", "ejs");
 
