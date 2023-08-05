@@ -1,5 +1,5 @@
-- uses UTC as time zone for game search etc
 - Platform meant for sports betting between friends
+- uses UTC as time zone for game search etc
 - node, postgre, express, axios, routing, 
 - UUID for user ID's in SQL
 - JWT,bcrypt for user auth
