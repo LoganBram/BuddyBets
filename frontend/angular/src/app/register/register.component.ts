@@ -16,17 +16,16 @@ export class RegisterComponent {
   registerUser() {
     this.authService.registerUser(this.registerUserData).subscribe({
       next: (res) => {
+        //display success message
         this.response = res.response
       },
       error: (err) => {
         if (err.status === 401) {
-          this.response = err.error; // The API error message will be available in err.error
+          this.response = err.error; // Tdisplay error message returned from backend
         } else {
-          this.response = 'An error occurred. Please try again later.';
+          this.response = 'An unexpected error occured. Please try again later.';
         }
       },
     });
   }
 }
-
-/*return this.http.post<any>(this.registerUrl, user)*/
