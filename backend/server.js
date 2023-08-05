@@ -1,6 +1,7 @@
 const express = require("express");
 const routing = require("./routes/baserouting.js");
 const authrouter = require("./routes/authrouting.js");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
