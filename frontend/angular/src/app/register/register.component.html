@@ -9,6 +9,16 @@
       <div class="card-body">
         <form class="form">
           <div class="form-group">
+            <label for="">Name</label>
+            <input
+              [(ngModel)]="registerUserData.name"
+              name="name"
+              type="text"
+              class="frm-control rounded-0"
+              required
+            />
+          </div>
+          <div class="form-group">
             <label for="">Email</label>
             <input
               [(ngModel)]="registerUserData.email"
@@ -35,6 +45,9 @@
             Register
           </button>
         </form>
+      </div>
+      <div *ngIf="response !== null">
+        <h2>{{ response }}</h2>
       </div>
     </div>
   </div>
