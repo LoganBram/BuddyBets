@@ -1,22 +1,22 @@
+## Your Project Name
 
-#hei
 - Platform meant for sports betting between friends
-- uses UTC as time zone for game search etc
-- node, postgre, express, axios, routing, 
-- UUID for user ID's in SQL
-- JWT,bcrypt for user auth
-  
-###ENDPOINTS
-/auth/register
+- Uses UTC as the time zone for game search, etc.
+- Technologies: Node.js, Postgres, Express, Axios, Routing, etc.
+- Utilizes UUID for user ID's in SQL
+- Implements JWT and bcrypt for user authentication
 
-responds with json of JWT token & response message, if email already used responds with error message
+### ENDPOINTS
 
-/auth/login
+**/auth/register**
 
-responds with JWT token if successful, if failed responds with either email not found or incorrect password
+Responds with JSON containing a JWT token & response message. If the email is already used, it responds with an error message.
 
-###Base Controller
-1) updates games in database every 7 days
-2) updates the game scores for the day using game id and date library
+**/auth/login**
 
+Responds with a JWT token if the login is successful. If it fails, it responds with either "email not found" or "incorrect password".
 
+### Base Controller
+
+1. Updates games in the database every 7 days.
+2. Updates the game scores for the day using game id and date library.
