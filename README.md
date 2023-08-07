@@ -1,4 +1,4 @@
-## Your Project Name
+## Sports Gambling Against Friends
 
 - Platform meant for sports betting between friends
 - Uses UTC as the time zone for game search, etc.
