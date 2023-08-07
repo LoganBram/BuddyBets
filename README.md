@@ -2,7 +2,7 @@
 
 - Platform meant for sports betting between friends
 - Uses UTC as the time zone for game search, etc.
-- Technologies: Node.js, Postgres, Express, Axios, Routing, etc.
+- Technologies: basketball API, Node.js, Postgres SQL, Express, Axios, Routing, CORS, nodemon,
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
@@ -10,11 +10,11 @@
 
 **/auth/register**
 
-Responds with JSON containing a JWT token & response message. If the email is already used, it responds with an error message.
+Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the user ID in the payload.
 
 **/auth/login**
 
-Responds with a JWT token if the login is successful. If it fails, it responds with either "email not found" or "incorrect password".
+Checks for user in database and responds with JWT token, if failed it responds with either email not found or incorrect password in JSON.
 
 ### Base Controller
 
