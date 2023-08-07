@@ -16,7 +16,7 @@ Stores user data in database using bcrypt for password encryption and responds w
 
 Checks for user in database and responds with JWT token, if failed it responds with either email not found or incorrect password in JSON.
 
-### Base Controller
+### Base Controller - Basketball API
 
 1. Updates games in the database every 7 days.
 2. Updates the game scores for the day using game id and date library.
