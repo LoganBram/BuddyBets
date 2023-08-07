@@ -2,7 +2,7 @@
 
 - Platform meant for sports betting between friends
 - Uses UTC as the time zone for game search, etc.
-- basketball API, Node.js, Postgres SQL, Express, Axios, Routing, CORS, nodemon,
+- basketball API, Node.js, Postgres SQL, Express, Axios, Routing, CORS, nodemon, Angular
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
