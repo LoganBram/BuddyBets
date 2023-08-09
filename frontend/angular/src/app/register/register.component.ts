@@ -14,6 +14,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private _route: Router) { }
 
   registerUser() {
+    //sends api request to register user and returns JWT token
     this.authService.registerUser(this.registerUserData).subscribe({
       next: (res) => {
         //display success message
@@ -21,6 +22,7 @@ export class RegisterComponent {
         localStorage.setItem('token', res.token)
         this._route.navigate(['/dashboard'])
       },
+      //otherwise display error message from backend
       error: (err) => {
         if (err.status === 401) {
           this.response = err.error; // Tdisplay error message returned from backend

@@ -16,12 +16,14 @@ export class LoginComponent {
   loginUserData = {email: '', password: ''}
 
   loginUser() {
+    //sends api login request and returns token, stores in local storage
     this.authservice.loginUser(this.loginUserData).subscribe({
       next: (res)=> {
         this.response = res.response;
         localStorage.setItem('token', res.token)
         this._route.navigate(['/dashboard'])
       },
+      //otherwise display error message from backend
       error: (err) => {
         if (err.status === 401) {
           this.response = err.error; // Tdisplay error message returned from backend

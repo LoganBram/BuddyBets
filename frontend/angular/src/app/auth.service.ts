@@ -10,22 +10,20 @@ export class AuthService {
   private verifytokenUrl = "http://localhost:3000/auth/verifytoken";
   constructor(private http: HttpClient) { }
 
-  //sends register request
+  //sends register request and returns JWT token
   registerUser(user: any){
     return this.http.post<any>(this.registerUrl, user)
   }
-  //sends login http request
+  //sends login http request and returns JWT token
   loginUser(user: any){
     return this.http.post<any>(this.loginUrl, user)
   }
 
-  //sends verifytoken http request, which uses authorize middleware in backend
+  //sends verifytoken http request, which uses authorize middleware in backend and checks the token
   loggedIn(){
     return this.http.get<any>(this.verifytokenUrl)
   }
   
-  getToken(){
-    return localStorage.getItem('token')
-  }
+  
   
 }
