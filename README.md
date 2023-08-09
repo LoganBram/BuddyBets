@@ -19,9 +19,10 @@ Checks for the user in the database and responds with JWT token, if failed it re
 
 **/auth/is-verify**
 
-# Games
-
 Runs authorize middleware to check if token in local storage is valid, returns true or proper error message based on case
+
+
+# Games
 
 **/route/getgames**
 
