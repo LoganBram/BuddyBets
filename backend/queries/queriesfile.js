@@ -14,8 +14,7 @@ const InsertUser =
 
 //BET QUERIES
 
-const PlaceBet =
-  "INSERT INTO bets (gameid, user1, user2, amount) VALUES ($1, $2, $2, $4)";
+const PlaceBet = "INSERT INTO bets (gameid, user1, user2) VALUES ($1, $2, $3)";
 
 module.exports = {
   getAllTest,
