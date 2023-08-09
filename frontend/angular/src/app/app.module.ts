@@ -9,7 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './loginguard.guard';
-import { TokenInterceptorService } from './token-interceptor.service';
+
 import { BetpageComponent } from './betpage/betpage.component';
 
 @NgModule({
@@ -31,12 +31,7 @@ import { BetpageComponent } from './betpage/betpage.component';
 
     ])
   ],
-  providers: [AuthGuard,
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

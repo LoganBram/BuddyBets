@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   private registerUrl = "http://localhost:3000/auth/register";
   private loginUrl = "http://localhost:3000/auth/login";
+  private verifytokenUrl = "http://localhost:3000/auth/verifytoken";
   constructor(private http: HttpClient) { }
 
   //sends register request
@@ -18,9 +19,9 @@ export class AuthService {
     return this.http.post<any>(this.loginUrl, user)
   }
 
-  //returns true if token exists, false if not
+  //sends verifytoken http request, which uses authorize middleware in backend
   loggedIn(){
-    return !!localStorage.getItem('token')
+    return this.http.get<any>(this.verifytokenUrl)
   }
   
   getToken(){
