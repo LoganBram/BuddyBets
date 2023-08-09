@@ -17,6 +17,9 @@ const InsertUser =
 const PlaceBet =
   "INSERT INTO bets (gameid, user1, user2) VALUES ($1, $2, $3) RETURNING betid";
 
+const RecordBetDetails =
+  "INSERT INTO betdetails (betid, user1odds, user2odds) VALUES ($1, $2, $3)";
+
 module.exports = {
   getAllTest,
   addGames,
@@ -25,4 +28,5 @@ module.exports = {
   CheckIfUserExists,
   InsertUser,
   PlaceBet,
+  RecordBetDetails,
 };
