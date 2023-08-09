@@ -3,14 +3,18 @@ const queries = require("../queries/queriesfile.js");
 
 const BetRequest = async (req, res) => {
   try {
-    const { user1, user2, amount, gameid } = req.body;
+    const { user1, user2, gameid } = req.body;
 
-    const placebet = await pool.query(queries.PlaceBet, [
-      123, // Make sure `gameid` is an integer or numeric data type in the database
-      "f51dd5a1-77c0-4ca0-90e4-53f06b4a28e9", // Corrected UUID format with single quotes
-      "f51dd5a1-77c0-4ca0-90e4-53f06b4a28e9", // Corrected UUID format with single quotes // Make sure `amount` is an integer or numeric data type in the database
+    //records in bets table, RETURNS THE BET ID
+    const placebetID = await pool.query(queries.PlaceBet, [
+      gameid,
+      user1,
+      user2,
     ]);
-    res.send("Success");
+    //uses the returned betid to add to this table
+    const betdetails = await pool.query(queries.RecordBetDetails, []);
+
+    res.send(placebetID.rows[0].betid);
   } catch (err) {
     console.error(err.message);
     res.send("Error on SQL query");
