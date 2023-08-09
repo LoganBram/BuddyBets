@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent {
 
   response: any = null;
 
-  constructor(private authservice: AuthService){}
+  constructor(private authservice: AuthService, private _route: Router){}
   
   loginUserData = {email: '', password: ''}
 
@@ -18,11 +19,15 @@ export class LoginComponent {
     this.authservice.loginUser(this.loginUserData).subscribe({
       next: (res)=> {
         this.response = res.response;
+        localStorage.setItem('token', res.token)
+        this._route.navigate(['/dashboard'])
       },
       error: (err) => {
-        
+        if (err.status === 401) {
           this.response = err.error; // Tdisplay error message returned from backend
-        
+        } else {
+          this.response = 'An unexpected error occured. Please try again later.';
+        }
       },
     })
 
