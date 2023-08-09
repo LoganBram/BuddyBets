@@ -10,13 +10,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './loginguard.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { BetpageComponent } from './betpage/betpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    BetpageComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,14 @@ import { AuthService } from './auth.service';
 })
 export class TokenInterceptorService implements  HttpInterceptor{
 
-  constructor(private _authservice: AuthService) { }
+  constructor(private injector:Injector) { }
 
   intercept(req: { clone: (arg0: { setHeaders: { Authorization: string; }; }) => any; }, next: { handle: (arg0: any) => any; }){
+    //import authservice here to avoid circular dependency error
+    let authService = this.injector.get(AuthService)
     let tokenizedReq = req.clone({
       setHeaders:{
-        Authorization: `Bearer ${this._authservice.getToken()}`
+        Authorization: `Bearer ${authService.getToken()}`
       }
     })
     return next.handle(tokenizedReq)

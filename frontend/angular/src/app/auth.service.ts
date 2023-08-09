@@ -9,10 +9,11 @@ export class AuthService {
   private loginUrl = "http://localhost:3000/auth/login";
   constructor(private http: HttpClient) { }
 
+  //sends register request
   registerUser(user: any){
     return this.http.post<any>(this.registerUrl, user)
   }
-  
+  //sends login http request
   loginUser(user: any){
     return this.http.post<any>(this.loginUrl, user)
   }
