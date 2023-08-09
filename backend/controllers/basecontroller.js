@@ -32,11 +32,6 @@ const getGamesController = async (req, res) => {
   }
 };
 
-//send bet request
-const BetReq = async (req, res) => {
-  res.json({ requestBody: req.body.color });
-};
-
 //gets scores for yesterdays games as final check before deciding bets
 
 const getScoresController = async (req, res) => {
@@ -67,5 +62,4 @@ const getScoresController = async (req, res) => {
 module.exports = {
   getGamesController,
   getScoresController,
-  BetReq,
 };

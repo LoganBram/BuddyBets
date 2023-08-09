@@ -1,6 +1,7 @@
 const express = require("express");
 const routing = require("./routes/baserouting.js");
 const authrouter = require("./routes/authrouting.js");
+const betsrouting = require("./routes/betsrouting.js");
 
 const cors = require("cors");
 
@@ -14,5 +15,7 @@ app.set("view engine", "ejs");
 app.use("/route", routing);
 
 app.use("/auth", authrouter);
+
+app.use("/bets", betsrouting);
 
 app.listen(port, () => console.log("listening on port " + port));

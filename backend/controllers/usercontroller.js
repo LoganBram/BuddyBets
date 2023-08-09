@@ -92,6 +92,8 @@ const Dashboard = async (req, res) => {
   }
 };
 
+//runs authorization middleware in routes/authrouting when this endpoint is called
+//req.user contains user id from token verification and payload
 const PlaceBet = async (req, res, next) => {
   return res.send(req.user);
 };

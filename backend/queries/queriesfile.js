@@ -12,6 +12,11 @@ const CheckIfUserExists = "SELECT * FROM users WHERE email = $1";
 const InsertUser =
   "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
 
+//BET QUERIES
+
+const PlaceBet =
+  "INSERT INTO bets (gameid, user1, user2, amount) VALUES ($1, $2, $2, $4)";
+
 module.exports = {
   getAllTest,
   addGames,
@@ -19,4 +24,5 @@ module.exports = {
   getGameidForDay,
   CheckIfUserExists,
   InsertUser,
+  PlaceBet,
 };
