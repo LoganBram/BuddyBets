@@ -52,33 +52,32 @@ const LoginUser = async (req, res) => {
       return res.status(401).json("Email not found");
     }
     //3. check if incoming pass matches db pass
-    //bcrypt compare uses your hashing when comparing automatically
     const validPassword = await bcrypt.compare(password, user.rows[0].password);
     if (!validPassword) {
       return res.status(401).json("Password Incorrect");
     }
     //4. give jwt token
     const token = jwtGenerator(user.rows[0].user_id);
-    res.json(token);
+    res.json({ token, response: "success" });
   } catch (err) {
     res.send(err.message);
   }
 };
 
 //verification done in authorization file in middleware folder which is called beforehand
-//via routing
+//in routing
 const Verified = async (req, res) => {
   try {
     res.json(true);
   } catch (error) {
     console.log(err.message);
-    res.status(500).send("server error");
+    res.status(500).send("Please login again or ");
   }
 };
 
 const Dashboard = async (req, res) => {
   try {
-    //after authrization methid runs via the routing to this controller (check routes, authrouting)
+    //after authrization method runs via the routing to this controller (check routes, authrouting)
     //req.user holds the verifed payload of user data aka the user id
     //res.send(req.user);
 
@@ -89,8 +88,12 @@ const Dashboard = async (req, res) => {
     res.json(user.rows[0]);
   } catch (error) {
     console.log(error.message);
-    res.status(500).send("server error");
+    res.status(500).send("Username Not Found, Please Register");
   }
+};
+
+const PlaceBet = async (req, res, next) => {
+  return res.send(req.user);
 };
 
 module.exports = {
@@ -98,4 +101,5 @@ module.exports = {
   LoginUser,
   Verified,
   Dashboard,
+  PlaceBet,
 };
