@@ -8,15 +8,35 @@
 
 ### ENDPOINTS
 
+# Auth
 **/auth/register**
 
-Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the user ID in the payload.
+Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
 
 **/auth/login**
 
-Checks for user in database and responds with JWT token, if failed it responds with either email not found or incorrect password in JSON.
+Checks for the user in the database and responds with JWT token, if failed it responds with correct corresponding error message.
 
-### Base Controller - Basketball API
+**/auth/is-verify**
 
-1. Updates games in the database every 7 days.
-2. Updates the game scores for the day using game id and date library.
+Runs authorize middleware to check if token in local storage is valid, returns true or proper error message based on case
+
+
+# Games
+
+**/route/getgames**
+
+Gets dates for this week then gets all the WNBA games and updates database with games for the next 7 days
+
+**/route/getscores**
+
+Queries database for all games that occurred yesterday and updates the database with the scores based on gameID
+
+# Bets
+
+**bets/placebet/**
+
+Accepts gameid & userID's as UUID's. Places bet into bet-table, and foreign key restricted bet-details table 
+
+
+
