@@ -29,8 +29,9 @@
     display: flex;
     margin-left: 540px;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 70px;
   }
+  
   .doubleornothing button{
     margin-left: 10px;
   }
