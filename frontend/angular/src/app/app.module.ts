@@ -31,6 +31,7 @@ import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
       {path: 'dashboard', component : DashboardComponent, canActivate: [AuthGuard]},
       {path: 'login', component : LoginComponent},
       {path: 'gamesdisplay', component : GamesdisplayComponent},
+      {path: 'betpage/:gameid', component : BetpageComponent},
 
     ])
   ],
