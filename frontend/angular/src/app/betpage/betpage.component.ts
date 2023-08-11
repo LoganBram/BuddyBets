@@ -13,6 +13,16 @@ export class BetpageComponent implements OnInit{
 
   constructor(private route: ActivatedRoute){}
 
+  doubleornothing: false | true = false;
+
+  ToggleDouble(){
+    this.doubleornothing = !this.doubleornothing;
+  }
+
+  get double(){
+    return this.doubleornothing;
+  }
+
   ngOnInit(){
     //get gameid from the current route
     const routeParams = this.route.snapshot.paramMap;
