@@ -1,0 +1,23 @@
+.teamheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .teamheader h1 {
+    font-size: 24px;
+    margin: 0 10px;
+  }
+  
+  .oddsandfriends {
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+  }
+  
+  
+
+  
+
+  

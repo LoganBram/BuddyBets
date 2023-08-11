@@ -1,4 +1,30 @@
 <p>betpage works!</p>
 <div *ngIf="game">
-  <p>{{ game.hometeam }}</p>
+  <div class="teamheader">
+    <h1>{{ game.awayteam }}</h1>
+    <p>@</p>
+    <h1>{{ game.hometeam }}</h1>
+  </div>
+  <div class="oddsandfriends">
+    <div class="value">
+      <h2>Wager</h2>
+      <input type="text" />
+    </div>
+    <div class="yourodds">
+      <h2>Your Odds</h2>
+      <input type="text" />
+    </div>
+    <div class="friendsodds">
+      <h2>Friends Odds</h2>
+      <input type="text" />
+    </div>
+    <div class="friendsdropdown">
+      <h2>Friends</h2>
+      <select>
+        <option>Friend 1</option>
+        <option>Friend 2</option>
+        <option>Friend 3</option>
+      </select>
+    </div>
+  </div>
 </div>
