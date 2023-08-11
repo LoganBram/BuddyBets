@@ -2,5 +2,12 @@
 <p>{{ games[0].gameid }}</p>
 
 <div *ngFor="let game of games">
-  <h1>{{ game.gameid }}</h1>
+  <div class="teams">
+    <h1>{{ game.hometeam }}</h1>
+    <h1>{{ game.awayteam }}</h1>
+  </div>
+  <div class="date">
+    <p>{{ formatDate(game.startdate) }}</p>
+    <p>{{ formatTime(game.time) }}</p>
+  </div>
 </div>
