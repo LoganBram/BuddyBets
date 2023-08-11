@@ -9,16 +9,17 @@ import { Game, games } from '../games';
 })
 export class BetpageComponent implements OnInit{
 
-  game: Game | undefined;
+  game: any;
 
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(){
     //get gameid from the current route
     const routeParams = this.route.snapshot.paramMap;
-    const gameIdFromRoute = Number(routeParams.get('gameId'));
+    const gameIdFromRoute = Number(routeParams.get('gameid'));
 
   //find game that matches the id from the route
+
     this.game = games.find(game => game.gameid === gameIdFromRoute);
   }
 }
