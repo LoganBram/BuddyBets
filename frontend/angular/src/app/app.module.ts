@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './loginguard.guard';
 
 import { BetpageComponent } from './betpage/betpage.component';
+import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BetpageComponent } from './betpage/betpage.component';
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
-    BetpageComponent
+    BetpageComponent,
+    GamesdisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { BetpageComponent } from './betpage/betpage.component';
       {path: '', component : RegisterComponent},
       {path: 'dashboard', component : DashboardComponent, canActivate: [AuthGuard]},
       {path: 'login', component : LoginComponent},
+      {path: 'gamesdisplay', component : GamesdisplayComponent},
 
     ])
   ],
