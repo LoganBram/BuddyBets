@@ -14,14 +14,16 @@ NOTE: Due to the restriction of API calls with the free version, I've opted to s
 **/auth/register**
 
 Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
+Requires name,email and password JSON data and sets local storage JWT token upon request.
 
 **/auth/login**
 
 Checks for the user in the database and responds with JWT token, if failed it responds with correct corresponding error message.
+Requires email and password and sets JWT token in local storage upon request.
 
 **/auth/is-verify**
 
-Runs authorize middleware to check if token in local storage is valid, returns true or proper error message based on case
+Runs authorize middleware to check if JWT token in local storage is valid, returns true or corresponding error message based on case
 
 
 # Games -> for updating the database
