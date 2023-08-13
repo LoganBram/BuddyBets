@@ -6,7 +6,7 @@
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
-
+NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime
 
 ### ENDPOINTS
 
@@ -26,13 +26,13 @@ Runs authorize middleware to check if token in local storage is valid, returns t
 
 # Games -> for updating the database
 
-**/route/getgames**
+**/route/updategames-database**
 
 Gets dates for this week then gets all the WNBA games and updates database with games for the next 7 days
 
-**/route/getscores**
+**/route/updatescores-database**
 
-Queries database for all games that occurred yesterday and updates the database with the scores based on gameID
+Queries database for all games that occurred yesterday and updates the database with the scores based on gameID, meant for final check before determining winner
 
 # Bets
 
