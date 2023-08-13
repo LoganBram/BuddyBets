@@ -38,7 +38,12 @@ Queries database for all games that occurred yesterday and updates the database 
 
 **bets/placebet/**
 
-Accepts gameid & userID's as UUID's. Places bet into bet-table, and foreign key restricted bet-details table 
+Updates bets table & betdetails table, betdetails uses foreign key relation.
+Accepts userID's, wager, gameID and odds from frontend, and updates both tables accordingly.
+
+GameID obtained by checking route parameters 
+
+returns message in json if successful, otherwise returns error message
 
 
 
