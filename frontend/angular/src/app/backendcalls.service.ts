@@ -10,7 +10,7 @@ export class BackendcallsService {
 
   constructor(private http: HttpClient) { }
 
-  GetAllGames(){
-
+  PlaceBet(betdata:any){
+    return this.http.post<any>("http://localhost:3000/bets/placebet", betdata)
   }
 }
