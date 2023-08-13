@@ -7,18 +7,18 @@
   <div class="oddsandfriends">
     <div class="value">
       <h2>Wager</h2>
-      <input type="text" />
+      <input type="text" [(ngModel)]="betdata.wager" />
     </div>
     <div class="yourodds">
       <h2>Your Odds</h2>
 
-      <input type="text" />
+      <input type="text" [(ngModel)]="betdata.user1odds" />
 
       <h3>Suggested: -120</h3>
     </div>
     <div class="friendsodds">
       <h2>Friends Odds</h2>
-      <input type="text" />
+      <input type="text" [(ngModel)]="betdata.user2odds" />
       <h3>Suggested: +130</h3>
     </div>
     <div class="friendsdropdown">

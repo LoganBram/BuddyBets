@@ -8,8 +8,9 @@ import { Game, games } from '../games';
   styleUrls: ['./betpage.component.css']
 })
 export class BetpageComponent implements OnInit{
-
+  
   game: any;
+  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user2: null }
 
   constructor(private route: ActivatedRoute){}
 
@@ -31,5 +32,6 @@ export class BetpageComponent implements OnInit{
   //find game that matches the id from the route
 
     this.game = games.find(game => game.gameid === gameIdFromRoute);
+    this.betdata.gameid = gameIdFromRoute;
   }
 }
