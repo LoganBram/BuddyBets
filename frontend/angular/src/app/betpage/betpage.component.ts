@@ -9,7 +9,7 @@ import { BackendcallsService } from '../backendcalls.service';
   styleUrls: ['./betpage.component.css']
 })
 export class BetpageComponent implements OnInit{
-  
+  response: any = null;
   game: any;
   betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: 'a7a1bb4c-d43a-4f18-aee9-2bf755ae6411', user2: '29e48e07-eb01-467a-8746-3b7729adfc96' }
 
@@ -18,12 +18,20 @@ export class BetpageComponent implements OnInit{
   doubleornothing: false | true = false;
 
   PlaceBet(){
+    const token = localStorage.getItem('token');
+    if(!token){
+      this.response = 'You must be logged in to place a bet'
+      return;
+    }
+
     this.backendcalls.PlaceBet(this.betdata).subscribe({
       next: (res) => {
-        alert(res.response.message);
+        this.response = res.message
+        console.log(res.message);
       },
       error: (err) => {
-        alert(err.error);
+        this.response = err.message
+        console.log
       }
     })
   }

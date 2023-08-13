@@ -20,7 +20,7 @@ export class RegisterComponent {
         //display success message
         this.response = res.response
         localStorage.setItem('token', res.token)
-        this._route.navigate(['/dashboard'])
+        
       },
       //otherwise display error message from backend
       error: (err) => {

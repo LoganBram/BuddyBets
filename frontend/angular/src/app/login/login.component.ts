@@ -21,7 +21,7 @@ export class LoginComponent {
       next: (res)=> {
         this.response = res.response;
         localStorage.setItem('token', res.token)
-        this._route.navigate(['/dashboard'])
+        
       },
       //otherwise display error message from backend
       error: (err) => {
