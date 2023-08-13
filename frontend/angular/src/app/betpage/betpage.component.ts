@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game, games } from '../games';
 import { BackendcallsService } from '../backendcalls.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-betpage',
@@ -17,10 +18,30 @@ export class BetpageComponent implements OnInit{
 
   doubleornothing: false | true = false;
 
+  validateNumber(event: any){
+    const input = event.target as HTMLInputElement;
+    const value = input.value.trim();
+    const isValidNumber = /^[-+]?\d*$/.test(value);
+
+  if (!isValidNumber) {
+    this.response = "Please Remove Non Numerical Values";
+    
+  }
+  else{
+    this.response = null;
+  }
+  
+  }
+
   PlaceBet(){
     const token = localStorage.getItem('token');
     if(!token){
       this.response = 'You must be logged in to place a bet'
+      return;
+    }
+    const isAnyValueNull = Object.values(this.betdata).some(value => value === null);
+    if(isAnyValueNull){
+      this.response = 'Please fill out all fields'
       return;
     }
 
