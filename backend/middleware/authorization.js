@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
       } else {
         return res
           .status(403)
-          .json({ errmsg: "Invalid token", reason: "token_not_found" });
+          .json({ errmsg: "Please login ", reason: "token_not_found" });
       }
     }
 

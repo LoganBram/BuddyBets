@@ -13,6 +13,4 @@ authrouter.get("/is-verify", authorize, usercontroller.Verified);
 
 authrouter.get("/dashboard", authorize, usercontroller.Dashboard);
 
-authrouter.get("/placebet", authorize, usercontroller.PlaceBet);
-
 module.exports = authrouter;

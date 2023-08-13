@@ -1,9 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-const controller = require("../controllers/basecontroller.js");
+const controller = require("../controllers/databasecontroller.js");
 
-router.get("/getgames", controller.getGamesController);
+// -> /route
 
-router.get("/getscores", controller.getScoresController);
+router.get("/updategames-database", controller.getGamesController);
+
+router.get("/updatescores-database", controller.getScoresController);
 
 module.exports = router;
