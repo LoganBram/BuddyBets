@@ -11,8 +11,9 @@ module.exports = async (req, res, next) => {
       return res.status(403).json("Please Login");
     }
 
-    //if there is a token it checks if its still valid
+    //if there is a token it checks if its still valid and the secret is correct
     try {
+      //get username of user and verify them
       jwt.verify(jwtToken, process.env.JWTSECRET);
     } catch (err) {
       if (err instanceof jwt.TokenExpiredError) {
