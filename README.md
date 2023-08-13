@@ -6,6 +6,8 @@
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
+
+
 ### ENDPOINTS
 
 # Auth
@@ -22,7 +24,7 @@ Checks for the user in the database and responds with JWT token, if failed it re
 Runs authorize middleware to check if token in local storage is valid, returns true or proper error message based on case
 
 
-# Games
+# Games -> for updating the database
 
 **/route/getgames**
 
