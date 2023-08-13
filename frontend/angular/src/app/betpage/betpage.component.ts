@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Game, games } from '../games';
 import { BackendcallsService } from '../backendcalls.service';
 import { FormsModule } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-betpage',
@@ -44,15 +45,23 @@ export class BetpageComponent implements OnInit{
       this.response = 'Please fill out all fields'
       return;
     }
-
-    this.backendcalls.PlaceBet(this.betdata).subscribe({
+    //set header so backend can authenticate token
+    const headers = new HttpHeaders({
+      token: `Bearer ${token}`
+    });
+    //once checked if token exists and all fields are filled out, send api request to place bet
+    //with token in header to handle authentication error messages
+    this.backendcalls.PlaceBet(this.betdata, headers).subscribe({
       next: (res) => {
-        this.response = res.message
-        console.log(res.message);
+        this.response = res.message;
       },
       error: (err) => {
-        this.response = err.message
-        console.log
+        if(err.status === 403){
+          this.response = err.error.errmsg
+        }
+        else{
+          this.response = 'An unexpected error occured. Please try again later.';
+        }
       }
     })
   }
