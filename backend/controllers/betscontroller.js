@@ -3,7 +3,7 @@ const queries = require("../queries/queriesfile.js");
 
 const BetRequest = async (req, res) => {
   try {
-    const { user1, user2, gameid, user1odds, user2odds } = req.body;
+    const { user1, user2, wager, gameid, user1odds, user2odds } = req.body;
 
     //records in bets table, RETURNS THE BET ID
     const placedbetID = await pool.query(queries.PlaceBet, [
@@ -19,9 +19,10 @@ const BetRequest = async (req, res) => {
       betid,
       user1odds,
       user2odds,
+      wager,
     ]);
 
-    res.send("hello");
+    res.send({ message: "Bet Placed Successfully" });
   } catch (err) {
     console.error(err.message);
     res.send("Error on SQL query");

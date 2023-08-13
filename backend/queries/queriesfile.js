@@ -18,7 +18,7 @@ const PlaceBet =
   "INSERT INTO bets (gameid, user1, user2) VALUES ($1, $2, $3) RETURNING betid";
 
 const RecordBetDetails =
-  "INSERT INTO betdetails (betid, user1odds, user2odds) VALUES ($1, $2, $3)";
+  "INSERT INTO betdetails (betid, user1odds, user2odds, wager) VALUES ($1, $2, $3, $4)";
 
 module.exports = {
   getAllTest,
