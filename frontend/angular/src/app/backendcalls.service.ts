@@ -15,12 +15,13 @@ export class BackendcallsService {
   }
 
   GetGames(){
+    localStorage.getItem('token')
     return this.http.get<any>("http://localhost:3000/database/GetGamesinDB")
 
   }
-/*
-  SendFriendRequest(uuid: any){
-    return this.http.post<any>
+
+  SendFriendRequest(frienduuid: any, headers: any){
+    return this.http.post<any>("http://localhost:3000/auth/newfriendrequest", frienduuid, {headers})  
   }
-  */
+  
 }
