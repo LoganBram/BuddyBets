@@ -1,6 +1,6 @@
 const getAllTest = "SELECT * FROM test";
 const addGames =
-  " INSERT INTO games (gameid, startdate, homeid, awayid, time ) VALUES ($1, $2, $3, $4, $5 )";
+  " INSERT INTO games (gameid, startdate, homeid, awayid, time, hometeam, awayteam ) VALUES ($1, $2, $3, $4, $5, $6, $7 )";
 const updateDayScores =
   "UPDATE games SET homescore = $1, awayscore = $2 WHERE gameid = $3";
 const getGameidForDay =
@@ -20,6 +20,9 @@ const PlaceBet =
 const RecordBetDetails =
   "INSERT INTO betdetails (betid, user1odds, user2odds, wager) VALUES ($1, $2, $3, $4)";
 
+//ACCESSING DATABASE FOR EXTERNAL API DATA
+const GetGamesinDB = "SELECT * FROM games";
+
 module.exports = {
   getAllTest,
   addGames,
@@ -29,4 +32,5 @@ module.exports = {
   InsertUser,
   PlaceBet,
   RecordBetDetails,
+  GetGamesinDB,
 };

@@ -23,6 +23,8 @@ const getGamesController = async (req, res) => {
         game.homeid,
         game.awayid,
         game.time,
+        game.hometeam,
+        game.awayteam,
       ]);
     });
     res.send(games);

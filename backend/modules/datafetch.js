@@ -4,12 +4,14 @@ const { next7days } = require("../utils/dates");
 require("dotenv").config();
 
 class GameObject {
-  constructor(id, date, time, homeid, awayid) {
+  constructor(id, date, time, homeid, awayid, hometeam, awayteam) {
     this.id = id;
     this.homeid = homeid;
     this.awayid = awayid;
     this.time = time;
     this.date = date;
+    this.hometeam = hometeam;
+    this.awayteam = awayteam;
   }
 }
 
@@ -92,7 +94,7 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //date from api is in wrong format, so using my own date array
   let daytracker = 0;
 
-  //for loop into 6 indexed array, with each index containing game objects for the day
+  //for loop into 0-6 indexed array, with each index containing game objects for the day
   for (const day of gamesfortheweek) {
     for (const game of day) {
       console.log(game);
@@ -100,8 +102,18 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
         const { id, time, date } = game;
         const homeid = game.teams.home.id;
         const awayid = game.teams.away.id;
+        const hometeam = game.teams.home.name;
+        const awayteam = game.teams.away.name;
         //creates a new game object with the filtered data
-        const gameObject = new GameObject(id, date, time, homeid, awayid);
+        const gameObject = new GameObject(
+          id,
+          date,
+          time,
+          homeid,
+          awayid,
+          hometeam,
+          awayteam
+        );
 
         //pushes the game object to the gameObjects array
         gameObjectsArr.push(gameObject);
