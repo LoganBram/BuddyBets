@@ -18,4 +18,9 @@ export class BackendcallsService {
     return this.http.get<any>("http://localhost:3000/database/GetGamesinDB")
 
   }
+/*
+  SendFriendRequest(uuid: any){
+    return this.http.post<any>
+  }
+  */
 }

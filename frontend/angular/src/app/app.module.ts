@@ -12,6 +12,7 @@ import { AuthGuard } from './loginguard.guard';
 
 import { BetpageComponent } from './betpage/betpage.component';
 import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
+import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
     DashboardComponent,
     LoginComponent,
     BetpageComponent,
-    GamesdisplayComponent
+    GamesdisplayComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
       {path: 'login', component : LoginComponent},
       {path: 'gamesdisplay', component : GamesdisplayComponent},
       {path: 'betpage/:gameid', component : BetpageComponent},
+      {path: 'friends', component : FriendsComponent},
 
     ])
   ],

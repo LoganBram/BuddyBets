@@ -1,8 +1,8 @@
 <div *ngIf="game">
   <div class="teamheader">
-    <h1>{{ game.awayteam }}</h1>
+    <h1>{{ game.awayteam.slice(0, -1) }}</h1>
     <p>@</p>
-    <h1>{{ game.hometeam }}</h1>
+    <h1>{{ game.hometeam.slice(0, -1) }}</h1>
   </div>
   <div class="oddsandfriends">
     <div class="value">
