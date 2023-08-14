@@ -1,6 +1,6 @@
 const express = require("express");
 const routing = require("./routes/baserouting.js");
-const authrouter = require("./routes/authrouting.js");
+const authrouter = require("./routes/userrouting.js");
 const betsrouting = require("./routes/betsrouting.js");
 const datarouting = require("./routes/data-fromdb.js");
 

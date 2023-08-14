@@ -12,6 +12,8 @@ const CheckIfUserExists = "SELECT * FROM users WHERE email = $1";
 const InsertUser =
   "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
 
+//FRIENDS QUERIES
+
 //BET QUERIES
 
 const PlaceBet =

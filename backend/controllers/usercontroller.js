@@ -92,6 +92,10 @@ const Dashboard = async (req, res) => {
   }
 };
 
+const NewFriendRequest = async (req, res) => {
+  res.send({ e: req.user, token: "hello" });
+};
+
 //runs authorization middleware in routes/authrouting when this endpoint is called
 //req.user contains user id from token verification and payload
 
@@ -100,4 +104,5 @@ module.exports = {
   LoginUser,
   Verified,
   Dashboard,
+  NewFriendRequest,
 };
