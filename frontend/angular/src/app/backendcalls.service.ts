@@ -15,6 +15,7 @@ export class BackendcallsService {
   }
 
   GetGames(){
+    return this.http.get<any>("http://localhost:3000/database/GetGamesinDB")
 
   }
 }

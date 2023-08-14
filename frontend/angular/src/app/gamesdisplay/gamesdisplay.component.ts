@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {games} from '../games'
+import { Component, OnInit } from '@angular/core';
+import { BackendcallsService } from '../backendcalls.service';
 @Component({
   selector: 'app-gamesdisplay',
   templateUrl: './gamesdisplay.component.html',
@@ -7,7 +7,8 @@ import {games} from '../games'
 })
 export class GamesdisplayComponent {
 
-  games = [...games]
+  constructor(private backendcalls : BackendcallsService ) { }
+  games: any[] = [];
 
   //formats date in Tue, Aug 1
   formatDate(dateString: string): string {
@@ -31,6 +32,17 @@ export class GamesdisplayComponent {
       minute: "numeric",
       hour12: true,
     });
+  }
+
+  ngOnInit() {
+    this.backendcalls.GetGames().subscribe(
+      (data) => {
+        this.games = data; // Assign the data to the games property
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }
 
