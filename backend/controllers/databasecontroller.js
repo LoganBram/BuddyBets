@@ -5,7 +5,7 @@ const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
 const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
 const { GetScoresCall } = require("../modules/datafetch.js");
-const { getYesterdayDate } = require("../utils/dates.js");
+const { getTodayDate } = require("../utils/dates.js");
 const {
   getStoredGameid_BasedOnDate,
 } = require("../modules/fetchingstoredata.js");
@@ -37,7 +37,7 @@ const getGamesController = async (req, res) => {
 //gets scores for yesterdays games as final check before deciding bets
 
 const getScoresController = async (req, res) => {
-  const date = await getYesterdayDate();
+  const date = await getTodayDate();
   //uses yesterdays date to get all gameids matching that date, returned as
   //array of objs
   const gameids = await getStoredGameid_BasedOnDate(date);
