@@ -14,7 +14,7 @@ export class BetpageComponent implements OnInit{
   response: any = null;
   game: any;
   allgames: any[] = [];
-  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: 'a7a1bb4c-d43a-4f18-aee9-2bf755ae6411', user2: '29e48e07-eb01-467a-8746-3b7729adfc96' }
+  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: null }
   selectedFriend: any = null;
   friends: any[] = [];
   constructor(private route: ActivatedRoute, private backendcalls: BackendcallsService){}
@@ -42,6 +42,7 @@ export class BetpageComponent implements OnInit{
       this.response = 'You must be logged in to place a bet'
       return;
     }
+    //makes sure all input fields have values
     const isAnyValueNull = Object.values(this.betdata).some(value => value === null);
     if(isAnyValueNull){
       this.response = 'Please fill out all fields'
@@ -53,7 +54,7 @@ export class BetpageComponent implements OnInit{
     });
     //once checked if token exists and all fields are filled out, send api request to place bet
     //with token in header to handle authentication error messages
-    console.log(headers)
+    
     this.backendcalls.PlaceBet(this.betdata, headers).subscribe({
       next: (res) => {
         this.response = res.message;
@@ -94,5 +95,6 @@ export class BetpageComponent implements OnInit{
     token: `${localStorage.getItem('token')}`
   });
     this.friends = await this.backendcalls.GetFriends(headers).toPromise();
+    
   }
 }

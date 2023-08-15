@@ -35,7 +35,7 @@
     </div>
     <div class="friendsdropdown">
       <h2>Friends</h2>
-      <select [(ngModel)]="selectedFriend">
+      <select [(ngModel)]="betdata.user2">
         <option *ngFor="let friend of friends" [value]="friend.friend_id">
           {{ friend.friend_username }}
         </option>
@@ -50,4 +50,6 @@
     <button (click)="PlaceBet()">Place Bet</button>
   </div>
   {{ response }}
+  {{ betdata.user1 }}
+  {{ betdata.user2 }}
 </div>
