@@ -9,8 +9,10 @@ const getGameidForDay =
 //JWT QUERIES
 const CheckIfUserExists = "SELECT * FROM users WHERE email = $1";
 
+const CheckIfUsernameExists = "SELECT * FROM users WHERE username = $1";
+
 const InsertUser =
-  "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
+  "INSERT INTO users (name, email, password, username) VALUES ($1, $2, $3, $4) RETURNING *";
 
 //FRIENDS QUERIES
 const SendFriendRequest =
@@ -38,4 +40,5 @@ module.exports = {
   RecordBetDetails,
   GetGamesinDB,
   SendFriendRequest,
+  CheckIfUsernameExists,
 };

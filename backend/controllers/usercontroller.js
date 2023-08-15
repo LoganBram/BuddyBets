@@ -6,7 +6,7 @@ const jwtGenerator = require("./../utils/jwtgenerator.js");
 //user registration
 const RegisterUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, username } = req.body;
 
     //query db to see if user exists
     const user = await pool.query(queries.CheckIfUserExists, [email]);
@@ -15,6 +15,17 @@ const RegisterUser = async (req, res) => {
       return res
         .status(401)
         .send("user already exists, please use different email");
+    }
+
+    //query db to see if username taken
+    const user_name = await pool.query(queries.CheckIfUsernameExists, [
+      username,
+    ]);
+    if (user_name.rows.length !== 0) {
+      //user found in db, send error
+      return res
+        .status(401)
+        .send("user already exists, please use different username");
     }
 
     // 3) bcrypt password if email not in use
@@ -30,6 +41,7 @@ const RegisterUser = async (req, res) => {
       name,
       email,
       bcryptPassword,
+      username,
     ]);
 
     //5) generating JWT token with returned data from SQL query
