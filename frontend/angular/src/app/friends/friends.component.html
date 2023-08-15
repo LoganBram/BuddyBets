@@ -1,7 +1,8 @@
 <div>
   <div>
     <h1>Send Friend Request</h1>
-    <input type="text" [(ngModel)]="friendusername" />
+    <input type="text" [(ngModel)]="friend.friendusername" />
   </div>
   <button (click)="SendFriendRequest()">Send Request</button>
+  {{ response }}
 </div>
