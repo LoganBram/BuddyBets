@@ -160,6 +160,34 @@ const NewFriendRequest = async (req, res) => {
     res.send({ error: "unexpected error" });
   }
 };
+//takes token and gets the users friends, then adds the friends usernames
+//to the response for display
+const GetUserFriends = async (req, res) => {
+  try {
+    //gets all friends of the user
+    const friends = await pool.query(queries.GetAllFriends, [req.user]);
+
+    //gets username of the user
+    const userQueryResult = await pool.query(queries.GetUsernamefromUUID, [
+      friends.rows[0].user_id,
+    ]);
+    //iterates through the friends of the user and gets their username
+
+    for (let i = 0; i < friends.rows.length; i++) {
+      const friendQueryResult = await pool.query(queries.GetUsernamefromUUID, [
+        friends.rows[i].friend_id,
+      ]);
+      //adds the found usernames to dict
+      friends.rows[i].friend_username = friendQueryResult.rows[0].username;
+    }
+    //adds the users username to the first index of the dict incase it is needed
+    //not in for loop because we dont need to repeat the same information
+    friends.rows[0].user_username = userQueryResult.rows[0].username;
+    res.send(friends.rows);
+  } catch (error) {
+    res.send();
+  }
+};
 
 //runs authorization middleware in routes/authrouting when this endpoint is called
 //req.user contains user id from token verification and payload
@@ -170,4 +198,5 @@ module.exports = {
   Verified,
   Dashboard,
   NewFriendRequest,
+  GetUserFriends,
 };

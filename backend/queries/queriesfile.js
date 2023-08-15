@@ -16,12 +16,17 @@ const InsertUser =
 
 const GetUUIDFromusername = "SELECT * FROM users WHERE username = $1 ";
 
+const GetUsernamefromUUID = "SELECT * FROM users WHERE user_id = $1 ";
+
 //FRIENDS QUERIES
 const SendFriendRequest =
   "INSERT INTO friends (user_id, friend_id) VALUES ($1, $2)";
 
 const CheckIfDuplicateRequest =
   "SELECT * FROM friends WHERE (user_id = $1 AND friend_id = $2) OR (user_id = $2 AND friend_id = $1)";
+
+const GetAllFriends =
+  "SELECT * FROM friends WHERE user_id = $1 OR friend_id = $1";
 
 //BET QUERIES
 
@@ -48,4 +53,6 @@ module.exports = {
   CheckIfUsernameExists,
   GetUUIDFromusername,
   CheckIfDuplicateRequest,
+  GetAllFriends,
+  GetUsernamefromUUID,
 };

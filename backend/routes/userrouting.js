@@ -18,4 +18,6 @@ userrouter.post(
   authorize,
   usercontroller.NewFriendRequest
 );
+
+userrouter.get("/getfriends", authorize, usercontroller.GetUserFriends);
 module.exports = userrouter;
