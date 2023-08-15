@@ -27,9 +27,11 @@ Requires email and password and sets JWT token in local storage upon request.
 Runs authorize middleware to check if JWT token in local storage is valid, returns true or corresponding error message based on case
 
 **/auth/getfriends**
+
 Takes token in header and responds with all friends from that user
 
 **/auth/newfriendrequest**
+
 Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
 # Games -> for updating the database
