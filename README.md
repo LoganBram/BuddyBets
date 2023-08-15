@@ -28,7 +28,7 @@ Runs authorize middleware to check if JWT token in local storage is valid, retur
 
 **/auth/getfriends**
 
-Takes token in header and responds with all friends from that user
+Takes token in header and finds all of the users friends, then adds the friends usernames to the response
 
 **/auth/newfriendrequest**
 
