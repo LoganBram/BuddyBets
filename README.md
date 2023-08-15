@@ -11,7 +11,7 @@ NOTE: Due to the restriction of API calls with the free version, I've opted to s
 Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
 ### ENDPOINTS
 
-# Auth
+# Users
 **/auth/register**
 
 Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
@@ -26,6 +26,11 @@ Requires email and password and sets JWT token in local storage upon request.
 
 Runs authorize middleware to check if JWT token in local storage is valid, returns true or corresponding error message based on case
 
+**/auth/getfriends**
+Takes token in header and responds with all friends from that user
+
+**/auth/newfriendrequest**
+Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
 # Games -> for updating the database
 
@@ -43,7 +48,6 @@ Queries database for all games that occurred yesterday and updates the database 
 
 Updates bets table & betdetails table, betdetails uses foreign key relation.
 Accepts userID's, wager, gameID and odds from frontend, and updates both tables accordingly.
-
 GameID obtained by checking route parameters 
 
 returns message in json if successful, otherwise returns error message
