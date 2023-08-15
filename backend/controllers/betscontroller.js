@@ -3,8 +3,9 @@ const queries = require("../queries/queriesfile.js");
 
 const BetRequest = async (req, res) => {
   try {
-    const { user1, user2, wager, gameid, user1odds, user2odds } = req.body;
-
+    const { user2, wager, gameid, user1odds, user2odds } = req.body;
+    const user1 = req.user;
+    console.log({ user1, user2 });
     //records in bets table, RETURNS THE BET ID
     const placedbetID = await pool.query(queries.PlaceBet, [
       gameid,

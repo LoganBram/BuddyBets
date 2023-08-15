@@ -185,7 +185,7 @@ const GetUserFriends = async (req, res) => {
     friends.rows[0].user_username = userQueryResult.rows[0].username;
     res.send(friends.rows);
   } catch (error) {
-    res.send();
+    res.send("issue finding the friends, please try again");
   }
 };
 
