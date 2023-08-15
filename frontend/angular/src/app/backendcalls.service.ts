@@ -24,5 +24,9 @@ export class BackendcallsService {
 
     return this.http.post<any>("http://localhost:3000/auth/newfriendrequest", friendusername, {headers})  
   }
+
+  GetFriends(headers: any){
+    return this.http.get<any>("http://localhost:3000/auth/getfriends", {headers})
+  }
   
 }
