@@ -61,7 +61,12 @@ const getScoresController = async (req, res) => {
   }
 };
 
+const test = async (req, res) => {
+  await pool.query("INSERT INTO test (testing) VALUES ('hi')");
+};
+
 module.exports = {
   getGamesController,
   getScoresController,
+  test,
 };
