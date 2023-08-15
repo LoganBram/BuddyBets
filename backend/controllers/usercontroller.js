@@ -105,9 +105,50 @@ const Dashboard = async (req, res) => {
 };
 
 const NewFriendRequest = async (req, res) => {
+  const friendusername = req.body.friendusername;
+  const useruuid = req.user;
+
+  // check if friend exists
   try {
-    await pool.query(queries.SendFriendRequest, [req.user, req.user]);
-    res.send(req.user);
+    const friend = await pool.query("SELECT * FROM users WHERE username = $1", [
+      friendusername,
+    ]);
+    if (friend.rows.length === 0) {
+      return res.send("Friend not found, please doublecheck username");
+    }
+  } catch {
+    return res.send(
+      "unexpected error verifying your friend exists, please try again"
+    );
+  }
+  //req.user is username of the user, authorization middleware runs before this and sends the user id as req.user
+  //Now that we know the user exists get the username
+  const frienddata = await pool.query(queries.GetUUIDFromusername, [
+    friendusername,
+  ]);
+  const frienduuid = frienddata.rows[0].user_id;
+  //filter just for username
+
+  //Check if friend request already exists/already a friend
+  try {
+    const a = await pool.query(queries.CheckIfDuplicateRequest, [
+      useruuid,
+      frienduuid,
+    ]);
+    if (a.rows.length !== 0) {
+      return res.send(
+        "Either friend request pending is already or you are already friends"
+      );
+    }
+  } catch (error) {
+    return res.send(
+      "unexpected error verifying you dont have a pending request to the user already, please try again"
+    );
+  }
+
+  try {
+    await pool.query(queries.SendFriendRequest, [useruuid, frienduuid]);
+    res.send("friend request to user " + friendusername + " successful");
   } catch (error) {
     res.send(error);
   }
