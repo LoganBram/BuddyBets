@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   response : any = null;
 
-  registerUserData = {name: '', email: '', password: ''};
+  registerUserData = {name: '', email: '', password: '', username:''};
   constructor(private authService: AuthService, private _route: Router) { }
 
   registerUser() {

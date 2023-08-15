@@ -20,8 +20,8 @@ export class BackendcallsService {
 
   }
 
-  SendFriendRequest(frienduuid: any, headers: any){
-    return this.http.post<any>("http://localhost:3000/auth/newfriendrequest", frienduuid, {headers})  
+  SendFriendRequest(friendusername: any, headers: any){
+    return this.http.post<any>("http://localhost:3000/auth/newfriendrequest", friendusername, {headers})  
   }
   
 }

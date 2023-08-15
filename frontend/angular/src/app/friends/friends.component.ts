@@ -9,17 +9,18 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent {
-  frienduuid = ''
+  friendusername = ''
   usertoken = localStorage.getItem('token')
   
   constructor(private backendcalls: BackendcallsService) { }
   SendFriendRequest() {
-    
+    console.log(this.usertoken)
+
     const headers = new HttpHeaders({
-      token: `Bearer ${this.usertoken}`
+      token: `${this.usertoken}`
     });
 
-    this.backendcalls.SendFriendRequest(this.frienduuid, headers).subscribe({
+    this.backendcalls.SendFriendRequest(this.friendusername, headers).subscribe({
       next: (res) => {
         console.log(res)
       },

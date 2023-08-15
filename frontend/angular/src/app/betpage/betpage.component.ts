@@ -48,10 +48,11 @@ export class BetpageComponent implements OnInit{
     }
     //set header so backend can authenticate token
     const headers = new HttpHeaders({
-      token: `Bearer ${token}`
+      token:`${token}`
     });
     //once checked if token exists and all fields are filled out, send api request to place bet
     //with token in header to handle authentication error messages
+    console.log(headers)
     this.backendcalls.PlaceBet(this.betdata, headers).subscribe({
       next: (res) => {
         this.response = res.message;
