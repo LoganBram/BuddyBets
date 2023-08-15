@@ -24,6 +24,7 @@ export class FriendsComponent {
     this.backendcalls.SendFriendRequest(this.friend, headers).subscribe({
       next: (res) => {
         this.response = res.message;
+        
       },
       
     })

@@ -35,10 +35,10 @@
     </div>
     <div class="friendsdropdown">
       <h2>Friends</h2>
-      <select>
-        <option>Friend 1</option>
-        <option>Friend 2</option>
-        <option>Friend 3</option>
+      <select [(ngModel)]="selectedFriend">
+        <option *ngFor="let friend of friends" [value]="friend.friend_id">
+          {{ friend.friend_username }}
+        </option>
       </select>
     </div>
   </div>

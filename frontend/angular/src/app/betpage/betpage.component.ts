@@ -13,9 +13,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class BetpageComponent implements OnInit{
   response: any = null;
   game: any;
-  games: any[] = [];
+  allgames: any[] = [];
   betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: 'a7a1bb4c-d43a-4f18-aee9-2bf755ae6411', user2: '29e48e07-eb01-467a-8746-3b7729adfc96' }
-
+  selectedFriend: any = null;
+  friends: any[] = [];
   constructor(private route: ActivatedRoute, private backendcalls: BackendcallsService){}
 
   doubleornothing: false | true = false;
@@ -81,11 +82,17 @@ export class BetpageComponent implements OnInit{
     const routeParams = this.route.snapshot.paramMap;
     const gameIdFromRoute = Number(routeParams.get('gameid'));
 
-  //get games from db
-    this.games = await this.backendcalls.GetGames().toPromise();
+  //get allgames from db
+    this.allgames = await this.backendcalls.GetGames().toPromise();
 
   // Find game that matches the id from the route
-    this.game = this.games.find(game => game.gameid === gameIdFromRoute);
+    this.game = this.allgames.find(game => game.gameid === gameIdFromRoute);
     this.betdata.gameid = gameIdFromRoute;
+
+  //get friends from db
+  const headers = new HttpHeaders({
+    token: `${localStorage.getItem('token')}`
+  });
+    this.friends = await this.backendcalls.GetFriends(headers).toPromise();
   }
 }

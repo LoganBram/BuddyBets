@@ -1,5 +1,8 @@
-<div *ngIf="friends">
-  <div *ngFor="let friend of friends">
-    {{ friend }}
+<div *ngIf="friends" class="friends-container">
+  <div *ngFor="let friend of friends" class="friend-card">
+    <div class="friend-info">
+      <p class="username">FRIEND USERNAME: {{ friend.friend_username }}</p>
+      <p class="status">Request Status: {{ friend.status }}</p>
+    </div>
   </div>
 </div>
