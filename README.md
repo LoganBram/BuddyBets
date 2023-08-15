@@ -8,6 +8,7 @@
 
 NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime
 
+Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
 ### ENDPOINTS
 
 # Auth
