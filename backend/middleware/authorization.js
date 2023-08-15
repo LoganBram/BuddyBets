@@ -6,9 +6,10 @@ module.exports = async (req, res, next) => {
   try {
     //assigns jwtTOKEN to the request header labeled token
     const jwtToken = req.header("token");
+
     //if there is no token then throw error
     if (!jwtToken) {
-      return res.status(403).json("Please Login");
+      return res.status(403).json("Please Login aa");
     }
 
     //if there is a token it checks if its still valid and the secret is correct

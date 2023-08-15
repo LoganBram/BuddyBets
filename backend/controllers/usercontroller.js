@@ -105,7 +105,7 @@ const Dashboard = async (req, res) => {
 };
 
 const NewFriendRequest = async (req, res) => {
-  const friendusername = req.body.friendusername;
+  const { friendusername } = req.body;
   const useruuid = req.user;
 
   // check if friend exists
@@ -114,12 +114,15 @@ const NewFriendRequest = async (req, res) => {
       friendusername,
     ]);
     if (friend.rows.length === 0) {
-      return res.send("Friend not found, please doublecheck username");
+      return res.send({
+        message: "Friend not found, please doublecheck username",
+      });
     }
   } catch {
-    return res.send(
-      "unexpected error verifying your friend exists, please try again"
-    );
+    return res.send({
+      message:
+        "unexpected error verifying your friend exists, please try again",
+    });
   }
   //req.user is username of the user, authorization middleware runs before this and sends the user id as req.user
   //Now that we know the user exists get the username
@@ -136,21 +139,25 @@ const NewFriendRequest = async (req, res) => {
       frienduuid,
     ]);
     if (a.rows.length !== 0) {
-      return res.send(
-        "Either friend request pending is already or you are already friends"
-      );
+      return res.send({
+        message:
+          "Either friend request pending is already or you are already friends",
+      });
     }
   } catch (error) {
-    return res.send(
-      "unexpected error verifying you dont have a pending request to the user already, please try again"
-    );
+    return res.send({
+      message:
+        "unexpected error verifying you dont have a pending request to the user already, please try again",
+    });
   }
 
   try {
     await pool.query(queries.SendFriendRequest, [useruuid, frienduuid]);
-    res.send("friend request to user " + friendusername + " successful");
+    res.send({
+      message: "friend request to user " + friendusername + " successful",
+    });
   } catch (error) {
-    res.send(error);
+    res.send({ error: "unexpected error" });
   }
 };
 
