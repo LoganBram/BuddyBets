@@ -93,7 +93,12 @@ const Dashboard = async (req, res) => {
 };
 
 const NewFriendRequest = async (req, res) => {
-  res.send({ e: req.user, token: "hello" });
+  try {
+    await pool.query(queries.SendFriendRequest, [req.user, req.user]);
+    res.send(req.user);
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 //runs authorization middleware in routes/authrouting when this endpoint is called

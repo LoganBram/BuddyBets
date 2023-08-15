@@ -13,6 +13,8 @@ const InsertUser =
   "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
 
 //FRIENDS QUERIES
+const SendFriendRequest =
+  "INSERT INTO friends (user_id, friend_id) VALUES ($1, $2)";
 
 //BET QUERIES
 
@@ -35,4 +37,5 @@ module.exports = {
   PlaceBet,
   RecordBetDetails,
   GetGamesinDB,
+  SendFriendRequest,
 };
