@@ -14,6 +14,7 @@ import { BetpageComponent } from './betpage/betpage.component';
 import { GamesdisplayComponent } from './gamesdisplay/gamesdisplay.component';
 import { FriendsComponent } from './friends/friends.component';
 import { FriendsdisplayComponent } from './friendsdisplay/friendsdisplay.component';
+import { OngoingbetsComponent } from './ongoingbets/ongoingbets.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FriendsdisplayComponent } from './friendsdisplay/friendsdisplay.compone
     BetpageComponent,
     GamesdisplayComponent,
     FriendsComponent,
-    FriendsdisplayComponent
+    FriendsdisplayComponent,
+    OngoingbetsComponent
   ],
   imports: [
     BrowserModule,
