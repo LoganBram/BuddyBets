@@ -6,6 +6,8 @@ const controller = require("../controllers/databasecontroller.js");
 
 router.get("/updategames-database", controller.getGamesController);
 
+router.get("/updategamestoday-database", controller.getGamesForDay);
+
 router.get("/updatescores-database", controller.getScoresController);
 
 module.exports = router;

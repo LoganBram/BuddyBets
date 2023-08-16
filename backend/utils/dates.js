@@ -30,7 +30,7 @@ const next7days = async () => {
 //gets todays date BASED ON UTC because the API updates based on UTC
 const getTodayDate = () => {
   // Get the current date in UTC
-  var todayUTC = new Date(Date.UTC());
+  var todayUTC = new Date();
 
   // Format the date in yyyy-mm-dd form
   var yyyy = todayUTC.getUTCFullYear();

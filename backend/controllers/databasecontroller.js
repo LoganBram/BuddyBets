@@ -9,6 +9,7 @@ const { getTodayDate } = require("../utils/dates.js");
 const {
   getStoredGameid_BasedOnDate,
 } = require("../modules/fetchingstoredata.js");
+const axios = require("axios");
 
 //updates games for next 7 days
 const getGamesController = async (req, res) => {
@@ -27,15 +28,30 @@ const getGamesController = async (req, res) => {
         game.awayteam,
       ]);
     });
-    res.send(games);
+    console.log(games);
   } catch (error) {
     console.error("Error fetching games:", error.message);
     res.status(500).send("Error fetching games");
   }
 };
 
-//gets scores for yesterdays games as final check before deciding bets
+const getGamesForDay = async (req, res) => {
+  const date = await getTodayDate();
+  const currentYear = new Date().getUTCFullYear();
 
+  const options = {
+    method: "GET",
+    url: `https://api-basketball.p.rapidapi.com/games?date=${date}&season=${currentYear}&league=13`,
+    headers: {
+      "x-rapidapi-host": "api-basketball.p.rapidapi.com",
+      "x-rapidapi-key": process.env.APIKEY,
+    },
+  };
+  const response = await axios(options);
+  res.send(response.data);
+};
+
+//updates scores for todays games
 const getScoresController = async (req, res) => {
   const date = await getTodayDate();
   //uses yesterdays date to get all gameids matching that date, returned as
@@ -69,4 +85,5 @@ module.exports = {
   getGamesController,
   getScoresController,
   test,
+  getGamesForDay,
 };

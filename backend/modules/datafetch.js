@@ -97,7 +97,6 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //for loop into 0-6 indexed array, with each index containing game objects for the day
   for (const day of gamesfortheweek) {
     for (const game of day) {
-      console.log(game);
       if (game.league.id === 13) {
         const { id, time, date } = game;
         const homeid = game.teams.home.id;
