@@ -42,7 +42,25 @@ const getTodayDate = () => {
   return todayDateUTC;
 };
 
+const getFutureDate = (days) => {
+  // Get the current date in UTC
+  var todayUTC = new Date();
+
+  // Calculate the future date by adding the specified number of days
+  var futureDateUTC = new Date(todayUTC.getTime() + days * 24 * 60 * 60 * 1000);
+
+  // Format the future date in yyyy-mm-dd form
+  var yyyy = futureDateUTC.getUTCFullYear();
+  var mm = String(futureDateUTC.getUTCMonth() + 1).padStart(2, "0"); // Months are 0-based
+  var dd = String(futureDateUTC.getUTCDate()).padStart(2, "0");
+
+  // Concatenate the parts to form the final date string
+  var futureDateFormatted = yyyy + "-" + mm + "-" + dd;
+  return futureDateFormatted;
+};
+
 module.exports = {
   next7days,
   getTodayDate,
+  getFutureDate,
 };

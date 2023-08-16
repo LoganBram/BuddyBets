@@ -16,12 +16,11 @@ class GameObject {
 }
 
 //gets scores for game on specified day and updates table
-
 GetScoresCall = async (date, gameids) => {
   try {
     const call = await axios({
       method: "GET",
-      url: `https://api-basketball.p.rapidapi.com/games?date=${date}&timezone=canada/vancouver`,
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
       headers: {
         "x-rapidapi-host": "api-basketball.p.rapidapi.com",
         "x-rapidapi-key": process.env.APIKEY,
@@ -38,7 +37,7 @@ GetScoresCall = async (date, gameids) => {
   } catch (error) {
     // Handle any errors here
     console.error(error);
-    throw error;
+    return null;
   }
 };
 

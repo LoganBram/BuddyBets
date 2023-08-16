@@ -13,11 +13,12 @@ function automation() {
     }
   );
 
-  // Schedule the "tasks" cron job to run every minute in UTC
+  // 10 minutes past new day everyday, will update the games 7 days from now
+  //to keep a concurrent 7 days of games in the database
   const tasks = cron.schedule(
-    "* * * * *",
+    "10 0 * * *",
     () => {
-      getGamesController();
+      getGamesForDay();
       console.log("GamesUpdated.");
     },
     {
