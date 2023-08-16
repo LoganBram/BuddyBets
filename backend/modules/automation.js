@@ -1,12 +1,16 @@
 const cron = require("node-cron");
-const { getGamesController } = require("../controllers/databasecontroller.js");
+const {
+  getGamesController,
+  getGamesForDay,
+  getScoresController,
+} = require("../controllers/databasecontroller.js");
 
 function automation() {
-  const task = cron.schedule(
+  cron.schedule(
     "* * * * *",
     () => {
-      test();
       console.log("everym i.");
+      test();
     },
     {
       timezone: "Etc/UTC",
@@ -15,7 +19,7 @@ function automation() {
 
   // 10 minutes past new day everyday, will update the games 7 days from now
   //to keep a concurrent 7 days of games in the database
-  const tasks = cron.schedule(
+  cron.schedule(
     "10 0 * * *",
     () => {
       getGamesForDay();
@@ -25,6 +29,11 @@ function automation() {
       timezone: "Etc/UTC",
     }
   );
+
+  cron.schedule("0 */8 * * *", () => {
+    getScoresController();
+    console.log("ScoresUpdated.");
+  });
 }
 
 automation();
