@@ -4,6 +4,7 @@ const {
   getGamesForDay,
   getScoresController,
 } = require("../controllers/databasecontroller.js");
+const { DetermineWinners } = require("../controllers/betscontroller.js");
 
 function automation() {
   // 10 minutes past new day everyday, will update the games 7 days from now
@@ -19,9 +20,9 @@ function automation() {
     }
   );
 
-  cron.schedule("0 */8 * * *", async () => {
+  cron.schedule("* * * * *", async () => {
     await getScoresController();
-    console.log("ScoresUpdated.");
+    await DetermineWinners();
   });
 
   //NEXT STEPS

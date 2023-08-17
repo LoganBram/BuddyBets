@@ -36,6 +36,31 @@ const PlaceBet =
 const RecordBetDetails =
   "INSERT INTO betdetails (betid, user1odds, user2odds, wager) VALUES ($1, $2, $3, $4)";
 
+const DetermineWinner =
+  "UPDATE betdetails " +
+  "SET winnerid = CASE " +
+  "  WHEN games.homescore > games.awayscore AND betdetails.home = 'user1' THEN user1 " +
+  "  WHEN games.homescore > games.awayscore AND betdetails.home = 'user2' THEN user2 " +
+  "  WHEN games.homescore < games.awayscore AND betdetails.away = 'user1' THEN user1 " +
+  "  WHEN games.homescore < games.awayscore AND betdetails.away = 'user2' THEN user2 " +
+  "END " +
+  "FROM games " +
+  "WHERE games.status = 'Game Finished' " +
+  "AND betdetails.betid = <bet_id> " +
+  "AND games.gameid = <game_id>";
+/*UPDATE betdetails
+SET winnerid = CASE
+    WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user1 THEN bets.user1
+    WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user2 THEN bets.user2
+    WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user1 THEN bets.user1
+    WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user2 THEN bets.user2
+END
+FROM games
+JOIN bets ON games.gameid = bets.gameid
+WHERE games.status = 'Game Finished'
+AND games.gameid = 123;
+
+ */
 //ACCESSING DATABASE FOR EXTERNAL API DATA
 const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
@@ -55,4 +80,5 @@ module.exports = {
   CheckIfDuplicateRequest,
   GetAllFriends,
   GetUsernamefromUUID,
+  DetermineWinner,
 };

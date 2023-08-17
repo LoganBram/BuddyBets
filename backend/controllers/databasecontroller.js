@@ -86,7 +86,7 @@ const getScoresController = async (req, res) => {
   try {
     //gets all games from today
     const response = await GetScoresCall(date, gameIdsArray);
-    res.send(response);
+
     // Response contains an array of game objects for the specified day
     response.map(async (game) => {
       //updates scores and status based on gameid for each game
@@ -98,6 +98,7 @@ const getScoresController = async (req, res) => {
         game.id,
       ]);
     });
+    console.log("ScoresUpdated.");
   } catch (error) {
     console.error("Error updating scores:", error.message);
   }

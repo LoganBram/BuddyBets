@@ -30,6 +30,15 @@ const BetRequest = async (req, res) => {
   }
 };
 
+const DetermineWinners = async (req, res) => {
+  //1. find all games where status = finished and get gameid
+  //2. go to bets table and find all bets where the game id matchs, return the bet id
+  //3. go to betdetails table and find all bets where the bet id matches and set winnerid in the betdetails table
+  //and update winnerid based on who won in the games table
+
+  await pool.query(queries.DetermineWinner);
+};
 module.exports = {
   BetRequest,
+  DetermineWinners,
 };
