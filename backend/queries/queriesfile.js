@@ -2,7 +2,7 @@ const getAllTest = "SELECT * FROM test";
 const addGames =
   " INSERT INTO games (gameid, startdate, homeid, awayid, time, hometeam, awayteam ) VALUES ($1, $2, $3, $4, $5, $6, $7 )";
 const updateDayScores =
-  "UPDATE games SET homescore = $1, awayscore = $2 WHERE gameid = $3";
+  "UPDATE games SET homescore = $1, awayscore = $2, status = $3  WHERE gameid = $4";
 const getGameidForDay =
   "SELECT gameid FROM games WHERE startdate::text LIKE $1";
 
@@ -37,7 +37,7 @@ const RecordBetDetails =
   "INSERT INTO betdetails (betid, user1odds, user2odds, wager) VALUES ($1, $2, $3, $4)";
 
 //ACCESSING DATABASE FOR EXTERNAL API DATA
-const GetGamesinDB = "SELECT * FROM games";
+const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
 module.exports = {
   getAllTest,

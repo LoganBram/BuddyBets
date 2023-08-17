@@ -3,8 +3,8 @@ using queries from the queries folder*/
 
 const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
-const { GamesForNext7DaysCall } = require("../modules/datafetch.js");
-const { GetScoresCall } = require("../modules/datafetch.js");
+const { GamesForNext7DaysCall } = require("../modules/datacaching.js");
+const { GetScoresCall } = require("../modules/datacaching.js");
 const { getTodayDate } = require("../utils/dates.js");
 const {
   getStoredGameid_BasedOnDate,
@@ -74,34 +74,32 @@ const getGamesForDay = async (req, res) => {
 const getScoresController = async (req, res) => {
   const date = await getTodayDate();
 
-  //uses yesterdays date to get all gameids matching that date, returned as
-  //array of objs
+  //Gets gameids of games that happened today
   const gameids = await getStoredGameid_BasedOnDate(date);
 
   if (gameids === null) {
-    res.send("no games today");
+    return "no games today";
   }
   //convert to array
   const gameIdsArray = gameids.map((game) => game.gameid);
 
   try {
-    //gets scores for given date and specified gameids
+    //gets all games from today
     const response = await GetScoresCall(date, gameIdsArray);
-
+    res.send(response);
     // Response contains an array of game objects for the specified day
     response.map(async (game) => {
-      //updates scores based on gameid for each game
+      //updates scores and status based on gameid for each game
 
       await pool.query(queries.updateDayScores, [
         game.scores.home.total,
         game.scores.away.total,
+        game.status.long,
         game.id,
       ]);
     });
-    res.send("yes");
   } catch (error) {
     console.error("Error updating scores:", error.message);
-    res.status(500).send("Error updating scores");
   }
 };
 
