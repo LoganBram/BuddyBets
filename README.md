@@ -34,7 +34,7 @@ Takes token in header and finds all of the users friends, then adds the friends 
 
 Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
-# Games -> for updating the database
+# Data Caching
 
 **/route/updategames-database**
 
