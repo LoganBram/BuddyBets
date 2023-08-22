@@ -34,7 +34,7 @@ const PlaceBet =
   "INSERT INTO bets (gameid, user1, user2) VALUES ($1, $2, $3) RETURNING betid";
 
 const RecordBetDetails =
-  "INSERT INTO betdetails (betid, user1odds, user2odds, wager) VALUES ($1, $2, $3, $4)";
+  "INSERT INTO betdetails (betid, user1odds, user2odds, wager, homebettor, awaybettor) VALUES ($1, $2, $3, $4, $5, $6)";
 
 const DetermineWinner =
   "UPDATE betdetails " +
