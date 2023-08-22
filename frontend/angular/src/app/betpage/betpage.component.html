@@ -42,6 +42,14 @@
       </select>
     </div>
   </div>
+  <div>
+    <button (click)="betdata.user1_onhome = true">
+      {{ game.hometeam.slice(0, -1) }}
+    </button>
+    <button (click)="betdata.user1_onhome = false">
+      {{ game.hometeam.slice(0, -1) }}
+    </button>
+  </div>
   <div class="doubleornothing">
     <p>Double or Nothing Option at End of Game?</p>
     <button (click)="ToggleDouble()">{{ doubleornothing }}</button>

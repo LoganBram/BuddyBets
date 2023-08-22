@@ -14,7 +14,7 @@ export class BetpageComponent implements OnInit{
   response: any = null;
   game: any;
   allgames: any[] = [];
-  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: null }
+  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: '29e48e07-eb01-467a-8746-3b7729adfc96', user1_onhome: true }
   selectedFriend: any = null;
   friends: any[] = [];
   constructor(private route: ActivatedRoute, private backendcalls: BackendcallsService){}
@@ -37,6 +37,7 @@ export class BetpageComponent implements OnInit{
   }
 
   PlaceBet(){
+    console.log(this.betdata)
     const token = localStorage.getItem('token');
     if(!token){
       this.response = 'You must be logged in to place a bet'
