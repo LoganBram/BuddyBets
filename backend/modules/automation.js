@@ -21,7 +21,7 @@ function automation() {
   );
 
   cron.schedule("* * * * *", async () => {
-    await getScoresController();
+    const gameIdsArray = await getScoresController();
     await DetermineWinners();
   });
 

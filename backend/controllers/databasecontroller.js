@@ -99,6 +99,7 @@ const getScoresController = async (req, res) => {
       ]);
     });
     console.log("ScoresUpdated.");
+    return gameIdsArray;
   } catch (error) {
     console.error("Error updating scores:", error.message);
   }
