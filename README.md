@@ -6,7 +6,7 @@
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
-NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime
+NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime. This also allows me to determine bet winners every minute as opposed to once in a while due to api restrictions.
 
 Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
 ### ENDPOINTS
