@@ -42,7 +42,12 @@ Gets dates for this week then gets all the WNBA games and updates database with 
 
 **/route/updatescores-database**
 
-Queries database for all games that occurred yesterday and updates the database with the scores based on gameID, meant for final check before determining winner
+Queries database for all games that occurred today and updates the database with the scores based on gameID
+
+**/route/updategamestoday-database**
+
+Updates the games all games that land 7 days in advance and runs everyday in order to maintain a 7 day schedule
+
 
 # Bets
 
