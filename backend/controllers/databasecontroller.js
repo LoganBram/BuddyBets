@@ -19,6 +19,9 @@ const getGamesController = async (req, res) => {
     const games = await GamesForNext7DaysCall();
     //stores games into DB
     games.map((game) => {
+      //converts date from api call from 2023-08-29T23:00:00+00:00 to 2023-08-24
+      game.date = game.date.split("T")[0];
+      console.log(game);
       pool.query(queries.addGames, [
         game.id,
         game.date,
@@ -29,7 +32,6 @@ const getGamesController = async (req, res) => {
         game.awayteam,
       ]);
     });
-    console.log(games);
   } catch (error) {
     console.error("Error fetching games:", error.message);
     res.status(500).send("Error fetching games");
@@ -73,7 +75,7 @@ const getGamesForDay = async (req, res) => {
 //updates scores for todays games
 const getScoresController = async (req, res) => {
   const date = await getTodayDate();
-
+  console.log(date);
   //Gets gameids of games that happened today
   const gameids = await getStoredGameid_BasedOnDate(date);
 

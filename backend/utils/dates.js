@@ -18,7 +18,7 @@ const next7days = async () => {
   const next7DaysUTC = [];
   for (let i = 0; i < 7; i++) {
     const nextDateUTC = new Date(currentDateUTC);
-    nextDateUTC.setUTCDate(currentDateUTC.getUTCDate() + i + 1);
+    nextDateUTC.setUTCDate(currentDateUTC.getUTCDate() + i);
     next7DaysUTC.push(formatDateUTC(nextDateUTC));
   }
 
@@ -39,6 +39,7 @@ const getTodayDate = () => {
 
   // Concatenate the parts to form the final date string
   var todayDateUTC = yyyy + "-" + mm + "-" + dd;
+
   return todayDateUTC;
 };
 
@@ -56,6 +57,7 @@ const getFutureDate = (days) => {
 
   // Concatenate the parts to form the final date string
   var futureDateFormatted = yyyy + "-" + mm + "-" + dd;
+
   return futureDateFormatted;
 };
 

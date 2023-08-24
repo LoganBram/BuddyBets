@@ -29,9 +29,11 @@ GetScoresCall = async (date, gameids) => {
 
     //filter response to only include specified games
     const response = call.data.response;
+
     const filteredResponse = response.filter((game) =>
       gameids.includes(game.id)
     );
+    console.log(filteredResponse);
 
     return filteredResponse;
   } catch (error) {

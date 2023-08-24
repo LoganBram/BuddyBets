@@ -48,7 +48,7 @@ const DetermineWinner = `
   FROM games
   JOIN bets ON games.gameid = bets.gameid
   WHERE games.status = 'Game Finished'
-  AND games.gameid = 123;
+  
   `;
 
 //ACCESSING DATABASE FOR EXTERNAL API DATA
