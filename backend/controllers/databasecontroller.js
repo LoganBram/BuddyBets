@@ -21,7 +21,7 @@ const getGamesController = async (req, res) => {
     games.map((game) => {
       //converts date from api call from 2023-08-29T23:00:00+00:00 to 2023-08-24
       game.date = game.date.split("T")[0];
-      console.log(game);
+
       pool.query(queries.addGames, [
         game.id,
         game.date,
@@ -55,6 +55,7 @@ const getGamesForDay = async (req, res) => {
     const dayofgames = response.data.response;
     //add each game within the day to the database
     dayofgames.map(async (game) => {
+      game.date = game.date.split("T")[0];
       await pool.query(queries.addGames, [
         game.id,
         game.date,
@@ -75,7 +76,7 @@ const getGamesForDay = async (req, res) => {
 //updates scores for todays games
 const getScoresController = async (req, res) => {
   const date = await getTodayDate();
-  console.log(date);
+
   //Gets gameids of games that happened today
   const gameids = await getStoredGameid_BasedOnDate(date);
 
