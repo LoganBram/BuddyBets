@@ -47,13 +47,13 @@ returns message in json if successful, otherwise returns error message
 
 # CRON AUTOMATION
 
-##Every Day
+## Every Day
 
 **getGamesForDay**
 
 updates the games that are to occur in 7 days in database to keep a constant 7 day forecast
 
-##Every Minute
+## Every Minute
 
 **getScoresController**
 
