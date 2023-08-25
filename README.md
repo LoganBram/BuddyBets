@@ -9,9 +9,9 @@
 NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime. This also allows me to determine bet winners every minute as opposed to once in a while due to api restrictions.
 
 Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
-### ENDPOINTS
+# ENDPOINTS
 
-# Users
+## Users
 **/auth/register**
 
 Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
@@ -34,7 +34,7 @@ Takes token in header and finds all of the users friends, then adds the friends 
 
 Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
-# Bets
+## Bets
 
 **bets/placebet/**
 
@@ -45,15 +45,16 @@ GameID obtained by checking route parameters
 returns message in json if successful, otherwise returns error message
 
 
-### CRON AUTOMATION
+# CRON AUTOMATION
 
-#Every Day
+##Every Day
 
 **getGamesForDay**
 
 updates the games that are to occur in 7 days in database to keep a constant 7 day forecast
 
-#Every Minute
+##Every Minute
+
 **getScoresController**
 
 Updates scores for the games along with game status
