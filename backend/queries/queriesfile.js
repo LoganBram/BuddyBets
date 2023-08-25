@@ -55,6 +55,14 @@ const DetermineWinner = `
 const DistributeCredits =
   "UPDATE users SET credits = credits + $1 WHERE user_id = $2";
 
+const GetPendingBets = `
+  SELECT bd.*, b.gameid, g.*
+  FROM betdetails bd
+  JOIN bets b ON bd.betid = b.betid
+  JOIN games g ON b.gameid = g.gameid
+  WHERE (bd.awaybettor = $1 OR bd.homebettor = $1) AND b.accepted = 'f';
+`;
+
 //ACCESSING DATABASE FOR EXTERNAL API DATA
 const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
@@ -76,4 +84,5 @@ module.exports = {
   GetUsernamefromUUID,
   DetermineWinner,
   DistributeCredits,
+  GetPendingBets,
 };

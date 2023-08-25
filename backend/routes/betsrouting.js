@@ -7,4 +7,6 @@ const authorize = require("../middleware/authorization.js");
 
 router.post("/placebet", authorize, controller.BetRequest);
 
+router.get("/getpendingbets", authorize, controller.GetPendingBets);
+
 module.exports = router;

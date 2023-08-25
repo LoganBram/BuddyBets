@@ -77,7 +77,18 @@ const DetermineWinners = async (req, res) => {
     }
   }
 };
+
+const GetPendingBets = async (req, res) => {
+  try {
+    const response = await pool.query(queries.GetPendingBets, [req.user]);
+    res.send(response.rows);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 module.exports = {
   BetRequest,
   DetermineWinners,
+  GetPendingBets,
 };
