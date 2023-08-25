@@ -47,7 +47,7 @@ const DetermineWinner = `
   END
   FROM games
   JOIN bets ON games.gameid = bets.gameid
-  WHERE games.status = 'Game Finished'
+  WHERE games.status = 'Game Finished' AND betdetails.winnerid IS NULL 
   RETURNING betdetails.user1odds, betdetails.user2odds, betdetails.winnerid, betdetails.wager, betdetails.betid, bets.user1, bets.user2;
   
   `;
