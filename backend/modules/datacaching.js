@@ -33,7 +33,6 @@ GetScoresCall = async (date, gameids) => {
     const filteredResponse = response.filter((game) =>
       gameids.includes(game.id)
     );
-    console.log(filteredResponse);
 
     return filteredResponse;
   } catch (error) {

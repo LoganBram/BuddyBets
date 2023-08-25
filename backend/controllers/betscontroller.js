@@ -45,7 +45,36 @@ const BetRequest = async (req, res) => {
 };
 
 const DetermineWinners = async (req, res) => {
-  await pool.query(queries.DetermineWinner);
+  //Joins tables and fills in winner ID in SQL where applicable
+  const x = await pool.query(queries.DetermineWinner);
+
+  const calculateWinnings = (wager, odds) => {
+    if (odds > 0) {
+      //calulates winnings based on odds
+      const winnings = ((wager * odds) / 100).toFixed(2);
+      //add wager onto winnings
+      return (parseFloat(winnings) + wager).toFixed(2);
+    } else if (odds < 0) {
+      //calulates winnings based on odds
+      const winnings = ((wager * 100) / Math.abs(odds)).toFixed(2);
+      //add wager onto winnings
+      return (parseFloat(winnings) + wager).toFixed(2);
+    } else {
+      return 0; // No profit or loss with even odds (odds = 0)
+    }
+  };
+
+  //distribute credits
+  for (const bet of x.rows) {
+    console.log(bet);
+    if (bet.winnerid === bet.user1) {
+      const winnings = calculateWinnings(bet.wager, bet.user1odds);
+      console.log(winnings);
+    } else if (bet.winnerid === bet.user2) {
+      const winnings = calculateWinnings(bet.wager, bet.user2odds);
+      console.log(winnings);
+    }
+  }
 };
 module.exports = {
   BetRequest,
