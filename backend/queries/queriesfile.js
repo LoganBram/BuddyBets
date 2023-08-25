@@ -52,6 +52,9 @@ const DetermineWinner = `
   
   `;
 
+const DistributeCredits =
+  "UPDATE users SET credits = credits + $1 WHERE user_id = $2";
+
 //ACCESSING DATABASE FOR EXTERNAL API DATA
 const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
@@ -72,4 +75,5 @@ module.exports = {
   GetAllFriends,
   GetUsernamefromUUID,
   DetermineWinner,
+  DistributeCredits,
 };

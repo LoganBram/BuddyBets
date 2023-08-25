@@ -12,4 +12,4 @@ const calculateWinnings = (wager, odds) => {
   }
 };
 
-calculateWinnings(20, -120);
+calculateWinnings(20, 120);

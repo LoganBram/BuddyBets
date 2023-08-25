@@ -50,15 +50,13 @@ const DetermineWinners = async (req, res) => {
 
   const calculateWinnings = (wager, odds) => {
     if (odds > 0) {
-      //calulates winnings based on odds
       const winnings = ((wager * odds) / 100).toFixed(2);
-      //add wager onto winnings
-      return (parseFloat(winnings) + wager).toFixed(2);
+      const x = (parseFloat(winnings) + wager).toFixed(2);
+      return x;
     } else if (odds < 0) {
-      //calulates winnings based on odds
       const winnings = ((wager * 100) / Math.abs(odds)).toFixed(2);
-      //add wager onto winnings
-      return (parseFloat(winnings) + wager).toFixed(2);
+      const x = (parseFloat(winnings) + wager).toFixed(2);
+      return x;
     } else {
       return 0; // No profit or loss with even odds (odds = 0)
     }
@@ -66,13 +64,16 @@ const DetermineWinners = async (req, res) => {
 
   //distribute credits
   for (const bet of x.rows) {
-    console.log(bet);
+    //distribute to user1 if winner
     if (bet.winnerid === bet.user1) {
       const winnings = calculateWinnings(bet.wager, bet.user1odds);
-      console.log(winnings);
-    } else if (bet.winnerid === bet.user2) {
-      const winnings = calculateWinnings(bet.wager, bet.user2odds);
-      console.log(winnings);
+      winnings = parseInt(winnings);
+      await pool.query(queries.DistributeCredits, [winnings, bet.user1]);
+    } //distribute to user 2 if winner
+    else if (bet.winnerid === bet.user2) {
+      let winnings = calculateWinnings(bet.wager, bet.user2odds);
+      winnings = parseInt(winnings);
+      await pool.query(queries.DistributeCredits, [winnings, bet.user2]);
     }
   }
 };
