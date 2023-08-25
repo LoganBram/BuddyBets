@@ -1,0 +1,9 @@
+<p>pendingbets works!</p>
+
+<div *ngFor="let bet of pendingbets">
+  <h1>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h1>
+  <div *ngIf="SideChecker(bet)">
+    <p>your side: {{}}</p>
+  </div>
+  <p>wager: {{ bet.wager }}</p>
+</div>

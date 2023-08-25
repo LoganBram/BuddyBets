@@ -28,5 +28,8 @@ export class BackendcallsService {
   GetFriends(headers: any){
     return this.http.get<any>("http://localhost:3000/auth/getfriends", {headers})
   }
+  GetPendingBets(headers: any){
+    return this.http.get<any>("http://localhost:3000/bets/getpendingbets", {headers})
+  }
   
 }
