@@ -60,6 +60,7 @@ updates the games that are to occur in 7 days in database to keep a constant 7 d
 Updates scores for the games along with game status
 
 **DetermineWinners**
+
 Uses SQL query to determine winner and input winnerid, query returns the data that has been updated with a winnerid then distributes credits
 
 
