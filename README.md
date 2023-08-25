@@ -6,7 +6,7 @@
 - Utilizes UUID for user ID's in SQL
 - Implements JWT and bcrypt for user authentication
 
-NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime
+NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime. This also allows me to determine bet winners every minute as opposed to once in a while due to api restrictions.
 
 Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
 ### ENDPOINTS
@@ -42,7 +42,12 @@ Gets dates for this week then gets all the WNBA games and updates database with 
 
 **/route/updatescores-database**
 
-Queries database for all games that occurred yesterday and updates the database with the scores based on gameID, meant for final check before determining winner
+Queries database for all games that occurred today and updates the database with the scores based on gameID
+
+**/route/updategamestoday-database**
+
+Updates the games all games that land 7 days in advance and runs everyday in order to maintain a 7 day schedule
+
 
 # Bets
 
