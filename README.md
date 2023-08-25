@@ -34,21 +34,6 @@ Takes token in header and finds all of the users friends, then adds the friends 
 
 Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
-# Data Caching
-
-**/route/updategames-database**
-
-Gets dates for this week then gets all the WNBA games and updates database with games for the next 7 days
-
-**/route/updatescores-database**
-
-Queries database for all games that occurred today and updates the database with the scores based on gameID
-
-**/route/updategamestoday-database**
-
-Updates the games all games that land 7 days in advance and runs everyday in order to maintain a 7 day schedule
-
-
 # Bets
 
 **bets/placebet/**
@@ -58,6 +43,28 @@ Accepts userID's, wager, gameID and odds from frontend, and updates both tables 
 GameID obtained by checking route parameters 
 
 returns message in json if successful, otherwise returns error message
+
+
+### CRON AUTOMATION
+
+#Every Day
+
+**getGamesForDay**
+
+updates the games that are to occur in 7 days in database to keep a constant 7 day forecast
+
+#Every Minute
+**getScoresController**
+
+Updates scores for the games along with game status
+
+**DetermineWinners**
+Uses SQL query to determine winner and input winnerid, query returns the data that has been updated with a winnerid then distributes credits
+
+
+
+
+
 
 
 
