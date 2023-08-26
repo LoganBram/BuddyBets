@@ -60,14 +60,14 @@ const GetPendingBetsReceived = `
   FROM betdetails bd
   JOIN bets b ON bd.betid = b.betid
   JOIN games g ON b.gameid = g.gameid
-  WHERE b.user2 = $1 ;
+  WHERE b.user2 = $1 AND bd.winnerid IS NULL ;
 `;
 const GetPendingBetsSent = `
   SELECT bd.*, b.gameid, b.user1, b.user2, g.*
   FROM betdetails bd
   JOIN bets b ON bd.betid = b.betid
   JOIN games g ON b.gameid = g.gameid
-  WHERE b.user1 = $1 ;
+  WHERE b.user1 = $1 AND bd.winnerid IS NULL;
 `;
 
 //ACCESSING DATABASE FOR EXTERNAL API DATA
