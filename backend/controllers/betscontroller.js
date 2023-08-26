@@ -99,9 +99,19 @@ const GetPendingBetsSent = async (req, res) => {
   }
 };
 
+const AcceptBet = async (req, res) => {
+  try {
+    await pool.query(queries.AcceptBet, [req.body[0].betid]);
+    res.send(req.body[0]);
+  } catch (error) {
+    res.send(error.message);
+  }
+};
+
 module.exports = {
   BetRequest,
   DetermineWinners,
   GetPendingBetsReceived,
   GetPendingBetsSent,
+  AcceptBet,
 };
