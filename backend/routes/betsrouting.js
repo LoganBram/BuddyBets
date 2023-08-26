@@ -16,4 +16,5 @@ router.get(
 router.get("/getpendingbetssent", authorize, controller.GetPendingBetsSent);
 
 router.post("/acceptbet", controller.AcceptBet);
+router.post("/denybet", controller.DenyBet);
 module.exports = router;
