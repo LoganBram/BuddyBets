@@ -28,8 +28,13 @@ export class BackendcallsService {
   GetFriends(headers: any){
     return this.http.get<any>("http://localhost:3000/auth/getfriends", {headers})
   }
-  GetPendingBets(headers: any){
-    return this.http.get<any>("http://localhost:3000/bets/getpendingbets", {headers})
+  GetPendingBetsReceived(headers: any){
+    return this.http.get<any>("http://localhost:3000/bets/getpendingbetsreceived", {headers})
   }
+
+  GetPendingBetsSent(headers: any){
+    return this.http.get<any>("http://localhost:3000/bets/getpendingbetssent", {headers})
+  }
+ 
   
 }

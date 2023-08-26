@@ -1,9 +1,28 @@
-<p>pendingbets works!</p>
-
-<div *ngFor="let bet of pendingbets">
-  <h1>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h1>
-  <div *ngIf="SideChecker(bet)">
-    <p>your side: {{}}</p>
-  </div>
-  <p>wager: {{ bet.wager }}</p>
+<h1>BETS</h1>
+<h2>Bet Requests</h2>
+<div *ngFor="let bet of RecievedBets">
+  <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
+  <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
+  <p>Time: {{ bet.time.slice(0, 5) }}</p>
+  <h4>${{ bet.wager }}</h4>
+  <h4>Your Side</h4>
+  <p>
+    Team:
+    {{
+      bet.homebettor === bet.user1
+        ? bet.hometeam.slice(0, -1)
+        : bet.awayteam.slice(0, -1)
+    }}
+  </p>
+  <p>
+    Odds:
+    {{
+      bet.homebettor === bet.user1
+        ? bet.hometeam.slice(0, -1)
+        : bet.awayteam.slice(0, -1)
+    }}
+  </p>
+  <h4>Their Side:</h4>
 </div>
+<h2>Sent Bets</h2>
+<p>{{ SentBets }}</p>

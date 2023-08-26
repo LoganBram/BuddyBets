@@ -8,7 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./pendingbets.component.css']
 })
 export class PendingbetsComponent {
-  pendingbets: any[] = [];
+  SentBets: any[] = [];
+  RecievedBets: any[] = [];
   homebettor: any = null;
   userid: any = null;
 
@@ -32,22 +33,22 @@ export class PendingbetsComponent {
       token:`${localStorage.getItem('token')}`
     })
     
-    this.backendcalls.GetPendingBets(headers).subscribe(
+    this.backendcalls.GetPendingBetsReceived(headers).subscribe(
       (data) => {
-        this.pendingbets = data; // Assign the data to the games property
+        this.RecievedBets = data; // Assign the data to the games property
       },
       (error) => {
         console.error(error);
       }
 
-    )
+    );
 
-    this.backendcalls.TokenToID(headers).subscribe(
+    this.backendcalls.GetPendingBetsSent(headers).subscribe(
       (data) => {
-        console.log(data)
+        this.SentBets = data; // Assign the data to the games property
       },
-      {error} => {
-        console.log(error)
+      (error) => {
+        console.log(error);
       }
     )
     
