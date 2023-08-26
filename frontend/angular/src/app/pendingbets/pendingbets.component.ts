@@ -12,6 +12,8 @@ export class PendingbetsComponent {
   RecievedBets: any[] = [];
   homebettor: any = null;
   userid: any = null;
+  response: any = null;
+  constructor(private backendcalls : BackendcallsService ) { }
 
   //returns true if sender is home bettor otherwise false
   CalculatePayout(wager: any, odds: any){
@@ -28,8 +30,33 @@ export class PendingbetsComponent {
     }
   }
 
+  BetAccepted(bet: any){
+    console.log(bet)
+    this.backendcalls.AcceptBet(bet).subscribe({
+      next: (res) => {
+        this.response = res.message
+      },
+      error: (err) => {
+        this.response = err.error.message
+      }
+    }
+    );
+  }
 
-  constructor(private backendcalls : BackendcallsService ) { }
+  BetDenied(bet:any){
+    this.backendcalls.DenyBet(bet).subscribe({
+      next: (res) => {
+        this.response = res.message
+      },
+      error: (err) => {
+        this.response = err.error.message
+      }
+    }
+    );
+  }
+
+
+ 
 
   ngOnInit() {
     const headers = new HttpHeaders({

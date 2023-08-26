@@ -41,6 +41,7 @@
       Payout:
       {{ CalculatePayout(bet.wager, bet.user2odds) }}
     </p>
+    <div></div>
   </div>
   <div *ngFor="let bet of RecievedBets">
     <h2>RECIVED BETS</h2>
@@ -83,5 +84,7 @@
       Payout:
       {{ CalculatePayout(bet.wager, bet.user1odds) }}
     </p>
+    <button (click)="BetAccepted(bet)">Accept Bet</button>
+    <button (click)="BetDenied(bet)">Deny Bet</button>
   </div>
 </div>

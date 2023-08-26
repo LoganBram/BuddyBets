@@ -35,6 +35,13 @@ export class BackendcallsService {
   GetPendingBetsSent(headers: any){
     return this.http.get<any>("http://localhost:3000/bets/getpendingbetssent", {headers})
   }
+
+  AcceptBet(bet: any){
+    return this.http.post<any>("http://localhost:3000/bets/acceptbet", bet)
+  }
+  DenyBet(bet: any){
+    return this.http.post<any>("http://localhost:3000/bets/denybet", bet)
+  }
  
   
 }
