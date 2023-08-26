@@ -78,10 +78,22 @@ const DetermineWinners = async (req, res) => {
   }
 };
 
-const GetPendingBets = async (req, res) => {
+const GetPendingBetsReceived = async (req, res) => {
   try {
-    const response = await pool.query(queries.GetPendingBets, [req.user]);
-    res.send(response.rows);
+    const receivedbets = await pool.query(queries.GetPendingBetsReceived, [
+      req.user,
+    ]);
+
+    res.send(receivedbets.rows);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const GetPendingBetsSent = async (req, res) => {
+  try {
+    const sentbets = await pool.query(queries.GetPendingBetsSent, [req.user]);
+    res.send(sentbets.rows);
   } catch (error) {
     res.send(error);
   }
@@ -90,5 +102,6 @@ const GetPendingBets = async (req, res) => {
 module.exports = {
   BetRequest,
   DetermineWinners,
-  GetPendingBets,
+  GetPendingBetsReceived,
+  GetPendingBetsSent,
 };
