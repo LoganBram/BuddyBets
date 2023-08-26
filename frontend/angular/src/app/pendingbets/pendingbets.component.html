@@ -4,7 +4,7 @@
   <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
   <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
   <p>Time: {{ bet.time.slice(0, 5) }}</p>
-  <h4>Wager: ${{ bet.wager }}</h4>
+  <p>Wager: ${{ bet.wager }}</p>
   <h4>Your Side</h4>
   <p>
     Team:
@@ -16,17 +16,28 @@
   </p>
   <p>
     Odds:
-    {{ bet.user1odds === bet.user1 ? bet.user1odds : "+" + bet.user2odds }}
+    {{ bet.user1odds }}
   </p>
   <p>
     Payout:
+    {{ CalculatePayout(bet.wager, bet.user1odds) }}
+  </p>
+
+  <h4>Their Side:</h4>
+  <p>
+    Team:
     {{
-      bet.user1odds === bet.user1
-        ? CalculatePayout(bet.wager, bet.user1odds)
-        : CalculatePayout(bet.wager, bet.user2odds)
+      bet.homebettor === bet.user2
+        ? bet.hometeam.slice(0, -1)
+        : bet.awayteam.slice(0, -1)
     }}
   </p>
-  <h4>Their Side:</h4>
+  <p>
+    Odds:
+    {{ bet.user2odds }}
+  </p>
+  <p>
+    Payout:
+    {{ CalculatePayout(bet.wager, bet.user2odds) }}
+  </p>
 </div>
-<h2>Sent Bets</h2>
-<p>{{ SentBets }}</p>
