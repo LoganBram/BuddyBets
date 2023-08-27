@@ -56,29 +56,75 @@ const DistributeCredits =
   "UPDATE users SET credits = credits + $1 WHERE user_id = $2";
 
 const GetPendingBetsReceived = `
-  SELECT bd.*, b.gameid, b.user1, b.user2, g.*
-  FROM betdetails bd
-  JOIN bets b ON bd.betid = b.betid
-  JOIN games g ON b.gameid = g.gameid
-  WHERE b.user2 = $1 AND b.status = 'sent' ;
+  SELECT
+      bd.*,
+      b.gameid,
+      b.user1,
+      u1.username AS user1_username,
+      b.user2,
+      u2.username AS user2_username,
+      g.*
+  FROM
+      betdetails bd
+  JOIN
+      bets b ON bd.betid = b.betid
+  JOIN
+      games g ON b.gameid = g.gameid
+  JOIN
+      users u1 ON b.user1 = u1.user_id
+  JOIN
+      users u2 ON b.user2 = u2.user_id
+  WHERE
+      b.user2 = $1 AND b.status = 'sent';
 `;
+
 const GetPendingBetsSent = `
-  SELECT bd.*, b.gameid, b.user1, b.user2, g.*
-  FROM betdetails bd
-  JOIN bets b ON bd.betid = b.betid
-  JOIN games g ON b.gameid = g.gameid
-  WHERE b.user1 = $1 AND b.status = 'sent';
+  SELECT
+      bd.*,
+      b.gameid,
+      b.user1,
+      u1.username AS user1_username,
+      b.user2,
+      u2.username AS user2_username,
+      g.*
+  FROM
+      betdetails bd
+  JOIN
+      bets b ON bd.betid = b.betid
+  JOIN
+      games g ON b.gameid = g.gameid
+  JOIN
+      users u1 ON b.user1 = u1.user_id
+  JOIN
+      users u2 ON b.user2 = u2.user_id
+  WHERE
+      b.user1 = $1 AND b.status = 'sent';
 `;
 
 const AcceptBet = "UPDATE bets SET status = 'accepted' WHERE betid = $1";
 const DenyBet = "UPDATE bets SET status = 'denied' WHERE betid = $1";
 
 const GetOngoingBets = `
-SELECT bd.*, b.gameid, b.user1, b.user2, g.*
-FROM betdetails bd
-JOIN bets b ON bd.betid = b.betid
-JOIN games g ON b.gameid = g.gameid
-WHERE (b.user1 = $1 OR b.user2 = $1) AND b.status = 'accepted';
+SELECT
+    bd.*,
+    b.gameid,
+    b.user1,
+    u1.username AS user1_username,
+    b.user2,
+    u2.username AS user2_username,
+    g.*
+FROM
+    betdetails bd
+JOIN
+    bets b ON bd.betid = b.betid
+JOIN
+    games g ON b.gameid = g.gameid
+JOIN
+    users u1 ON b.user1 = u1.user_id
+JOIN
+    users u2 ON b.user2 = u2.user_id
+WHERE
+    (b.user1 = $1 OR b.user2 = $1) AND b.status = 'accepted';
 `;
 
 //ACCESSING DATABASE FOR EXTERNAL API DATA
