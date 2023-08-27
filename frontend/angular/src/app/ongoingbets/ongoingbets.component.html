@@ -1,1 +1,19 @@
 <p>ongoingbets works!</p>
+<div *ngFor="let bet of ongoingbets">
+  <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
+  <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
+  <p>Time: {{ bet.time.slice(0, 5) }}</p>
+  <p>Wager: ${{ bet.wager }}</p>
+  {{ currentuser }}
+
+  <p>{{ bet.user1 }}</p>
+
+  <div *ngIf="currentuser == bet.user1">
+    <p>Your Payout{{ CalculatePayout(bet.wager, bet.user1odds) }}</p>
+    <p>Friend Payout: {{ CalculatePayout(bet.wager, bet.user2odds) }}</p>
+  </div>
+  <div *ngIf="currentuser == bet.user2">
+    <p>Your Payout{{ CalculatePayout(bet.wager, bet.user2odds) }}</p>
+    <p>Friend Payout: {{ CalculatePayout(bet.wager, bet.user1odds) }}</p>
+  </div>
+</div>

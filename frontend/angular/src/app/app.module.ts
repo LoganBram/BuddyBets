@@ -16,6 +16,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { FriendsdisplayComponent } from './friendsdisplay/friendsdisplay.component';
 import { OngoingbetsComponent } from './ongoingbets/ongoingbets.component';
 import { PendingbetsComponent } from './pendingbets/pendingbets.component';
+import { CompletedbetsComponent } from './completedbets/completedbets.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PendingbetsComponent } from './pendingbets/pendingbets.component';
     FriendsComponent,
     FriendsdisplayComponent,
     OngoingbetsComponent,
-    PendingbetsComponent
+    PendingbetsComponent,
+    CompletedbetsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { PendingbetsComponent } from './pendingbets/pendingbets.component';
       {path: 'friends', component : FriendsComponent},
       {path: 'friendsdisplay', component : FriendsdisplayComponent},
       {path: 'pendingbets', component : PendingbetsComponent},
+      {path: 'ongoingbets', component : OngoingbetsComponent},
 
     ])
   ],

@@ -42,6 +42,14 @@ export class BackendcallsService {
   DenyBet(bet: any){
     return this.http.post<any>("http://localhost:3000/bets/denybet", bet)
   }
+
+  GetOngoingBets(headers: any){
+    return this.http.get<any>("http://localhost:3000/bets/getongoingbets", {headers})
+  }
+
+  GetUserId(headers: any){
+    return this.http.get<any>("http://localhost:3000/auth/getuserid", {headers})
+  }
  
   
 }
