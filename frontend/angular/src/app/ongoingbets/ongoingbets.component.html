@@ -4,16 +4,45 @@
   <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
   <p>Time: {{ bet.time.slice(0, 5) }}</p>
   <p>Wager: ${{ bet.wager }}</p>
-  {{ currentuser }}
-
-  <p>{{ bet.user1 }}</p>
 
   <div *ngIf="currentuser == bet.user1">
-    <p>Your Payout{{ CalculatePayout(bet.wager, bet.user1odds) }}</p>
-    <p>Friend Payout: {{ CalculatePayout(bet.wager, bet.user2odds) }}</p>
+    <p>
+      Your Payout:
+      {{
+        CalculatePayout(bet.wager, bet.user1odds) +
+          " (" +
+          (bet.user1odds >= 0 ? "+" + bet.user1odds : bet.user1odds) +
+          ")"
+      }}
+    </p>
+    <p>
+      Friend Payout:
+      {{
+        CalculatePayout(bet.wager, bet.user2odds) +
+          " (" +
+          (bet.user2odds >= 0 ? "+" + bet.user2odds : bet.user2odds) +
+          ")"
+      }}
+    </p>
   </div>
   <div *ngIf="currentuser == bet.user2">
-    <p>Your Payout{{ CalculatePayout(bet.wager, bet.user2odds) }}</p>
-    <p>Friend Payout: {{ CalculatePayout(bet.wager, bet.user1odds) }}</p>
+    <p>
+      Your Payout:
+      {{
+        CalculatePayout(bet.wager, bet.user2odds) +
+          " (" +
+          (bet.user2odds >= 0 ? "+" + bet.user2odds : bet.user2odds) +
+          ")"
+      }}
+    </p>
+    <p>
+      Friend Payout:
+      {{
+        CalculatePayout(bet.wager, bet.user1odds) +
+          " (" +
+          (bet.user1odds >= 0 ? "+" + bet.user1odds : bet.user1odds) +
+          ")"
+      }}
+    </p>
   </div>
 </div>
