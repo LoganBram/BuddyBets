@@ -1,13 +1,13 @@
 <h1>BETS</h1>
 
 <div>
-  <h2>OUTGOING BETS</h2>
+  <h2>INCOMING REQUESTS</h2>
   <div *ngFor="let bet of SentBets" class="Sentbets_for">
     <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
     <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
     <p>Time: {{ bet.time.slice(0, 5) }}</p>
     <p>Wager: ${{ bet.wager }}</p>
-    <h4>Your Side</h4>
+    <h4>{{ bet.user1_username }}</h4>
     <p>
       Team:
       {{
@@ -25,7 +25,7 @@
       {{ CalculatePayout(bet.wager, bet.user1odds) }}
     </p>
 
-    <h4>Their Side:</h4>
+    <h4>{{ bet.user2_username }}</h4>
     <p>
       Team:
       {{
@@ -49,7 +49,7 @@
     <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
     <p>Time: {{ bet.time.slice(0, 5) }}</p>
     <p>Wager: ${{ bet.wager }}</p>
-    <h4>Your Side</h4>
+    <h4>{{ bet.user2_username }}</h4>
     <p>
       Team:
       {{
@@ -67,7 +67,7 @@
       {{ CalculatePayout(bet.wager, bet.user2odds) }}
     </p>
 
-    <h4>Their Side:</h4>
+    <h4>{{ bet.user1_username }}</h4>
     <p>
       Team:
       {{

@@ -7,7 +7,7 @@
 
   <div *ngIf="currentuser == bet.user1">
     <p>
-      Your Payout:
+      {{ bet.user1_username }} Payout:
       {{
         CalculatePayout(bet.wager, bet.user1odds) +
           " (" +
@@ -16,7 +16,7 @@
       }}
     </p>
     <p>
-      Friend Payout:
+      {{ bet.user2_username }}Payout:
       {{
         CalculatePayout(bet.wager, bet.user2odds) +
           " (" +
@@ -27,7 +27,7 @@
   </div>
   <div *ngIf="currentuser == bet.user2">
     <p>
-      Your Payout:
+      {{ bet.user2_username }} Payout:
       {{
         CalculatePayout(bet.wager, bet.user2odds) +
           " (" +
@@ -36,7 +36,7 @@
       }}
     </p>
     <p>
-      Friend Payout:
+      {{ bet.user1_username }} Payout:
       {{
         CalculatePayout(bet.wager, bet.user1odds) +
           " (" +
