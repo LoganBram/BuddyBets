@@ -37,19 +37,20 @@ const RecordBetDetails =
   "INSERT INTO betdetails (betid, user1odds, user2odds, wager, homebettor, awaybettor) VALUES ($1, $2, $3, $4, $5, $6)";
 
 const DetermineWinner = `
-  UPDATE betdetails
-  SET winnerid = CASE
-    WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user1 THEN bets.user1
-    WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user2 THEN bets.user2
-    WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user1 THEN bets.user1
-    WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user2 THEN bets.user2
-    ELSE NULL
-  END
-  FROM games
-  JOIN bets ON games.gameid = bets.gameid
-  WHERE games.status = 'Game Finished' AND betdetails.winnerid IS NULL 
-  RETURNING betdetails.user1odds, betdetails.user2odds, betdetails.winnerid, betdetails.wager, betdetails.betid, bets.user1, bets.user2;
-  
+UPDATE betdetails
+SET winnerid = CASE
+  WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user1 THEN bets.user1
+  WHEN games.homescore > games.awayscore AND betdetails.homebettor = bets.user2 THEN bets.user2
+  WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user1 THEN bets.user1
+  WHEN games.homescore < games.awayscore AND betdetails.awaybettor = bets.user2 THEN bets.user2
+  ELSE NULL
+END
+FROM games
+JOIN bets ON games.gameid = bets.gameid
+WHERE games.status = 'Game Finished' AND betdetails.winnerid IS NULL AND bets.status = 'accepted'
+  AND betdetails.betid = bets.betid -- Add this line to match the betid in betdetails with bets
+RETURNING betdetails.user1odds, betdetails.user2odds, betdetails.winnerid, betdetails.wager, betdetails.betid, bets.user1, bets.user2;
+
   `;
 
 const DistributeCredits =
