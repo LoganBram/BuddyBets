@@ -48,10 +48,12 @@ END
 FROM games
 JOIN bets ON games.gameid = bets.gameid
 WHERE games.status = 'Game Finished' AND betdetails.winnerid IS NULL AND bets.status = 'accepted'
-  AND betdetails.betid = bets.betid -- Add this line to match the betid in betdetails with bets
+  AND betdetails.betid = bets.betid 
 RETURNING betdetails.user1odds, betdetails.user2odds, betdetails.winnerid, betdetails.wager, betdetails.betid, bets.user1, bets.user2;
 
   `;
+
+const FinishBet = `UPDATE bets SET status = 'finished' WHERE betid = $1`;
 
 const DistributeCredits =
   "UPDATE users SET credits = credits + $1 WHERE user_id = $2";
@@ -154,4 +156,5 @@ module.exports = {
   AcceptBet,
   DenyBet,
   GetOngoingBets,
+  FinishBet,
 };

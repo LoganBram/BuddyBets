@@ -46,8 +46,11 @@ const BetRequest = async (req, res) => {
 
 const DetermineWinners = async (req, res) => {
   //Joins tables and fills in winner ID in SQL where applicable
-  const x = await pool.query(queries.DetermineWinner);
-  console.log(x.rows);
+  const betstofinish = await pool.query(queries.DetermineWinner);
+  console.log(betstofinish.rows);
+  await betstofinish.rows.forEach(async (bet) => {
+    await pool.query(queries.FinishBet, [bet.betid]);
+  });
 
   const calculateWinnings = (wager, odds) => {
     if (odds > 0) {
