@@ -18,6 +18,8 @@ const GetUUIDFromusername = "SELECT * FROM users WHERE username = $1 ";
 
 const GetUsernamefromUUID = "SELECT * FROM users WHERE user_id = $1 ";
 
+const GetUserCredits =
+  "SELECT credits FROM users WHERE user_id = $1 OR user_id = $2";
 //FRIENDS QUERIES
 const SendFriendRequest =
   "INSERT INTO friends (user_id, friend_id) VALUES ($1, $2)";
@@ -159,4 +161,5 @@ module.exports = {
   GetOngoingBets,
   FinishBet,
   DeductCreditsFromAcceptedBet,
+  GetUserCredits,
 };

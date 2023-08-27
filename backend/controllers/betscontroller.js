@@ -6,7 +6,20 @@ const BetRequest = async (req, res) => {
     const { user2, wager, gameid, user1odds, user2odds, user1_onhome } =
       req.body;
     const user1 = req.user;
-    console.log(user1_onhome);
+    //check if both users have enough credits
+    const usercredits = await pool.query(queries.GetUserCredits, [
+      user1,
+      user2,
+    ]);
+
+    usercredits.rows[0].forEach((usercredits) => {
+      if (usercredits.credits < wager) {
+        return res
+          .status(400)
+          .send("Either you or your friend does not have enough credits");
+      }
+    });
+
     //records in bets table, RETURNS THE BET ID
     const placedbetID = await pool.query(queries.PlaceBet, [
       gameid,
