@@ -73,6 +73,14 @@ const GetPendingBetsSent = `
 const AcceptBet = "UPDATE bets SET status = 'accepted' WHERE betid = $1";
 const DenyBet = "UPDATE bets SET status = 'denied' WHERE betid = $1";
 
+const GetOngoingBets = `
+SELECT bd.*, b.gameid, b.user1, b.user2, g.*
+FROM betdetails bd
+JOIN bets b ON bd.betid = b.betid
+JOIN games g ON b.gameid = g.gameid
+WHERE (b.user1 = $1 OR b.user2 = $1) AND b.status = 'accepted';
+`;
+
 //ACCESSING DATABASE FOR EXTERNAL API DATA
 const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
@@ -98,4 +106,5 @@ module.exports = {
   GetPendingBetsSent,
   AcceptBet,
   DenyBet,
+  GetOngoingBets,
 };

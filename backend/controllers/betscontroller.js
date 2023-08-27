@@ -118,6 +118,15 @@ const DenyBet = async (req, res) => {
   }
 };
 
+const GetOngoingBets = async (req, res) => {
+  try {
+    const ongoingbets = await pool.query(queries.GetOngoingBets, [req.user]);
+    res.send(ongoingbets.rows);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 module.exports = {
   BetRequest,
   DetermineWinners,
@@ -125,4 +134,5 @@ module.exports = {
   GetPendingBetsSent,
   AcceptBet,
   DenyBet,
+  GetOngoingBets,
 };
