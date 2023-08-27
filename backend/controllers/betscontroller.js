@@ -72,11 +72,7 @@ const DetermineWinners = async (req, res) => {
     if (bet.winnerid === bet.user1) {
       let winnings = calculateWinnings(bet.wager, bet.user1odds);
       winnings = parseInt(winnings);
-      const x = await pool.query(queries.DistributeCredits, [
-        winnings,
-        bet.user1,
-      ]);
-      console.log(x);
+      await pool.query(queries.DistributeCredits, [winnings, bet.user1]);
     } //distribute to user 2 if winner
     else if (bet.winnerid === bet.user2) {
       let winnings = calculateWinnings(bet.wager, bet.user2odds);
@@ -108,10 +104,17 @@ const GetPendingBetsSent = async (req, res) => {
 };
 
 const AcceptBet = async (req, res) => {
+  console.log(req.body);
   try {
     await pool.query(queries.AcceptBet, [req.body.betid]);
+    await pool.query(queries.DeductCreditsFromAcceptedBet, [
+      req.body.wager,
+      req.body.user1,
+      req.body.user2,
+    ]);
     res.send({ message: "Bet Accepted Succuessfully" });
   } catch (error) {
+    console.log(error.message);
     res.send(error.message);
   }
 };

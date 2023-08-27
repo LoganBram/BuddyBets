@@ -104,7 +104,8 @@ const GetPendingBetsSent = `
       b.user1 = $1 AND b.status = 'sent';
 `;
 
-const AcceptBet = "UPDATE bets SET status = 'accepted' WHERE betid = $1";
+const AcceptBet = `UPDATE bets SET status = 'accepted' WHERE betid = $1`;
+const DeductCreditsFromAcceptedBet = `UPDATE users SET credits = credits - $1 WHERE user_id = $2 OR user_id = $3 `;
 const DenyBet = "UPDATE bets SET status = 'denied' WHERE betid = $1";
 
 const GetOngoingBets = `
@@ -157,4 +158,5 @@ module.exports = {
   DenyBet,
   GetOngoingBets,
   FinishBet,
+  DeductCreditsFromAcceptedBet,
 };
