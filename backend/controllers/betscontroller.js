@@ -45,13 +45,6 @@ const BetRequest = async (req, res) => {
 };
 
 const DetermineWinners = async (req, res) => {
-  //Joins tables and fills in winner ID in SQL where applicable
-  const betstofinish = await pool.query(queries.DetermineWinner);
-  console.log(betstofinish.rows);
-  await betstofinish.rows.forEach(async (bet) => {
-    await pool.query(queries.FinishBet, [bet.betid]);
-  });
-
   const calculateWinnings = (wager, odds) => {
     if (odds > 0) {
       const winnings = ((wager * odds) / 100).toFixed(2);
@@ -65,14 +58,25 @@ const DetermineWinners = async (req, res) => {
       return 0; // No profit or loss with even odds (odds = 0)
     }
   };
+  //Joins tables and fills in winner ID in SQL where applicable
+  const betstofinish = await pool.query(queries.DetermineWinner);
+
+  await betstofinish.rows.forEach(async (bet) => {
+    await pool.query(queries.FinishBet, [bet.betid]);
+  });
 
   //distribute credits
-  for (const bet of x.rows) {
+  for (const bet of betstofinish.rows) {
     //distribute to user1 if winner
+    console.log(bet);
     if (bet.winnerid === bet.user1) {
-      const winnings = calculateWinnings(bet.wager, bet.user1odds);
+      let winnings = calculateWinnings(bet.wager, bet.user1odds);
       winnings = parseInt(winnings);
-      await pool.query(queries.DistributeCredits, [winnings, bet.user1]);
+      const x = await pool.query(queries.DistributeCredits, [
+        winnings,
+        bet.user1,
+      ]);
+      console.log(x);
     } //distribute to user 2 if winner
     else if (bet.winnerid === bet.user2) {
       let winnings = calculateWinnings(bet.wager, bet.user2odds);
