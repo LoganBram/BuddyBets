@@ -102,7 +102,7 @@ const GetPendingBetsSent = async (req, res) => {
 const AcceptBet = async (req, res) => {
   try {
     await pool.query(queries.AcceptBet, [req.body.betid]);
-    res.send("Bet Accepted Succuessfully");
+    res.send({ message: "Bet Accepted Succuessfully" });
   } catch (error) {
     res.send(error.message);
   }
