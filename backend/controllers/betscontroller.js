@@ -6,19 +6,11 @@ const BetRequest = async (req, res) => {
     const { user2, wager, gameid, user1odds, user2odds, user1_onhome } =
       req.body;
     const user1 = req.user;
-    //check if both users have enough credits
-    const usercredits = await pool.query(queries.GetUserCredits, [
-      user1,
-      user2,
-    ]);
-
-    usercredits.rows[0].forEach((usercredits) => {
-      if (usercredits.credits < wager) {
-        return res
-          .status(400)
-          .send("Either you or your friend does not have enough credits");
-      }
-    });
+    //check if user have enough credits
+    const usercredits = await pool.query(queries.GetUserCredits, [user1]);
+    if (usercredits.rows[0].credits < wager) {
+      return res.send("Insufficient Credits");
+    }
 
     //records in bets table, RETURNS THE BET ID
     const placedbetID = await pool.query(queries.PlaceBet, [
@@ -117,8 +109,11 @@ const GetPendingBetsSent = async (req, res) => {
 };
 
 const AcceptBet = async (req, res) => {
-  console.log(req.body);
   try {
+    const usercredits = await pool.query(queries.GetUserCredits, [req.user]);
+    if (usercredits.rows[0].credits < req.body.wager) {
+      return res.send({ message: "Insufficient Credits" });
+    }
     await pool.query(queries.AcceptBet, [req.body.betid]);
     await pool.query(queries.DeductCreditsFromAcceptedBet, [
       req.body.wager,
