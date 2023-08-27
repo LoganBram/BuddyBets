@@ -192,6 +192,14 @@ const GetUserFriends = async (req, res) => {
 //runs authorization middleware in routes/authrouting when this endpoint is called
 //req.user contains user id from token verification and payload
 
+const GetUserId = async (req, res) => {
+  try {
+    res.send(req.user);
+  } catch (error) {
+    res.send("error getting UserId, please login again");
+  }
+};
+
 module.exports = {
   RegisterUser,
   LoginUser,
@@ -199,4 +207,5 @@ module.exports = {
   Dashboard,
   NewFriendRequest,
   GetUserFriends,
+  GetUserId,
 };
