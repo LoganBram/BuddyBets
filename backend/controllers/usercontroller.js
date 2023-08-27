@@ -194,7 +194,7 @@ const GetUserFriends = async (req, res) => {
 
 const GetUserId = async (req, res) => {
   try {
-    res.send(req.user);
+    res.send({ user: req.user });
   } catch (error) {
     res.send("error getting UserId, please login again");
   }
