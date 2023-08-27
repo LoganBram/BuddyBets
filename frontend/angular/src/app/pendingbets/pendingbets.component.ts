@@ -13,6 +13,7 @@ export class PendingbetsComponent {
   homebettor: any = null;
   userid: any = null;
   response: any = null;
+  cdr: any;
   constructor(private backendcalls : BackendcallsService ) { }
 
   //returns true if sender is home bettor otherwise false
@@ -31,13 +32,17 @@ export class PendingbetsComponent {
   }
 
   BetAccepted(bet: any){
-    console.log(bet)
+    
     this.backendcalls.AcceptBet(bet).subscribe({
       next: (res) => {
+        console.log(res.message)
         this.response = res.message
+        this.RecievedBets = this.RecievedBets.filter(b => b !== bet)
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        this.response = err.error.message
+        this.response = err.error.errmsg
+        console.log(err.error)
       }
     }
     );
@@ -46,10 +51,14 @@ export class PendingbetsComponent {
   BetDenied(bet:any){
     this.backendcalls.DenyBet(bet).subscribe({
       next: (res) => {
+        console.log(res.message)
         this.response = res.message
+        this.RecievedBets = this.RecievedBets.filter(b => b !== bet)
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        this.response = err.error.message
+        console.log(err.error)
+        this.response = err.error.errmsg
       }
     }
     );
@@ -68,7 +77,7 @@ export class PendingbetsComponent {
         this.RecievedBets = data; // Assign the data to the games property
       },
       (error) => {
-        console.error(error);
+        this.response = error.error.merrmsg;
       }
 
     );
@@ -78,7 +87,7 @@ export class PendingbetsComponent {
         this.SentBets = data; // Assign the data to the games property
       },
       (error) => {
-        console.log(error);
+        this.response = error.error.errmsg;
       }
     )
     
