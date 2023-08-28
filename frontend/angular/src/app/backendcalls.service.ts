@@ -36,8 +36,8 @@ export class BackendcallsService {
     return this.http.get<any>("http://localhost:3000/bets/getpendingbetssent", {headers})
   }
 
-  AcceptBet(bet: any){
-    return this.http.post<any>("http://localhost:3000/bets/acceptbet", bet)
+  AcceptBet(bet: any, headers: any){
+    return this.http.post<any>("http://localhost:3000/bets/acceptbet", bet, {headers})
   }
   DenyBet(bet: any){
     return this.http.post<any>("http://localhost:3000/bets/denybet", bet)

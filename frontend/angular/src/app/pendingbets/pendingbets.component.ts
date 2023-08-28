@@ -32,16 +32,18 @@ export class PendingbetsComponent {
   }
 
   BetAccepted(bet: any){
-    
-    this.backendcalls.AcceptBet(bet).subscribe({
+    const headers = new HttpHeaders({
+      token:`${localStorage.getItem('token')}`
+    })
+    this.backendcalls.AcceptBet(bet, headers).subscribe({
       next: (res) => {
-        console.log(res.message)
+        console.log(res)
         this.response = res.message
         this.RecievedBets = this.RecievedBets.filter(b => b !== bet)
         this.cdr.detectChanges();
       },
       error: (err) => {
-        this.response = err.error.errmsg
+        this.response = err.error
         console.log(err.error)
       }
     }
