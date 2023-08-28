@@ -20,6 +20,6 @@ userrouter.post(
 );
 
 userrouter.get("/getfriends", authorize, usercontroller.GetUserFriends);
-module.exports = userrouter;
 
 userrouter.get("/getuserid", authorize, usercontroller.GetUserId);
+module.exports = userrouter;

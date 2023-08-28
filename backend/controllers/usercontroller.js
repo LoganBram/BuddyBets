@@ -177,14 +177,17 @@ const GetUserFriends = async (req, res) => {
       const friendQueryResult = await pool.query(queries.GetUsernamefromUUID, [
         friends.rows[i].friend_id,
       ]);
+
       //adds the found usernames to dict
       friends.rows[i].friend_username = friendQueryResult.rows[0].username;
     }
+
     //adds the users username to the first index of the dict incase it is needed
     //not in for loop because we dont need to repeat the same information
     friends.rows[0].user_username = userQueryResult.rows[0].username;
     res.send(friends.rows);
   } catch (error) {
+    console.log(error);
     res.send("issue finding the friends, please try again");
   }
 };

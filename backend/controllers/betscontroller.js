@@ -78,13 +78,13 @@ const DetermineWinners = async (req, res) => {
     if (bet.winnerid === bet.user1) {
       let winnings = calculateWinnings(bet.wager, bet.user1odds);
       winnings = parseFloat(winnings);
-      console.log(winnings);
+
       await pool.query(queries.DistributeCredits, [winnings, bet.user1]);
     } //distribute to user 2 if winner
     else if (bet.winnerid === bet.user2) {
       let winnings = calculateWinnings(bet.wager, bet.user2odds);
       winnings = parseFloat(winnings);
-      console.log(winnings);
+
       await pool.query(queries.DistributeCredits, [winnings, bet.user2]);
     }
   }
