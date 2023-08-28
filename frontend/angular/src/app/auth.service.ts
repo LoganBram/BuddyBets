@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +24,8 @@ export class AuthService {
   loggedIn(){
     return this.http.get<any>(this.verifytokenUrl)
   }
+
+ 
   
   
   

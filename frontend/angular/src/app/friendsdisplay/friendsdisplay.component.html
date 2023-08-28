@@ -1,8 +1,19 @@
 <div *ngIf="friends" class="friends-container">
+  <h1>Pending</h1>
   <div *ngFor="let friend of friends" class="friend-card">
-    <div class="friend-info">
-      <p class="username">FRIEND USERNAME: {{ friend.friend_username }}</p>
-      <p class="status">Request Status: {{ friend.status }}</p>
+    <div *ngIf="friend.user_id !== userid">
+      <!-- If the userid from friends list, which is always the user who sent the request
+doesnt the userid obtained from token in local storage. Therefore he is the receiver of request-->
+
+      <p>{{ friend.friend_username }}</p>
+    </div>
+    <div *ngIf="friend.user_id === userid">
+      <!-- If the userid from friends list, which is always the user who sent the request
+matches the userid obtained from token in local storage. Therefore he is the sender of request-->
+      <h2>Outgoing Requests</h2>
+      <div class="friend-info">
+        <p class="username">{{ friend.friend_username }}</p>
+      </div>
     </div>
   </div>
 </div>
