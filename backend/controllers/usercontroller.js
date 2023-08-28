@@ -208,7 +208,7 @@ const AcceptFriendRequest = async (req, res) => {
     await pool.query(queries.AcceptFriendRequest, [req.body.id]);
     res.send("friend request accepted");
   } catch (error) {
-    res.status(400).send("error accepting friend request");
+    res.status(400).send("backend error accepting friend request");
   }
 };
 
@@ -217,7 +217,7 @@ const DenyFriendRequest = async (req, res) => {
     await pool.query(queries.DenyFriendRequest, [req.body.id]);
     res.send("friend request denied");
   } catch (error) {
-    res.status(400).send("error denying friend request");
+    res.status(400).send("backend error denying friend request");
   }
 };
 
