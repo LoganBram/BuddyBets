@@ -111,9 +111,11 @@ const GetPendingBetsSent = async (req, res) => {
 const AcceptBet = async (req, res) => {
   try {
     const usercredits = await pool.query(queries.GetUserCredits, [req.user]);
+    console.log(usercredits.rows[0].credits);
     if (usercredits.rows[0].credits < req.body.wager) {
-      return res.send({ message: "Insufficient Credits" });
+      return res.status(400).send("Insufficient Credits");
     }
+
     await pool.query(queries.AcceptBet, [req.body.betid]);
     await pool.query(queries.DeductCreditsFromAcceptedBet, [
       req.body.wager,
