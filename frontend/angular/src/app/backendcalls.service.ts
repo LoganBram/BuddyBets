@@ -50,6 +50,14 @@ export class BackendcallsService {
   GetUserId(headers: any){
     return this.http.get<any>("http://localhost:3000/auth/getuserid", {headers})
   }
+
+  AcceptFriend(frienddata: any){
+    return this.http.post<any>("http://localhost:3000/auth/acceptfriendrequest", frienddata)
+  }
+
+  DenyFriend(frienddata: any){
+    return this.http.post<any>("http://localhost:3000/auth/denyfriendrequest", frienddata)
+  }
  
   
 }

@@ -4,8 +4,12 @@
     <div *ngIf="friend.user_id !== userid">
       <!-- If the userid from friends list, which is always the user who sent the request
 doesnt the userid obtained from token in local storage. Therefore he is the receiver of request-->
-
-      <p>{{ friend.friend_username }}</p>
+      <div class="friendsinfo">
+        <p>{{ friend.friend_username }}</p>
+        <button (click)="AcceptFriend(friend)">Accept</button>
+        <button (click)="DenyFriend(friend)">Reject</button>
+      </div>
+      <button></button>
     </div>
     <div *ngIf="friend.user_id === userid">
       <!-- If the userid from friends list, which is always the user who sent the request

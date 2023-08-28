@@ -11,8 +11,41 @@ export class FriendsdisplayComponent {
   usertoken = localStorage.getItem('token')
   friends: any = {};
   userid: any = null;
+  response: any = null;
 
   constructor(private backendcalls: BackendcallsService){}
+
+  AcceptFriend(friend: any){
+    try {
+      this.backendcalls.AcceptFriend(friend).subscribe({
+        next: (res) => {
+          this.response = res.message
+          },
+        error: (err) => {
+          this.response = err.error
+        }
+      })
+    } catch (error) {
+      this.response = error
+      
+    }
+  }
+
+  DenyFriend(friend: any){
+    try {
+      this.backendcalls.DenyFriend(friend).subscribe({
+        next: (res) => {
+          this.response = res.message
+          },
+        error: (err) => {
+          this.response = err.error
+        }
+      })
+    } catch (error) {
+      this.response = error
+      
+    }
+  }
 
   ngOnInit() {
     const headers = new HttpHeaders({
