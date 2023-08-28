@@ -19,7 +19,12 @@ userrouter.post(
   usercontroller.NewFriendRequest
 );
 
+userrouter.post("/acceptfriendrequest", usercontroller.AcceptFriendRequest);
+
+userrouter.post("/denyfriendrequest", usercontroller.DenyFriendRequest);
+
 userrouter.get("/getfriends", authorize, usercontroller.GetUserFriends);
 
 userrouter.get("/getuserid", authorize, usercontroller.GetUserId);
+
 module.exports = userrouter;

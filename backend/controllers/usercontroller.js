@@ -203,6 +203,24 @@ const GetUserId = async (req, res) => {
   }
 };
 
+const AcceptFriendRequest = async (req, res) => {
+  try {
+    await pool.query(queries.AcceptFriendRequest, [req.body.id]);
+    res.send("friend request accepted");
+  } catch (error) {
+    res.status(400).send("error accepting friend request");
+  }
+};
+
+const DenyFriendRequest = async (req, res) => {
+  try {
+    await pool.query(queries.DenyFriendRequest, [req.body.id]);
+    res.send("friend request denied");
+  } catch (error) {
+    res.status(400).send("error denying friend request");
+  }
+};
+
 module.exports = {
   RegisterUser,
   LoginUser,
@@ -211,4 +229,6 @@ module.exports = {
   NewFriendRequest,
   GetUserFriends,
   GetUserId,
+  AcceptFriendRequest,
+  DenyFriendRequest,
 };

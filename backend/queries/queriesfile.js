@@ -29,6 +29,11 @@ const CheckIfDuplicateRequest =
 const GetAllFriends =
   "SELECT * FROM friends WHERE user_id = $1 OR friend_id = $1";
 
+const AcceptFriendRequest =
+  "UPDATE friends SET status = 'accepted' WHERE id = $1";
+
+const DenyFriendRequest = "DELETE FROM friends WHERE id = $1";
+
 //BET QUERIES
 
 const PlaceBet =
@@ -161,4 +166,6 @@ module.exports = {
   FinishBet,
   DeductCreditsFromAcceptedBet,
   GetUserCredits,
+  AcceptFriendRequest,
+  DenyFriendRequest,
 };
