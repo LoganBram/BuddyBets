@@ -166,25 +166,28 @@ const GetUserFriends = async (req, res) => {
   try {
     //gets all friends of the user
     const friends = await pool.query(queries.GetAllFriends, [req.user]);
+    console.log(friends.rows);
 
-    //gets username of the user
-    const userQueryResult = await pool.query(queries.GetUsernamefromUUID, [
-      friends.rows[0].user_id,
-    ]);
     //iterates through the friends of the user and gets their username
 
     for (let i = 0; i < friends.rows.length; i++) {
-      const friendQueryResult = await pool.query(queries.GetUsernamefromUUID, [
+      //gets username of the user
+      const SenderUsername = await pool.query(queries.GetUsernamefromUUID, [
+        friends.rows[i].user_id,
+      ]);
+
+      const ReceiverUsername = await pool.query(queries.GetUsernamefromUUID, [
         friends.rows[i].friend_id,
       ]);
 
       //adds the found usernames to dict
-      friends.rows[i].friend_username = friendQueryResult.rows[0].username;
+      friends.rows[i].sender_username = SenderUsername.rows[0].username;
+      friends.rows[i].receiver_username = ReceiverUsername.rows[0].username;
     }
 
     //adds the users username to the first index of the dict incase it is needed
     //not in for loop because we dont need to repeat the same information
-    friends.rows[0].user_username = userQueryResult.rows[0].username;
+
     res.send(friends.rows);
   } catch (error) {
     console.log(error);
