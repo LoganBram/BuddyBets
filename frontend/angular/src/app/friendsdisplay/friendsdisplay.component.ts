@@ -12,10 +12,13 @@ export class FriendsdisplayComponent {
   friends: any = {};
   userid: any = null;
   response: any = null;
+  cdr: any;
 
   constructor(private backendcalls: BackendcallsService){}
 
   AcceptFriend(friend: any){
+    this.friends = this.friends.filter((f: any) => f !== friend);
+    this.cdr.detectChanges();
     try {
       this.backendcalls.AcceptFriend(friend).subscribe({
         next: (res) => {
@@ -36,6 +39,7 @@ export class FriendsdisplayComponent {
       this.backendcalls.DenyFriend(friend).subscribe({
         next: (res) => {
           this.response = res.message
+          console.log(res)
           },
         error: (err) => {
           this.response = err.error
