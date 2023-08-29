@@ -17,8 +17,7 @@ export class FriendsdisplayComponent {
   constructor(private backendcalls: BackendcallsService){}
 
   AcceptFriend(friend: any){
-    this.friends = this.friends.filter((f: any) => f !== friend);
-    this.cdr.detectChanges();
+    
     try {
       this.backendcalls.AcceptFriend(friend).subscribe({
         next: (res) => {
@@ -28,6 +27,9 @@ export class FriendsdisplayComponent {
           this.response = err.error
         }
       })
+
+      this.friends = this.friends.filter((f: any) => f !== friend);
+      
     } catch (error) {
       this.response = error
       
