@@ -166,7 +166,9 @@ const GetUserFriends = async (req, res) => {
   try {
     //gets all friends of the user
     const friends = await pool.query(queries.GetAllFriends, [req.user]);
-    console.log(friends.rows);
+
+    console.log(friends.rows[0]);
+    console.log(req.user);
 
     //iterates through the friends of the user and gets their username
 
@@ -183,6 +185,7 @@ const GetUserFriends = async (req, res) => {
       //adds the found usernames to dict
       friends.rows[i].sender_username = SenderUsername.rows[0].username;
       friends.rows[i].receiver_username = ReceiverUsername.rows[0].username;
+      friends.rows[i].currentuser = req.user;
     }
 
     //adds the users username to the first index of the dict incase it is needed
@@ -207,6 +210,7 @@ const GetUserId = async (req, res) => {
 };
 
 const AcceptFriendRequest = async (req, res) => {
+  console.log(req.body);
   try {
     await pool.query(queries.AcceptFriendRequest, [req.body.id]);
     res.send("friend request accepted");
