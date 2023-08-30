@@ -14,7 +14,7 @@ export class BetpageComponent implements OnInit{
   response: any = null;
   game: any;
   allgames: any[] = [];
-  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: '1d8be7c8-75df-4cad-8ff3-d1276c14bda8', user1_onhome: true }
+  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: '86c9c420-3edb-4cf5-a310-9c66f98731b9', user1_onhome: true }
   selectedFriend: any = null;
   friends: any[] = [];
   constructor(private route: ActivatedRoute, private backendcalls: BackendcallsService){}
@@ -96,6 +96,7 @@ export class BetpageComponent implements OnInit{
     token: `${localStorage.getItem('token')}`
   });
     this.friends = await this.backendcalls.GetFriends(headers).toPromise();
+    console.log(this.friends)
     
   }
 }
