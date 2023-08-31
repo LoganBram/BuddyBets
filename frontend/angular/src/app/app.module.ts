@@ -18,6 +18,9 @@ import { OngoingbetsComponent } from './ongoingbets/ongoingbets.component';
 import { PendingbetsComponent } from './pendingbets/pendingbets.component';
 import { CompletedbetsComponent } from './completedbets/completedbets.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,9 @@ import { CompletedbetsComponent } from './completedbets/completedbets.component'
     FriendsdisplayComponent,
     OngoingbetsComponent,
     PendingbetsComponent,
-    CompletedbetsComponent
+    CompletedbetsComponent,
+    NavbarComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { CompletedbetsComponent } from './completedbets/completedbets.component'
       {path: 'pendingbets', component : PendingbetsComponent},
       {path: 'ongoingbets', component : OngoingbetsComponent},
 
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
