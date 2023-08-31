@@ -1,12 +1,17 @@
-<div *ngFor="let game of games">
-  <div class="teams">
-    <h1>{{ game.hometeam.slice(0, -1) }}</h1>
-    <h1>{{ game.awayteam.slice(0, -1) }}</h1>
+<div class="wrapper">
+  <div *ngFor="let game of games" class="card">
+    <div class="teams">
+      <h1>{{ game.hometeam.slice(0, -1) }}</h1>
+      <h1>{{ game.awayteam.slice(0, -1) }}</h1>
+    </div>
+    <div class="date">
+      <h1>{{ formatDate(game.startdate) }}</h1>
+      <h1>{{ formatTime(game.time) }}</h1>
+    </div>
+    <div>
+      <a [title]="game.hometeam" [routerLink]="['/betpage', game.gameid]"
+        >arrow</a
+      >
+    </div>
   </div>
-  <div class="date">
-    <h1>{{ formatDate(game.startdate) }}</h1>
-    <h1>{{ formatTime(game.time) }}</h1>
-  </div>
-  <a [title]="game.hometeam" [routerLink]="['/betpage', game.gameid]">arrow</a>
-  <p>hi</p>
 </div>

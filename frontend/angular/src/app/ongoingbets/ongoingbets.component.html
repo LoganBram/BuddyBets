@@ -1,4 +1,4 @@
-<p>ongoingbets works!</p>
+<h1>Ongoing Bets</h1>
 <div *ngFor="let bet of ongoingbets">
   <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
   <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
