@@ -1,0 +1,66 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply styles to the header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.wrap{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/* Apply styles to the game cards */
+.game-card {
+    border: 1px solid #ccc;
+    margin-left: 300px; /* Center-align and add margin to center the card */
+    margin-top: 30px;
+    padding: 20px;
+    width: 55rem; /* Set a maximum width for the card */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.betslip{
+    display: flex;
+    flex-direction: column;
+    
+    margin-top: 30px;
+    padding: 20px;
+    width:25rem;
+    border: black 1px solid;
+}
+
+.team-info {
+    flex: 1;
+}
+
+.team-info h2 {
+    font-size: 24px;
+}
+
+.team-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+.score h3 {
+    font-size: 20px;
+}
+
+.score p {
+    font-size: 18px;
+    margin: 10px 0;
+}
