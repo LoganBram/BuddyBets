@@ -13,33 +13,16 @@ header {
     padding: 20px 0;
 }
 
-.wrap{
-    display: flex;
-    flex-direction: row;
-    
-}
-
 /* Apply styles to the game cards */
 .game-card {
     border: 1px solid #ccc;
-    margin-left: 300px; /* Center-align and add margin to center the card */
-    margin-top: 30px;
+    margin-top: 2rem;
+    margin-left:30rem; /* Center-align and add margin to center the card */
     padding: 20px;
-    width: 55rem; /* Set a maximum width for the card */
+    max-width: 1000px; /* Set a maximum width for the card */
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.betslip{
-    display: flex;
-    flex-direction: column;
-    
-    margin-top: 30px;
-    padding: 20px;
-    width:25rem;
-    border: black 1px solid;
 }
 
 .team-info {
