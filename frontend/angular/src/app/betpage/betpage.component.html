@@ -1,70 +1,81 @@
 <div *ngIf="game">
   <div class="teamheader">
-    <h1>{{ game.awayteam.slice(0, -1) }}</h1>
-    <p>@</p>
-    <h1>{{ game.hometeam.slice(0, -1) }}</h1>
+    <h1>{{ game.awayteam.slice(0, -1) }} @ {{ game.hometeam.slice(0, -1) }}</h1>
   </div>
-  <div class="oddsandfriends">
-    <div class="value">
-      <h2>Wager</h2>
-      <input
-        type="text"
-        [(ngModel)]="betdata.wager"
-        (input)="validateNumber($event)"
-      />
-    </div>
-    <div class="yourodds">
-      <h2>Your Odds</h2>
+  <div class="wrapper">
+    <div class="oddsandfriends">
+      <div class="value">
+        <h2>Wager</h2>
+        <input
+          type="text"
+          [(ngModel)]="betdata.wager"
+          (input)="validateNumber($event)"
+        />
+      </div>
+      <div class="yourodds">
+        <h2>Your Odds</h2>
+        <input
+          type="text"
+          [(ngModel)]="betdata.user1odds"
+          (input)="validateNumber($event)"
+        />
 
-      <input
-        type="text"
-        [(ngModel)]="betdata.user1odds"
-        (input)="validateNumber($event)"
-      />
-
-      <h3>Suggested: -120</h3>
-    </div>
-    <div class="friendsodds">
-      <h2>Friends Odds</h2>
-      <input
-        type="text"
-        [(ngModel)]="betdata.user2odds"
-        (input)="validateNumber($event)"
-      />
-      <h3>Suggested: +130</h3>
-    </div>
-    <div class="friendsdropdown">
-      <h2>Friends</h2>
-      <select [(ngModel)]="betdata.user2">
-        <ng-container *ngFor="let friend of friends">
-          <ng-container
-            *ngIf="
-              friend.user_id === friend.currentuser &&
-              friend.status === 'accepted'
-            "
-          >
-            <option [value]="friend.friend_id">
-              {{ friend.receiver_username }}
-            </option>
+        <h3>Suggested: -120</h3>
+      </div>
+      <div class="friendsodds">
+        <h2>Friends Odds</h2>
+        <input
+          type="text"
+          [(ngModel)]="betdata.user2odds"
+          (input)="validateNumber($event)"
+        />
+        <h3>Suggested: +130</h3>
+      </div>
+      <div class="friendsdropdown">
+        <h2>Friends</h2>
+        <select [(ngModel)]="betdata.user2">
+          <ng-container *ngFor="let friend of friends">
+            <ng-container
+              *ngIf="
+                friend.user_id === friend.currentuser &&
+                friend.status === 'accepted'
+              "
+            >
+              <option [value]="friend.friend_id">
+                {{ friend.receiver_username }}
+              </option>
+            </ng-container>
           </ng-container>
-        </ng-container>
-      </select>
+        </select>
+        <div *ngIf="friends.length === 0">
+          <p>Please login or add friends</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <button (click)="betdata.user1_onhome = false">
-      {{ game.awayteam.slice(0, -1) }}
-    </button>
-    <button (click)="betdata.user1_onhome = true">
-      {{ game.hometeam.slice(0, -1) }}
-    </button>
-  </div>
-  <div class="doubleornothing">
-    <p>Double or Nothing Option at End of Game?</p>
-    <button (click)="ToggleDouble()">{{ doubleornothing }}</button>
-  </div>
-  <div class="placebet">
-    <button (click)="PlaceBet()">Place Bet</button>
+    <div class="pickteam">
+      <button
+        (click)="betdata.user1_onhome = true"
+        type="button"
+        class="pickteambutton btn btn-outline-dark"
+      >
+        {{ game.hometeam.slice(0, -1) }}
+      </button>
+
+      <button
+        (click)="betdata.user1_onhome = false"
+        type="button"
+        class="pickteambutton btn btn-outline-dark"
+      >
+        {{ game.awayteam.slice(0, -1) }}
+      </button>
+    </div>
+    <div class="doubleornothing">
+      <p>Double or Nothing Option at End of Game?</p>
+      <button (click)="ToggleDouble()">{{ doubleornothing }}</button>
+    </div>
+    <div class="placebet">
+      <button (click)="PlaceBet()">Send Bet Request</button>
+    </div>
   </div>
   {{ response }}
 </div>

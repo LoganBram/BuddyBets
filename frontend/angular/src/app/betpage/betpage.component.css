@@ -2,19 +2,47 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    background-color:#333;
+    color: #fff;
+    text-align: center;
+    padding: 20px ;
+  }
+
+  .wrapper{
+    background-color: #ecedf7;
+    border: 1px solid black;
+    padding: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 20px;
+    border-radius: 20px;
+
+   
+  }
+
+  .pickteam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
   }
   
   .teamheader h1 {
-    font-size: 24px;
+    font-size: 26px;
     margin: 0 10px;
   }
   
   .oddsandfriends {
-    margin-top: 150px;
+    margin-top: 50px;
     display: flex;
     gap: 70px;
     justify-content: center;
+    
+    
+  }
+
+  .oddsandfriends h2 {
+    font-size: 20px;
   }
   
   .oddsandfriends h3{
@@ -29,7 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 40px;
   }
   
   .doubleornothing button{
@@ -48,6 +76,10 @@
 
   
 
-  
+.pickteambutton:focus{
+  background-color: #333;
+  color: #fff;
+
+}  
 
   
