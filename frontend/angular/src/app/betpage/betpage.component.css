@@ -37,8 +37,6 @@
     display: flex;
     gap: 70px;
     justify-content: center;
-    
-    
   }
 
   .oddsandfriends h2 {
@@ -70,16 +68,47 @@
   }
 
   .placebet button{
-    width: 820px;
-    height: 30px;
+    width: 49%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #818af2;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .placebet button:hover{
+    cursor: pointer;
+    background-color: #ecedf7;
+    transition-duration: .3s;
+    color: #333;
   }
 
   
 
 .pickteambutton:focus{
-  background-color: #333;
+  background-color: #818af2;
   color: #fff;
-
 }  
+
+.pickteambutton:hover{
+  background-color: #818af2;
+  color: #fff;
+  transition-duration: .2s;
+}
+
+.friendsoddsinputbox, .friendsdropdown, .useroddsinputbox, .wagerinputbox {
+  min-width: 10rem;
+  max-width: 2rem;
+  min-height: 0.5rem;
+  max-height: 1.5rem;
+}
 
   

@@ -7,6 +7,7 @@
       <div class="value">
         <h2>Wager</h2>
         <input
+          class="wagerinputbox"
           type="text"
           [(ngModel)]="betdata.wager"
           (input)="validateNumber($event)"
@@ -15,6 +16,7 @@
       <div class="yourodds">
         <h2>Your Odds</h2>
         <input
+          class="useroddsinputbox"
           type="text"
           [(ngModel)]="betdata.user1odds"
           (input)="validateNumber($event)"
@@ -25,6 +27,7 @@
       <div class="friendsodds">
         <h2>Friends Odds</h2>
         <input
+          class="friendsoddsinputbox"
           type="text"
           [(ngModel)]="betdata.user2odds"
           (input)="validateNumber($event)"
@@ -33,7 +36,7 @@
       </div>
       <div class="friendsdropdown">
         <h2>Friends</h2>
-        <select [(ngModel)]="betdata.user2">
+        <select [(ngModel)]="betdata.user2" class="friendsdropdown">
           <ng-container *ngFor="let friend of friends">
             <ng-container
               *ngIf="
