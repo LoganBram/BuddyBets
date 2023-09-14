@@ -10,6 +10,12 @@ import { HttpHeaders } from '@angular/common/http';
 export class NavbarComponent {
 
   authenticated: boolean  = false;
+  usercredits: number = 0;
+
+  Logout(){
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 
   constructor(private _authService: AuthService) { }
   ngOnInit(): void {
@@ -29,6 +35,10 @@ export class NavbarComponent {
         console.log(err)
       }
     })
+
+    
+
+
 
 
   }
