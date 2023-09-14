@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   private registerUrl = "http://localhost:3000/auth/register";
   private loginUrl = "http://localhost:3000/auth/login";
-  private verifytokenUrl = "http://localhost:3000/auth/verifytoken";
+  private verifytokenUrl = "http://localhost:3000/auth/is-verify";
   constructor(private http: HttpClient) { }
 
   //sends register request and returns JWT token
@@ -21,8 +21,8 @@ export class AuthService {
   }
 
   //sends verifytoken http request, which uses authorize middleware in backend and checks the token
-  loggedIn(){
-    return this.http.get<any>(this.verifytokenUrl)
+  loggedIn(headers: any){
+    return this.http.get<any>(this.verifytokenUrl, {headers})
   }
 
  

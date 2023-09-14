@@ -43,7 +43,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component : RegisterComponent},
-      {path: 'dashboard', component : DashboardComponent, canActivate: [AuthGuard]},
+      {path: 'dashboard', component : DashboardComponent},
       {path: 'login', component : LoginComponent},
       {path: 'gamesdisplay', component : GamesdisplayComponent},
       {path: 'betpage/:gameid', component : BetpageComponent},

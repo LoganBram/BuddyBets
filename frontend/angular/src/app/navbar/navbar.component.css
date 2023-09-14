@@ -15,6 +15,7 @@
   
   .logo {
     max-width: 100px; 
+    margin-left: 10rem
   }
   
   .navbar-middle {
@@ -44,6 +45,9 @@
   .navbar-right {
     flex: 1;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+
   }
   
   .navbar-right a {
@@ -52,3 +56,16 @@
     margin-left: 10px;
   }
   
+  .credits{
+    margin-right: 1rem;
+  }
+ 
+
+  .logout{
+    margin-right: 10rem;
+    }
+
+
+
+
+ 

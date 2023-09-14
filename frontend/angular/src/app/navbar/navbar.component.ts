@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,27 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  authenticated: boolean  = false;
+
+  constructor(private _authService: AuthService) { }
+  ngOnInit(): void {
+
+    const headers = new HttpHeaders({
+      token:`${localStorage.getItem('token')}`
+    });
+
+    this._authService.loggedIn(headers).subscribe({
+      next: (res) => {
+        this.authenticated = res;
+        console.log(res);
+        console.log(this.authenticated)
+      },
+      error: (err) => {
+        this.authenticated = false;
+        console.log(err)
+      }
+    })
+
+
+  }
 }

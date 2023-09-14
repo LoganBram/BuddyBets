@@ -26,7 +26,17 @@
     </ul>
   </div>
   <div class="navbar-right">
-    <a href="#">Login</a>
-    <a href="#">Register</a>
+    <div *ngIf="authenticated !== true">
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active"
+        >Login</a
+      >
+      <a [routerLink]="['/register']" routerLinkActive="router-link-active"
+        >Register</a
+      >
+    </div>
+    <div *ngIf="authenticated === true" class="navbar-right">
+      <span class="credits">123.0</span>
+      <span class="logout">Logout</span>
+    </div>
   </div>
 </nav>
