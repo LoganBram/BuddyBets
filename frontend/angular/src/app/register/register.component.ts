@@ -20,6 +20,9 @@ export class RegisterComponent {
         //display success message
         this.response = res.response
         localStorage.setItem('token', res.token)
+        setTimeout(() => {
+          this._route.navigate(['/gamesdisplay'])
+        }, 1500)
         
       },
       //otherwise display error message from backend

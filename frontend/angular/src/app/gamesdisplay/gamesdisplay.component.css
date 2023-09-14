@@ -13,14 +13,20 @@ header {
     padding: 20px 0;
 }
 
+.wrap{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 /* Apply styles to the game cards */
 .game-card {
     border: 1px solid #ccc;
     margin-top: 2rem;
-    margin-left:30rem; /* Center-align and add margin to center the card */
+    margin-left:20rem; /* Center-align and add margin to center the card */
     padding: 20px;
-    max-width: 1000px; /* Set a maximum width for the card */
+    max-width: 900px; /* Set a maximum width for the card */
     display: flex;
+   
     justify-content: space-between;
     align-items: center;
 }
@@ -50,4 +56,11 @@ header {
 
 .arrow:hover{
     cursor: pointer;
+}
+
+/* current bets css*/
+
+.currentbetswrap{
+    background-color: #333;
+    display: flex;
 }
