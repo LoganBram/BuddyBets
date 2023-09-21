@@ -1,49 +1,80 @@
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Apply styles to the header */
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-/* Apply styles to the game cards */
-.game-card {
-    border: 1px solid #ccc;
-    margin-top: 2rem;
-    margin-left:30rem; /* Center-align and add margin to center the card */
-    padding: 20px;
-    max-width: 1000px; /* Set a maximum width for the card */
+.flex-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: red 1px solid;
+    width: 862px;
+    height: 74px;
+}
+p{
+    margin: 0;
 }
 
-.team-info {
+.team-names {
     flex: 1;
+    text-align: left;
+    
 }
 
-.team-info h2 {
-    font-size: 24px;
+.team{
+    display: flex;
+    gap: 20px;
+    margin-left: 3rem;
+    align-items: center;
+    font-size: 8px;
+    margin-top: 10px;
+   margin-bottom: 10px;
 }
 
-.team-info p {
-    font-size: 16px;
-    margin-bottom: 10px;
+
+
+.game-info {
+    flex: 1;
+    text-align: center;
+    
+    text-align: left;
 }
 
 
-.score h3 {
-    font-size: 20px;
+
+.bet-info {
+    flex: 1;
+    
+    border: #007bff 1px solid;
 }
 
-.score p {
-    font-size: 18px;
-    margin: 10px 0;
+.buttons {
+    border: #007bff 1px solid;
+    
+    margin-top: 10px;
+    
+    text-align: center;
+}
+
+.buttons button{
+    margin: 0 5px;
+    
+}
+
+
+
+.horizontal-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 3rem;
+    border: #007bff 1px solid;
+    
+
+}
+
+/* Style the buttons and other elements as needed */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
 }

@@ -1,35 +1,37 @@
-<header>
-  <h1>Basketball Games Dashboard</h1>
-</header>
-<div class="wrap">
-  <section class="game-card" *ngFor="let game of games">
-    <div class="team-info">
-      <h2>
-        {{ game.hometeam.slice(0, -1) }} vs {{ game.awayteam.slice(0, -1) }}
-      </h2>
-      <p>
-        Date: {{ formatDate(game.startdate) }} @ {{ formatTime(game.time) }}
-      </p>
-      <p>Location: Arena XYZ</p>
-    </div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      fill="currentColor"
-      class="arrow bi-arrow-right"
-      viewBox="0 0 16 16"
-      [routerLink]="['/betpage', game.gameid]"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-      />
-    </svg>
-  </section>
-  <section class="currentbetswrap">
-    <div>
-      <p>hi</p>
-    </div>
-  </section>
-</div>
+<body>
+  <header>
+    <h1>Basketball Games Dashboard</h1>
+  </header>
+
+  <div class="wrap">
+    <section class="game-card" *ngFor="let game of games">
+      <div class="team-info">
+        <h2>
+          {{ game.hometeam.slice(0, -1) }} vs {{ game.awayteam.slice(0, -1) }}
+        </h2>
+        <p>{{ formatDate(game.startdate) }} @ {{ formatTime(game.time) }}</p>
+        <p>Location: Arena XYZ</p>
+      </div>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        fill="currentColor"
+        class="arrow bi-arrow-right"
+        viewBox="0 0 16 16"
+        [routerLink]="['/betpage', game.gameid]"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+        />
+      </svg>
+    </section>
+    <section class="currentbetswrap">
+      <div>
+        <p>hi</p>
+      </div>
+    </section>
+  </div>
+</body>
