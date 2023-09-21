@@ -1,80 +1,121 @@
+
+
+
 .flex-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f0f0f0;
     padding: 20px;
-    border: red 1px solid;
     width: 862px;
     height: 74px;
+    margin-top: 30px;
+    margin-left: 90px;
 }
 p{
     margin: 0;
 }
 
 .team-names {
-    flex: 1;
     text-align: left;
-    
+    font-weight: bold;
 }
 
 .team{
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-left: 3rem;
     align-items: center;
     font-size: 8px;
     margin-top: 10px;
    margin-bottom: 10px;
+   
 }
 
 
 
 .game-info {
     flex: 1;
-    text-align: center;
     
-    text-align: left;
+    font-size: 14px;
+    
+    margin-left: 3rem;
 }
 
+.bet-info{
+    width: 316px;
+    margin-right: 20px;
+}
 
+.teamname-wagerbutton{
+    margin-top: -5px;
+    font-weight: bold
+}
 
-.bet-info {
-    flex: 1;
-    
-    border: #007bff 1px solid;
+.betodds{
+    font-size: 15px;
+    color: #0E67B3;
+    font-weight: bold;
 }
 
 .buttons {
-    border: #007bff 1px solid;
-    
-    margin-top: 10px;
-    
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+   
 }
 
 .buttons button{
-    margin: 0 5px;
-    
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+   
 }
 
 
-
 .horizontal-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 3rem;
-    border: #007bff 1px solid;
     
+    display: flex;
+    justify-content: space-between;
+    margin-top: 11px;
+    font-size: 10px;
+    
+}
 
+.horizontal-buttons button{
+    display: flex;
+    width: 6rem;
+    height: 1rem;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.VS-wrap{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.3rem;
+    
+}
+
+.VS-wrap p{
+    line-height: 0.8;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.custombet{
+    border: #E63946 1px solid;
 }
 
 /* Style the buttons and other elements as needed */
 button {
-    background-color: #007bff;
-    color: #fff;
+    border: #0E67B3 1px solid;
+    color: black;
     padding: 5px 10px;
-    border: none;
     cursor: pointer;
 }
