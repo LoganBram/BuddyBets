@@ -1,16 +1,22 @@
 
 
 
-.flex-container {
+.dashbackground{
+    background-color: #f0f0f0;
+}
+
+.card-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f0f0f0;
+    
     padding: 20px;
     width: 862px;
     height: 74px;
     margin-top: 30px;
-    margin-left: 90px;
+    margin-left:13rem;
+    border: #0E67B3 1px solid;
+    background-color: white;
 }
 p{
     margin: 0;
@@ -124,4 +130,76 @@ button {
     color: black;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+/*subnav*/
+.subnavbar{
+    background-color:  #1F375B;
+    margin-left: 10rem;
+    width: 65rem;
+}
+
+
+.subnavbar-container{
+    display: flex;
+    
+
+    border: #0E67B3 1px solid;
+
+    height: 3rem;
+  margin-left: 3rem;
+  gap: 100px;
+    color: white;
+    align-items: center;
+}
+
+.subnavbar-container div{
+    
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+
+.contentwrap{
+    display: flex;
+    width: fit-content;
+    margin-left: 10rem;
+    margin-top: 3rem;
+    justify-content: center;
+    
+}
+
+h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #0E67B3;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+/*betslip*/
+
+.bets{
+    display: grid;
+    grid-template-rows: repeat(10, 93px, 222px);
+    
+
+}
+
+.bets div{
+   
+    border: #0E67B3 1px solid;
+
+}
+
+.betslipcontainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 19rem;
+    min-height: 200rem;
+    border: #0E67B3 1px solid;
+    background-color: white;
 }

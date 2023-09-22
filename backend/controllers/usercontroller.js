@@ -83,7 +83,7 @@ const Verified = async (req, res) => {
     res.json(true);
   } catch (error) {
     console.log(err.message);
-    res.status(500).send("Please login again or ");
+    res.status(500).send("Please login again or register");
   }
 };
 
@@ -166,9 +166,6 @@ const GetUserFriends = async (req, res) => {
   try {
     //gets all friends of the user
     const friends = await pool.query(queries.GetAllFriends, [req.user]);
-
-    console.log(friends.rows[0]);
-    console.log(req.user);
 
     //iterates through the friends of the user and gets their username
 
