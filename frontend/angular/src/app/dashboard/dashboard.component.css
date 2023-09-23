@@ -1,5 +1,10 @@
 
-
+.dashboardtitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
 
 .dashbackground{
     background-color: #f0f0f0;
@@ -142,10 +147,6 @@ button {
 
 .subnavbar-container{
     display: flex;
-    
-
-    border: #0E67B3 1px solid;
-
     height: 3rem;
   margin-left: 3rem;
   gap: 100px;
@@ -165,15 +166,15 @@ button {
     display: flex;
     width: fit-content;
     margin-left: 10rem;
-   
+    
     justify-content: center;
     
     
 }
 
 .games_and_subnavwrap{
-    border:red 1px solid;
-    margin-top: 10rem;
+    
+    margin-top: 3rem;
 }
 
 
@@ -200,8 +201,10 @@ button {
 }
 
 .betslipcontainer{
-    margin-left: 3rem;
-    margin-top: 5rem;
+    
+    position: absolute;
+    left: 74%;
+    top: 13%;
     background-color:#F6F8FC ;
     border-radius: 10px;
     border-left: #CFD6DB 1px solid;
