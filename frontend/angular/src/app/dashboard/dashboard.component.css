@@ -165,41 +165,106 @@ button {
     display: flex;
     width: fit-content;
     margin-left: 10rem;
-    margin-top: 3rem;
+   
     justify-content: center;
+    
     
 }
 
-h1{
-    font-size: 30px;
-    font-weight: bold;
-    color: #0E67B3;
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
+.games_and_subnavwrap{
+    border:red 1px solid;
+    margin-top: 10rem;
 }
+
+
+
+
 
 /*betslip*/
 
-.bets{
-    display: grid;
-    grid-template-rows: repeat(10, 93px, 222px);
-    
 
+
+.betrequest_outcontainer{
+  border: #0E67B3 1px solid;
+  height: 8rem;
 }
 
-.bets div{
-   
-    border: #0E67B3 1px solid;
 
+
+.bets{
+    display: flex;
+    flex-direction: column;
+    min-height: 200rem;
+    gap: 10px;
+    
 }
 
 .betslipcontainer{
-    display: flex;
-    flex-direction: column;
-    margin-left: 2rem;
+    margin-left: 3rem;
+    margin-top: 5rem;
+    background-color:#F6F8FC ;
+    border-radius: 10px;
+    border-left: #CFD6DB 1px solid;
+    border-right: #CFD6DB 1px solid;
+    border-bottom: #CFD6DB 1px solid;
     width: 19rem;
-    min-height: 200rem;
-    border: #0E67B3 1px solid;
+    
+}
+
+.bets div{
+    display: flex;
+    justify-content: center;
+}
+
+
+.betsliptitle{
+    display: flex;
+    justify-content: center;
+    
+    height: 4rem;
+    
     background-color: white;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: #CFD6DB 1px solid;
+    border-top: #CFD6DB 1px solid;
+}
+
+
+
+.betsliptitle h1{
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    color: #0E67B3;
+}
+
+
+
+
+
+.dashboardtext{
+    border: #0E67B3 1px solid;
+    width:fit-content;
+   
+}
+.dashboardtitlewrap{
+    display: flex;
+    justify-content: center;
+}
+
+
+/*betslip inner content*/
+
+
+.betrequest_innercontainer{
+    display: flex;
+    background-color:white ;
+    border-radius: 10px;
+    width: 15rem;
+}
+
+.betreq_title h1{
+    font-size: 12px;
 }
