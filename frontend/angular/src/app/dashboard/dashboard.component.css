@@ -185,7 +185,7 @@ button {
 
 
 .betrequest_outcontainer{
-  border: #0E67B3 1px solid;
+ 
   height: 8rem;
 }
 
@@ -260,11 +260,70 @@ button {
 
 .betrequest_innercontainer{
     display: flex;
+    flex-direction:column ;
     background-color:white ;
     border-radius: 10px;
-    width: 15rem;
+    width: 16rem;
+    height: 6rem;
+    margin-top: 20px;
+}
+
+.betrequest_innercontainer *{
+    font-weight: bold;
 }
 
 .betreq_title h1{
-    font-size: 12px;
+    font-size: 14px;
 }
+
+.betreq_title{
+   height: 18px;
+    margin-top: 5px;
+    
+}
+
+.leftrightmiddle_container_betreq{
+    gap: 1.6rem;  
+    margin-top: -5px;
+    
+    
+}
+
+.betreq_left, .betreq_right, .betreq_middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+   
+}
+
+
+.betreq_left h1, .betreq_right h1{
+    font-size: 14px;
+}
+.betreq_middle{
+
+  margin-top: 12px;
+  gap: 2px;
+}
+
+.betreq_middle h1{
+    background-color: white;
+    border: #E63946 1px solid;
+    width: 4rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.betreq_left *, .betreq_right *, .betreq_middle *{
+    font-size: 12px;
+    margin: 2px;
+    
+}
+
+
