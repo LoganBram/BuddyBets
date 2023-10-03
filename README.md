@@ -1,4 +1,4 @@
-## Sports Gambling Against Friends
+## Friend Based Sports Gambling
 
 - Platform meant for sports betting between friends
 - Uses UTC as the time zone for game search, etc.
