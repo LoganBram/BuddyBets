@@ -1,14 +1,17 @@
-## Friend Based Sports Gambling
+# Friend Based Sports Gambling
+This is a sports gambling platform for those who want to gamble against friends rather than the books that I built over my 2023 summer. The website allows for account management via JWT tokens, full friends list functionalities, bet request/acceptance, automated bet judgment every second, uses a REST API for backend communication, and data caching of games every 8 hours. 
 
-- Platform meant for sports betting between friends
-- Uses UTC as the time zone for game search, etc.
-- basketball API, Node.js, Postgres SQL, Express, Axios, Routing, CORS, nodemon, Angular
-- Utilizes UUID for user ID's in SQL
-- Implements JWT and bcrypt for user authentication
+## Motivation
 
-NOTE: Due to the restriction of API calls with the free version, I've opted to store the game's data in my database and call my internal API, rather then calling the external api everytime. This also allows me to determine bet winners every minute as opposed to once in a while due to api restrictions.
+The purpose of this project was to learn and grow. After spending some time building multiple smaller frontend applications as well as learning the basics of backend I decided it was time to learn how to combine the two. I also wanted something that would be largely backend as well as something that would cause my mind to twist, which working with timezones and building the queries to judge bets most definitely did. 
 
-Friend Request work by sending over the current user token from local storage, and the username of the friend based on user input. Gets the users username by running authorization of token in the backend, then pulls username associated with the token if successful.
+## Technologies Used
+- Angular
+- Node.js
+- Express
+- Postgres
+- JWT Tokens
+
 # ENDPOINTS
 
 ## Users
