@@ -11,14 +11,15 @@ The purpose of this project was to learn and grow. After spending some time buil
 - Express
 - Postgres
 - JWT Tokens
+- Basketball API (Rapid API)
 
 # ENDPOINTS
 
 ## Users
 **/auth/register**
 
-Stores user data in database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
-Requires name,email and password JSON data and sets local storage JWT token upon request.
+Stores user data in the database using bcrypt for password encryption and responds with a JWT token, the token contains the UUID user ID in the payload.
+Requires name, email and password JSON data and sets local storage JWT token upon request.
 
 **/auth/login**
 
@@ -37,6 +38,22 @@ Takes token in header and finds all of the users friends, then adds the friends 
 
 Takes token in header and friends username, then stores their UUID's in friends table as either pending or accepted
 
+**/auth/acceptfriendrequest**
+
+Accepts friendrequest id, sets status to accepted in friends table
+
+**/auth/denyfriendrequest**
+
+Accepts friendrequest id, deletes from table
+
+**/auth/getfriends**
+
+Accepts token in header, returns friends list
+
+**/auth/getuserid**
+
+Accepts token in header, returns userid
+
 ## Bets
 
 **bets/placebet/**
@@ -47,6 +64,29 @@ GameID obtained by checking route parameters
 
 returns message in json if successful, otherwise returns error message
 
+**bets/getpendingbetsreceived/**
+accepts user id using jwt, gets bet requests recieved
+
+**bets/getpendingbetssent/**
+accepts userid using jwt, gets bets they sent
+
+**bets/getongoingbets/**
+
+accepts userid using jwt, returns ongoing bets for user
+
+**bets/acceptbet/**
+
+accepts bet id, sets status to accepted
+
+**bets/denybet/**
+
+accepts bet id, sets status to denied
+
+## Games
+
+**/apidata-inDB/GetGamesinDB**
+
+Returns all gamees in the database
 
 # CRON AUTOMATION
 
