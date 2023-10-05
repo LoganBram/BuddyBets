@@ -38,6 +38,7 @@ export class GamesdisplayComponent {
     this.backendcalls.GetGames().subscribe(
       (data) => {
         this.games = data; // Assign the data to the games property
+        console.log(this.games)
       },
       (error) => {
         console.error(error);
