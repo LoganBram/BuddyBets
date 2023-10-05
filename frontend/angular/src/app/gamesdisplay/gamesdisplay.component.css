@@ -289,7 +289,7 @@ button {
 }
 
 .leftrightmiddle_container_betreq{
-    gap: 1.6rem;  
+    gap: 1rem;  
     margin-top: -5px;
     
     
@@ -315,14 +315,15 @@ button {
   gap: 2px;
 }
 
-.betreq_middle h1{
+.betreq_middle button{
     background-color: white;
     border: #E63946 1px solid;
-    width: 4rem;
+    width: 3rem;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 1rem;
 }
 
 

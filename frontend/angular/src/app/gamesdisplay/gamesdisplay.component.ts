@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendcallsService } from '../backendcalls.service';
+import { HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-gamesdisplay',
   templateUrl: './gamesdisplay.component.html',
@@ -9,6 +11,7 @@ export class GamesdisplayComponent {
 
   constructor(private backendcalls : BackendcallsService ) { }
   games: any[] = [];
+  incomingbets: any[] = [];
 
   //formats date in Tue, Aug 1
   formatDate(dateString: string): string {
@@ -34,7 +37,19 @@ export class GamesdisplayComponent {
     });
   }
 
+  formatTeamName(teamName: string): string {
+    let team = teamName.slice(0, -2);
+    let lastSpaceIndex = team.lastIndexOf(' ');
+    let slicedName = teamName.slice(0, lastSpaceIndex);
+    return slicedName;
+  }
+
   ngOnInit() {
+
+    const headers = new HttpHeaders({
+      token:`${localStorage.getItem('token')}`
+    })
+
     this.backendcalls.GetGames().subscribe(
       (data) => {
         this.games = data; // Assign the data to the games property
@@ -44,6 +59,16 @@ export class GamesdisplayComponent {
         console.error(error);
       }
     );
+
+    this.backendcalls.GetPendingBetsReceived(headers).subscribe(
+      (data) => {
+        this.incomingbets = data;
+        console.log(this.incomingbets);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 }
 
