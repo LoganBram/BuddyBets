@@ -91,11 +91,13 @@ const DetermineWinners = async (req, res) => {
 };
 
 const GetPendingBetsReceived = async (req, res) => {
+  console.log(req.user);
+  console.log("hi");
   try {
     const receivedbets = await pool.query(queries.GetPendingBetsReceived, [
       req.user,
     ]);
-
+    console.log(receivedbets.rows);
     res.send(receivedbets.rows);
   } catch (error) {
     res.send(error);

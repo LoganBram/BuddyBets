@@ -11,6 +11,12 @@ const {
 } = require("../modules/fetchingstoredata.js");
 const { getFutureDate } = require("../utils/dates.js");
 const axios = require("axios");
+const redis = require("redis");
+
+const client = redis.createClient({
+  host: "127.0.0.1",
+  port: 6379,
+});
 
 //updates games for next 7 days
 const getGamesController = async (req, res) => {
@@ -37,10 +43,11 @@ const getGamesController = async (req, res) => {
     res.status(500).send("Error fetching games");
   }
 };
-//this runs in 10 minutes after each day starts to update the games
+
+//this runs once a day, exactly at 00:10 to update cache and database
 const getGamesForDay = async (req, res) => {
   try {
-    const date = await getFutureDate(7);
+    const date = await getFutureDate(8);
     const currentYear = new Date().getUTCFullYear();
 
     const options = {
@@ -54,7 +61,7 @@ const getGamesForDay = async (req, res) => {
     const response = await axios(options);
     const dayofgames = response.data.response;
     //add each game within the day to the database
-    dayofgames.map(async (game) => {
+    const AddNewGamesPromise = dayofgames.map(async (game) => {
       game.date = game.date.split("T")[0];
       await pool.query(queries.addGames, [
         game.id,
@@ -66,6 +73,29 @@ const getGamesForDay = async (req, res) => {
         game.teams.away.name,
       ]);
     });
+
+    //delete games from yesterday and return all games leftover
+    const DeleteYesterdayPromise = new Promise(async (resolve, reject) => {
+      try {
+        console.log("hi"); // Assuming result.rows contains the data you want to log
+      } catch (error) {
+        reject(error);
+      }
+    });
+
+    Promise.all([AddNewGamesPromise, DeleteYesterdayPromise])
+      .then((results) => {
+        console.log("Deleted games:", results[1]); // Log the data from DeleteYesterdayPromise
+        console.log("hi");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    //cache database in redis
+    //await client.connect();
+    //await client.set("games", JSON.stringify(dayofgames));
+
     res.send("all games on the day 7 days from now added to db");
   } catch (error) {
     console.error("Error fetching games:", error.message);
