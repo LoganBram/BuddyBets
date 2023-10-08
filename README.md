@@ -94,7 +94,7 @@ Returns all gamees in the database
 
 **getGamesForDay**
 
-updates the games that are to occur in 7 days in database to keep a constant 7 day forecast
+updates the games that are to occur in 7 days in database to keep a constant 7 day forecast, then caches games for the next 7 days in redis
 
 ## Every Minute
 
