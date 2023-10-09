@@ -14,7 +14,7 @@ export class BetpageComponent implements OnInit{
   response: any = null;
   game: any;
   allgames: any[] = [];
-  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: '86c9c420-3edb-4cf5-a310-9c66f98731b9', user1_onhome: true }
+  betdata = {wager: null, gameid: null as number | null, user1odds: null, user2odds: null, user1: localStorage.getItem('token'), user2: null, user1_onhome: true }
   selectedFriend: any = null;
   friends: any[] = [];
   constructor(private route: ActivatedRoute, private backendcalls: BackendcallsService){}
@@ -37,6 +37,7 @@ export class BetpageComponent implements OnInit{
   }
 
   PlaceBet(){
+   
     //check if user is logged in
     const token = localStorage.getItem('token');
     if(!token){
@@ -65,7 +66,7 @@ export class BetpageComponent implements OnInit{
           this.response = err.error.errmsg
         }
         else{
-          this.response = 'An unexpected error occured. Please try again later.';
+          this.response = err.error.message;
         }
       }
     })

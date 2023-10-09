@@ -44,7 +44,10 @@
                 friend.status === 'accepted'
               "
             >
-              <option [value]="friend.friend_id">
+              <option
+                [value]="friend.friend_id"
+                (click)="betdata.user2 = friend.friend_id"
+              >
                 {{ friend.receiver_username }}
               </option>
             </ng-container>
@@ -81,4 +84,24 @@
     </div>
   </div>
   {{ response }}
+</div>
+
+<div class="friendsdropdown">
+  <p>Select Friend</p>
+  <select [(ngModel)]="betdata.user2" class="friendsdropdown">
+    <ng-container *ngFor="let friend of friends">
+      <ng-container
+        *ngIf="
+          friend.user_id === friend.currentuser && friend.status === 'accepted'
+        "
+      >
+        <option
+          [value]="friend.friend_id"
+          (click)="betdata.user2 = friend.friend_id"
+        >
+          {{ friend.receiver_username }}
+        </option>
+      </ng-container>
+    </ng-container>
+  </select>
 </div>

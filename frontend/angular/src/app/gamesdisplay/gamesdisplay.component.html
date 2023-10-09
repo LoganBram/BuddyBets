@@ -38,19 +38,34 @@
       <div class="bet-info">
         <div class="buttons">
           <div class="teambuttondata">
-            <button class="teamname-wagerbutton">
+            <button
+              class="teamname-wagerbutton"
+              (click)="
+                betdata.user1_onhome = true;
+                betdata.gameid = game.gameid;
+                betdata.user1odds = homebetodds;
+                betdata.user2odds = awaybetodds
+              "
+            >
               <p class="teamname-wagertext">
                 {{ game.hometeam.slice(0, -1) }}
               </p>
-              <p class="betodds">2.90</p>
+              <p class="betodds">{{ homebetodds }}</p>
             </button>
           </div>
           <div class="teambuttondata">
-            <button>
+            <button
+              (click)="
+                betdata.user1_onhome = false;
+                betdata.gameid = game.gameid;
+                betdata.user1odds = awaybetodds;
+                betdata.user2odds = homebetodds
+              "
+            >
               <p class="teamname-wagertext">
                 {{ game.awayteam.slice(0, -1) }}
               </p>
-              <p class="betodds">2.90</p>
+              <p class="betodds">{{ awaybetodds }}</p>
             </button>
           </div>
         </div>
@@ -58,8 +73,17 @@
           <button class="custombet" (click)="NavToBetPage(game.gameid)">
             <p>Custom Bet</p>
           </button>
-          <button class="selectfriend"><p>> Select Friend</p></button>
-          <button class="placebet"><p>Place Bet</p></button>
+          <input
+            class="wagerinput"
+            type="text"
+            [(ngModel)]="betdata.wager"
+            (input)="validateNumber($event)"
+            placeholder="wager"
+          />
+
+          <button class="placebet" (click)="PlaceBet()">
+            <p>Place Bet</p>
+          </button>
         </div>
       </div>
     </div>

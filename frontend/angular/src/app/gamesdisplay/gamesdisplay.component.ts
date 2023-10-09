@@ -13,6 +13,12 @@ export class GamesdisplayComponent {
   constructor(private backendcalls : BackendcallsService, private router: Router ) { }
   games: any[] = [];
   incomingbets: any[] = [];
+  friends: any[] = [];
+  betdata = {wager: 4, gameid: null as number | null, user1odds: null as number|null, user2odds: null as number|null, user1: localStorage.getItem('token'), user2: "86c9c420-3edb-4cf5-a310-9c66f98731b9", user1_onhome: true }
+  homebetodds = 120;
+  awaybetodds= 130;
+  response="h";
+
 
   NavToBetPage(gameid: any) {
     this.router.navigate(['/betpage', gameid]);
@@ -49,6 +55,59 @@ export class GamesdisplayComponent {
     return slicedName;
   }
 
+  PlaceBet(){
+   console.log(this.betdata)
+    //check if user is logged in
+    const token = localStorage.getItem('token');
+    if(!token){
+      console.log( 'You must be logged in to place a bet')
+      return;
+    }
+    //makes sure all input fields have values
+    const isAnyValueNull = Object.values(this.betdata).some(value => value === null);
+    if(isAnyValueNull){
+      console.log('Please fill out all fields');
+     
+      return;
+    }
+    //set header so backend can authenticate token
+    const headers = new HttpHeaders({
+      token:`${token}`
+    });
+    //once checked if token exists and all fields are filled out, send api request to place bet
+    //with token in header to handle authentication error messages
+    
+    this.backendcalls.PlaceBet(this.betdata, headers).subscribe({
+      next: (res) => {
+        this.response = res.message;
+      },
+      error: (err) => {
+        if(err.status === 403){
+          this.response = err.error.errmsg
+        }
+        else{
+          this.response = err.error.message;
+        }
+      }
+    })
+  }
+
+  validateNumber(event: any){
+    const input = event.target as HTMLInputElement;
+    const value = input.value.trim();
+    const isValidNumber = /^[-+]?\d*$/.test(value);
+
+  if (!isValidNumber) {
+    console.log("Please Remove Non Numerical Values");
+    
+  }
+  else{
+    this.response = "";
+  
+  }
+  
+  }
+
   ngOnInit() {
 
     const headers = new HttpHeaders({
@@ -69,6 +128,16 @@ export class GamesdisplayComponent {
       (data) => {
         this.incomingbets = data;
         console.log(this.incomingbets);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+
+      this.backendcalls.GetFriends(headers).subscribe(
+      (data) => {
+        this.friends = data;
+        console.log(this.friends);
       },
       (error) => {
         console.error(error);

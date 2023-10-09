@@ -93,6 +93,22 @@ p{
    
 }
 
+.wagerinput{
+    width: 90px;
+    height: 16.5px;
+    padding-bottom: 2px;
+    font-size: 10px;
+    text-align: center;
+    border: #0E67B3 1px solid;
+    border-radius: 5px;
+
+}
+
+.wagerinput::placeholder{
+    font-size: 10px;
+    padding-bottom: 200px;
+}
+    
 
 .horizontal-buttons {
     display: flex;
