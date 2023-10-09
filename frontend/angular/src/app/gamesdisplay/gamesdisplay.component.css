@@ -104,6 +104,12 @@ p{
 
 }
 
+.response{
+    position: absolute;
+left:46%;
+top: 36.8%;
+}
+
 .wagerinput::placeholder{
     font-size: 10px;
     padding-bottom: 200px;

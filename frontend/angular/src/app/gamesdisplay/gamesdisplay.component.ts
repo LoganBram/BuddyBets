@@ -17,7 +17,11 @@ export class GamesdisplayComponent {
   betdata = {wager: 4, gameid: null as number | null, user1odds: null as number|null, user2odds: null as number|null, user1: localStorage.getItem('token'), user2: "86c9c420-3edb-4cf5-a310-9c66f98731b9", user1_onhome: true }
   homebetodds = 120;
   awaybetodds= 130;
-  response="h";
+  response="";
+  wagers: { [gameId: number]: any } = {};
+  errorMessages: { [gameId: number]: string } = {}; // Object to hold the error messages
+
+
 
 
   NavToBetPage(gameid: any) {
@@ -55,8 +59,8 @@ export class GamesdisplayComponent {
     return slicedName;
   }
 
-  PlaceBet(){
-   console.log(this.betdata)
+  PlaceBet(game: any){
+    this.betdata.wager = this.wagers[game.gameid];
     //check if user is logged in
     const token = localStorage.getItem('token');
     if(!token){
@@ -79,15 +83,12 @@ export class GamesdisplayComponent {
     
     this.backendcalls.PlaceBet(this.betdata, headers).subscribe({
       next: (res) => {
-        this.response = res.message;
+        console.log(this.errorMessages)
+        this.errorMessages[game.gameid] = "Bet Placed Successfully";
       },
       error: (err) => {
-        if(err.status === 403){
-          this.response = err.error.errmsg
-        }
-        else{
-          this.response = err.error.message;
-        }
+          this.errorMessages[game.gameid] = err.error.text;
+
       }
     })
   }

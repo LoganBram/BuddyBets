@@ -1,6 +1,7 @@
 <div class="dashboardtitle">
   <h1>Dashboard</h1>
 </div>
+
 <div class="contentwrap">
   <div class="games_and_subnavwrap">
     <div class="subnavbar">
@@ -18,6 +19,9 @@
     </div>
 
     <div class="card-container" *ngFor="let game of games">
+      <div *ngIf="errorMessages[game.gameid]" class="response">
+        {{ errorMessages[game.gameid] }}
+      </div>
       <div class="team-names">
         <div class="team">
           <img src="https://placehold.jp/20x20.png" alt="" />
@@ -76,12 +80,12 @@
           <input
             class="wagerinput"
             type="text"
-            [(ngModel)]="betdata.wager"
+            [(ngModel)]="wagers[game.gameid]"
             (input)="validateNumber($event)"
             placeholder="wager"
           />
 
-          <button class="placebet" (click)="PlaceBet()">
+          <button class="placebet" (click)="PlaceBet(game)">
             <p>Place Bet</p>
           </button>
         </div>
