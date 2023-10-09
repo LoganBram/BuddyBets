@@ -140,6 +140,12 @@ WHERE
 //ACCESSING DATABASE FOR EXTERNAL API DATA
 const GetGamesinDB = "SELECT * FROM games ORDER BY startdate ASC";
 
+const GetGamesForNext7Days = `
+    SELECT * FROM games
+    WHERE startdate BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 days'
+    ORDER BY startdate ASC;
+`;
+
 module.exports = {
   getAllTest,
   addGames,
@@ -168,4 +174,5 @@ module.exports = {
   GetUserCredits,
   AcceptFriendRequest,
   DenyFriendRequest,
+  GetGamesForNext7Days,
 };

@@ -6,4 +6,6 @@ const controller = require("../controllers/apidata-indb.js");
 
 router.get("/GetGamesinDB", controller.GetGamesinDB);
 
+router.get("/GetWeekGames", controller.GetGamesForWeekCache);
+
 module.exports = router;

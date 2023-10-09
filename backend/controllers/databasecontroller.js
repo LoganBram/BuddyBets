@@ -47,12 +47,12 @@ const getGamesController = async (req, res) => {
 //this runs once a day, exactly at 00:10 to update cache and database
 const getGamesForDay = async (req, res) => {
   try {
-    const date = await getFutureDate(8);
+    const date = await getFutureDate(13);
     const currentYear = new Date().getUTCFullYear();
 
     const options = {
       method: "GET",
-      url: `https://api-basketball.p.rapidapi.com/games?date=${date}&season=${currentYear}&league=13`,
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}&season=${currentYear}&league=390`,
       headers: {
         "x-rapidapi-host": "api-basketball.p.rapidapi.com",
         "x-rapidapi-key": process.env.APIKEY,
@@ -60,6 +60,7 @@ const getGamesForDay = async (req, res) => {
     };
     const response = await axios(options);
     const dayofgames = response.data.response;
+
     //add each game within the day to the database
     const AddNewGamesPromise = dayofgames.map(async (game) => {
       game.date = game.date.split("T")[0];
@@ -74,27 +75,16 @@ const getGamesForDay = async (req, res) => {
       ]);
     });
 
-    //delete games from yesterday and return all games leftover
-    const DeleteYesterdayPromise = new Promise(async (resolve, reject) => {
-      try {
-        console.log("hi"); // Assuming result.rows contains the data you want to log
-      } catch (error) {
-        reject(error);
-      }
+    Promise.all([AddNewGamesPromise]).then(async (results) => {
+      //get games for next 7 days for DB and store in redis
+      gamesfornext7 = await pool.query(queries.GetGamesForNext7Days);
+
+      await client.connect();
+      //set games for the next 7 days in the redis cache
+      await client.set("games", JSON.stringify(gamesfornext7.rows));
+      const games = await client.get("games");
+      console.log(games);
     });
-
-    Promise.all([AddNewGamesPromise, DeleteYesterdayPromise])
-      .then((results) => {
-        console.log("Deleted games:", results[1]); // Log the data from DeleteYesterdayPromise
-        console.log("hi");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    //cache database in redis
-    //await client.connect();
-    //await client.set("games", JSON.stringify(dayofgames));
 
     res.send("all games on the day 7 days from now added to db");
   } catch (error) {
