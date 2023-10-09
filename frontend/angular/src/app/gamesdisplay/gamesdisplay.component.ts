@@ -19,9 +19,12 @@ export class GamesdisplayComponent {
   awaybetodds= 130;
   response="";
   wagers: { [gameId: number]: any } = {};
-  errorMessages: { [gameId: number]: string } = {}; // Object to hold the error messages
+  errorMessages: { [gameId: number]: string } = {}; // Object to hold the error messages  
+  showDropdowns: { [gameId: number]: boolean } = {};
 
-
+  toggleDropdown(gameId: number) {
+    this.showDropdowns[gameId] = !this.showDropdowns[gameId];
+  }
 
 
   NavToBetPage(gameid: any) {

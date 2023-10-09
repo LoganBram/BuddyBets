@@ -56,7 +56,7 @@ p{
 
 .bet-info{
     width: 316px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .teambuttondata p{
@@ -104,10 +104,21 @@ p{
 
 }
 
+.dropdown-options{
+    position: absolute;
+}
+.dropdown-button{
+    width: 10px;
+    height: 40px;
+    margin-right: -10px;
+}
+
+
+
 .response{
     position: absolute;
-left:46%;
-top: 36.8%;
+    left:46%;
+    top: 36.8%;
 }
 
 .wagerinput::placeholder{
