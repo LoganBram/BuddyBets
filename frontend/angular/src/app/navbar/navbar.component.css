@@ -22,9 +22,12 @@
   .navbar-middle {
     flex: 2;
     text-align: center;
-    margin: 0; 
+
+    
     padding: 0; 
   }
+
+  
   
   ul {
     list-style: none;
@@ -34,7 +37,7 @@
   
   ul li {
     display: inline;
-    margin: 0 10px;
+    margin-left: 20px;
   }
   
   ul li a {
@@ -59,12 +62,16 @@
   
   .credits{
     margin-right: 2rem;
+    font-size: 20px;
+    margin-top: 9px;
   }
  
 
-  .logout{
-    margin-right: 10rem;
-    }
+.logout{
+  font-size: 12;
+  height: 30px;
+  margin-top: 5px;
+}
 
 
 

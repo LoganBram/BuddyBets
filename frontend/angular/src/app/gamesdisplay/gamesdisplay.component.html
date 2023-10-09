@@ -93,7 +93,7 @@
 
       <div class="friendsdropdown">
         <button (click)="toggleDropdown(game.gameid)" class="dropdown-button">
-          <p class="arrow">></p>
+          <span>></span>
         </button>
 
         <div *ngIf="showDropdowns[game.gameid]" class="dropdown-options">
@@ -105,8 +105,12 @@
               "
             >
               <button
+                class="friendchoosebutton"
                 [value]="friend.friend_id"
-                (click)="betdata.user2 = friend.friend_id"
+                (click)="
+                  betdata.user2 = friend.friend_id;
+                  showDropdowns[game.gameid] = false
+                "
               >
                 {{ friend.receiver_username }}
               </button>

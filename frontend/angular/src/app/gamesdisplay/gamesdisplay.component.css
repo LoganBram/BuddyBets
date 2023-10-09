@@ -106,13 +106,28 @@ p{
 
 .dropdown-options{
     position: absolute;
+    width: 10px;
+    height: 10px;
 }
+
 .dropdown-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 10px;
     height: 40px;
     margin-right: -10px;
+    border-radius: 5px;
 }
-
+.friendchoosebutton{
+    width: 80px;
+    height: 20px;
+    font-size: 12px;
+    border:black 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 .response{

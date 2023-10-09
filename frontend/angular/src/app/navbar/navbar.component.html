@@ -1,6 +1,11 @@
 <nav class="navbar">
   <div class="navbar-left">
-    <img src="your-logo.png" alt="Logo" class="logo" />
+    <img
+      src="../images/your-logo.jpg
+      "
+      alt="Buddy Bets"
+      class="logo"
+    />
   </div>
   <div class="navbar-middle">
     <ul>
@@ -33,7 +38,7 @@
       <a [routerLink]="['/']" routerLinkActive="router-link-active">Register</a>
     </div>
     <div *ngIf="authenticated === true" class="navbar-right">
-      <span class="credits">123.0</span>
+      <h1 class="credits">123.0</h1>
       <button class="logout" (click)="Logout()">Logout</button>
     </div>
   </div>
