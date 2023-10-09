@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendcallsService } from '../backendcalls.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gamesdisplay',
@@ -9,9 +10,13 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class GamesdisplayComponent {
 
-  constructor(private backendcalls : BackendcallsService ) { }
+  constructor(private backendcalls : BackendcallsService, private router: Router ) { }
   games: any[] = [];
   incomingbets: any[] = [];
+
+  NavToBetPage(gameid: any) {
+    this.router.navigate(['/betpage', gameid]);
+  }
 
   //formats date in Tue, Aug 1
   formatDate(dateString: string): string {
@@ -50,7 +55,7 @@ export class GamesdisplayComponent {
       token:`${localStorage.getItem('token')}`
     })
 
-    this.backendcalls.GetGames().subscribe(
+    this.backendcalls.GetGamesForTheWeek().subscribe(
       (data) => {
         this.games = data; // Assign the data to the games property
         console.log(this.games)

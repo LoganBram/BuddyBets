@@ -37,7 +37,7 @@ export class BetpageComponent implements OnInit{
   }
 
   PlaceBet(){
-    console.log(this.betdata)
+    //check if user is logged in
     const token = localStorage.getItem('token');
     if(!token){
       this.response = 'You must be logged in to place a bet'
@@ -85,7 +85,7 @@ export class BetpageComponent implements OnInit{
     const gameIdFromRoute = Number(routeParams.get('gameid'));
 
   //get allgames from db
-    this.allgames = await this.backendcalls.GetGames().toPromise();
+    this.allgames = await this.backendcalls.GetGamesForTheWeek().toPromise();
 
   // Find game that matches the id from the route
     this.game = this.allgames.find(game => game.gameid === gameIdFromRoute);

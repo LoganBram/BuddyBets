@@ -55,7 +55,9 @@
           </div>
         </div>
         <div class="horizontal-buttons">
-          <button class="custombet"><p>Custom Bet</p></button>
+          <button class="custombet" (click)="NavToBetPage(game.gameid)">
+            <p>Custom Bet</p>
+          </button>
           <button class="selectfriend"><p>> Select Friend</p></button>
           <button class="placebet"><p>Place Bet</p></button>
         </div>

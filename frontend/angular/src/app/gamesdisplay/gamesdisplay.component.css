@@ -169,15 +169,12 @@ button {
     display: flex;
     width: fit-content;
     margin-left: 10rem;
-    
-    justify-content: center;
-    
-    
+    justify-content: center;   
 }
 
 .games_and_subnavwrap{
     
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 
@@ -186,20 +183,11 @@ button {
 
 /*betslip*/
 
-
-
-.betrequest_outcontainer{
- 
-  height: 8rem;
-}
-
-
-
 .bets{
     display: flex;
     flex-direction: column;
-    min-height: 200rem;
-    gap: 10px;
+    min-height: 150rem;
+    
     
 }
 
@@ -290,9 +278,7 @@ button {
 
 .leftrightmiddle_container_betreq{
     gap: 1rem;  
-    margin-top: -5px;
-    
-    
+    margin-top: -5px;    
 }
 
 .betreq_left, .betreq_right, .betreq_middle{
@@ -301,8 +287,6 @@ button {
     justify-content: center;
     align-items: center;
     
-    
-   
 }
 
 

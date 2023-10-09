@@ -14,9 +14,9 @@ export class BackendcallsService {
     return this.http.post<any>("http://localhost:3000/bets/placebet", betdata, {headers})
   }
 
-  GetGames(){
+  GetGamesForTheWeek(){
     localStorage.getItem('token')
-    return this.http.get<any>("http://localhost:3000/database/GetGamesinDB")
+    return this.http.get<any>("http://localhost:3000/database/GetWeekGames")
 
   }
 
