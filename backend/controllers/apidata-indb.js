@@ -7,18 +7,12 @@ const client = redis.createClient({
   port: 6379,
 });
 
-//returns all the games in the database
-const GetGamesinDB = async (req, res) => {
-  await client.connect();
-  const games = await pool.query(queries.GetGamesinDB);
-  res.send(games.rows);
-};
-
 const GetGamesForWeekCache = async (req, res) => {
   try {
     //cache games in redis
     await client.connect();
     const games = await client.GET("games");
+    await client.quit();
 
     res.send(games);
   } catch (error) {
@@ -28,6 +22,5 @@ const GetGamesForWeekCache = async (req, res) => {
 };
 
 module.exports = {
-  GetGamesinDB,
   GetGamesForWeekCache,
 };
