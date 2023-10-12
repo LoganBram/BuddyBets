@@ -6,9 +6,18 @@ const BetRequest = async (req, res) => {
     const { user2, wager, gameid, user1odds, user2odds, user1_onhome } =
       req.body;
     const user1 = req.user;
+    console.log(
+      user2,
+      wager,
+      gameid,
+      user1odds,
+      user2odds,
+      user1_onhome,
+      user1
+    );
     //check if user have enough credits
     const usercredits = await pool.query(queries.GetUserCredits, [user1]);
-    if (usercredits.rows[0].credits < wager) {
+    if (Number(usercredits.rows[0].credits) < Number(wager)) {
       return res.send("Insufficient Credits");
     }
 
@@ -91,8 +100,6 @@ const DetermineWinners = async (req, res) => {
 };
 
 const GetPendingBetsReceived = async (req, res) => {
-  console.log(req.user);
-  console.log("hi");
   try {
     const receivedbets = await pool.query(queries.GetPendingBetsReceived, [
       req.user,

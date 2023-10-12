@@ -83,7 +83,7 @@ const getGamesForDay = async (req, res) => {
       //set games for the next 7 days in the redis cache
       await client.set("games", JSON.stringify(gamesfornext7.rows));
       const games = await client.get("games");
-      console.log(games);
+      await client.quit();
     });
 
     res.send("all games on the day 7 days from now added to db");

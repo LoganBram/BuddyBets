@@ -10,14 +10,19 @@ const client = redis.createClient({
 const GetGamesForWeekCache = async (req, res) => {
   try {
     //cache games in redis
-    await client.connect();
-    const games = await client.GET("games");
-    await client.quit();
-
-    res.send(games);
+    try {
+      await client.connect();
+      const games = await client.GET("games");
+      await client.quit();
+      res.send(JSON.parse(games));
+    } catch (error) {
+      //run if connection already established
+      const games = await client.GET("games");
+      res.send(JSON.parse(games));
+    }
   } catch (error) {
     console.error("Error fetching games:", error.message);
-    res.status(500).send("Error fetching games for the 7th day");
+    res.status(500).send("Error fetching games for the week from redis");
   }
 };
 
