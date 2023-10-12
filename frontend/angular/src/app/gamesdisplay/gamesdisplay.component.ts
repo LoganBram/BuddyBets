@@ -21,14 +21,53 @@ export class GamesdisplayComponent {
   wagers: { [gameId: number]: any } = {};
   errorMessages: { [gameId: number]: string } = {}; // Object to hold the error messages  
   showDropdowns: { [gameId: number]: boolean } = {};
+  UserToken = new HttpHeaders({
+    token:`${localStorage.getItem('token')}`
+  })
 
   toggleDropdown(gameId: number) {
     this.showDropdowns[gameId] = !this.showDropdowns[gameId];
   }
 
-
   NavToBetPage(gameid: any) {
     this.router.navigate(['/betpage', gameid]);
+  }
+
+
+  acceptbet(bet: any){
+    this.backendcalls.AcceptBet(bet, this.UserToken).subscribe({
+      next: (res) => {
+        this.response = res;
+        console.log(res.message);
+        // Remove the bet object from the incomingbets array
+        const index = this.incomingbets.indexOf(bet);
+        if (index > -1) {
+          this.incomingbets.splice(index, 1);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+  denybet(bet: any){
+    this.backendcalls.DenyBet(bet).subscribe({
+      next: (res) => {
+        this.response = res;
+        
+        console.log(res.message)
+        const index = this.incomingbets.indexOf(bet);
+        if (index > -1) {
+          this.incomingbets.splice(index, 1);
+        }
+        
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
   }
 
   //formats date in Tue, Aug 1
@@ -114,9 +153,7 @@ export class GamesdisplayComponent {
 
   ngOnInit() {
 
-    const headers = new HttpHeaders({
-      token:`${localStorage.getItem('token')}`
-    })
+    
 
     this.backendcalls.GetGamesForTheWeek().subscribe(
       (data) => {
@@ -128,7 +165,7 @@ export class GamesdisplayComponent {
       }
     );
 
-    this.backendcalls.GetPendingBetsReceived(headers).subscribe(
+    this.backendcalls.GetPendingBetsReceived(this.UserToken).subscribe(
       (data) => {
         this.incomingbets = data;
         console.log(this.incomingbets);
@@ -138,7 +175,7 @@ export class GamesdisplayComponent {
       }
     )
 
-      this.backendcalls.GetFriends(headers).subscribe(
+      this.backendcalls.GetFriends(this.UserToken).subscribe(
       (data) => {
         this.friends = data;
         console.log(this.friends);

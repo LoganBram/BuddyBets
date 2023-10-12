@@ -139,9 +139,9 @@
                   <h3>{{ formatTeamName(bet.awayteam) }}</h3>
                 </div>
                 <div class="betreq_middle">
-                  <button>Accept</button>
-                  <button>Deny</button>
-                  <h2>$10</h2>
+                  <button (click)="acceptbet(bet)">Accept</button>
+                  <button (click)="denybet(bet)">Deny</button>
+                  <h2>${{ bet.wager }}</h2>
                 </div>
                 <div class="betreq_right">
                   <h1>{{ bet.user2_username }}</h1>
