@@ -106,7 +106,7 @@ export class GamesdisplayComponent {
     //check if user is logged in
     const token = localStorage.getItem('token');
     if(!token){
-      console.log( 'You must be logged in to place a bet')
+      this.errorMessages[game.gameid] = 'You must be logged in to place a bet';
       return;
     }
     //makes sure all input fields have values
