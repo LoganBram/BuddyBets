@@ -1,9 +1,13 @@
 <div *ngIf="friends" class="friends-container">
   <h1>Pending</h1>
+
   <div *ngFor="let friend of friends" class="friend-card">
-    <div *ngIf="friend.friend_id === userid && friend.status === 'pending'">
-      <!-- If the userid from friends list, which is always the user who sent the request
-doesnt the userid obtained from token in local storage. Therefore he is the receiver of request-->
+    <div
+      *ngIf="
+        friend.currentuser === friend.friend_id && friend.status === 'pending'
+      "
+    >
+      <!-- If the current user id is equal to the friend id, current user is the receiver of request-->
       <div class="friendsinfo">
         <p>{{ friend.sender_username }}</p>
         <button (click)="AcceptFriend(friend)">Accept</button>
@@ -13,11 +17,15 @@ doesnt the userid obtained from token in local storage. Therefore he is the rece
   </div>
   <h1>Outgoing Req</h1>
   <div *ngFor="let friend of friends" class="friend-card-outgoing">
-    <!-- If the userid from friends list, which is always the user who sent the request
-matches the userid obtained from token in local storage. Therefore he is the sender of request-->
-    <div *ngIf="friend.user_id === userid && friend.status === 'pending'">
+    <!-- If the userid from friends list, which is always the person who sent it, is the current user based on token.
+       he is the sender of request-->
+    <div
+      *ngIf="
+        friend.user_id === friend.currentuser && friend.status === 'pending'
+      "
+    >
       <div class="friendsinfo">
-        <p>{{ friend.friend_username }}</p>
+        <p>{{ friend.receiver_username }}</p>
       </div>
     </div>
   </div>
