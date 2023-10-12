@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { BackendcallsService } from '../backendcalls.service';
 import { HttpHeaders } from '@angular/common/http';
 
+//has friendsdisplay inherited from friends.component.html
 
 @Component({
   selector: 'app-friends',
