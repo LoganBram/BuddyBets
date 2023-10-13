@@ -161,7 +161,7 @@ const NewFriendRequest = async (req, res) => {
   }
 };
 //takes token and gets the users friends, then adds the friends usernames
-//to the response for display
+//to the response for display purposes
 const GetUserFriends = async (req, res) => {
   try {
     //gets all friends of the user
