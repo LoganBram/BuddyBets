@@ -51,8 +51,9 @@ const GamesForNext7DaysCall = async () => {
 
     //calls the api to get the games for each day in the week
     //api only allows calling the games for individual days but not for a range of days
-    //this is required otherwise the display on front page would only be one day at a time
 
+    //since we need multiple leagues, I have opted to call the entire set of games rather than
+    //league based as done in gamesforday call, to reduce api calls
     const apiCalls = thisweek.map((date) => {
       const options = {
         method: "GET",
@@ -97,8 +98,9 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //for loop into 0-6 indexed array, with each index containing game objects for the day
   for (const day of gamesfortheweek) {
     for (const game of day) {
-      if (game.league.id === 13) {
+      if (game.league.id === 13 || game.league.id === 12) {
         const { id, time, date } = game;
+        const leagueid = game.league.id;
         const homeid = game.teams.home.id;
         const awayid = game.teams.away.id;
         const hometeam = game.teams.home.name;

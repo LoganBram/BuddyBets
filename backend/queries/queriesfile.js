@@ -1,6 +1,6 @@
 const getAllTest = "SELECT * FROM test";
 const addGames =
-  " INSERT INTO games (gameid, startdate, homeid, awayid, time, hometeam, awayteam ) VALUES ($1, $2, $3, $4, $5, $6, $7 )";
+  " INSERT INTO games (gameid, startdate, homeid, awayid, time, hometeam, awayteam, leagueid ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8 )";
 const updateDayScores =
   "UPDATE games SET homescore = $1, awayscore = $2, status = $3  WHERE gameid = $4";
 const getGameidForDay =

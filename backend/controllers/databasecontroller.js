@@ -37,6 +37,7 @@ const getGamesController = async (req, res) => {
         game.time,
         game.hometeam,
         game.awayteam,
+        game.leagueid,
       ]);
     });
     res.send("games for the week updated in db");
