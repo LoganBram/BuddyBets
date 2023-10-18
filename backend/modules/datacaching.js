@@ -4,7 +4,7 @@ const { next7days } = require("../utils/dates");
 require("dotenv").config();
 
 class GameObject {
-  constructor(id, date, time, homeid, awayid, hometeam, awayteam) {
+  constructor(id, date, time, homeid, awayid, hometeam, awayteam, leagueid) {
     this.id = id;
     this.homeid = homeid;
     this.awayid = awayid;
@@ -12,6 +12,7 @@ class GameObject {
     this.date = date;
     this.hometeam = hometeam;
     this.awayteam = awayteam;
+    this.leagueid = leagueid;
   }
 }
 
@@ -100,11 +101,11 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
     for (const game of day) {
       if (game.league.id === 13 || game.league.id === 12) {
         const { id, time, date } = game;
-        const leagueid = game.league.id;
         const homeid = game.teams.home.id;
         const awayid = game.teams.away.id;
         const hometeam = game.teams.home.name;
         const awayteam = game.teams.away.name;
+        const leagueid = game.league.id;
         //creates a new game object with the filtered data
         const gameObject = new GameObject(
           id,
@@ -113,7 +114,8 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
           homeid,
           awayid,
           hometeam,
-          awayteam
+          awayteam,
+          leagueid
         );
 
         //pushes the game object to the gameObjects array
