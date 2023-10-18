@@ -18,7 +18,8 @@ const client = redis.createClient({
   port: 6379,
 });
 
-//updates games for next 7 days
+//Runs upon initialization then uses getgamesforday,
+//which runs once a day for the games 7 days in advance
 const getGamesController = async (req, res) => {
   try {
     //returns array of objects containing games for next 7 days
@@ -38,6 +39,7 @@ const getGamesController = async (req, res) => {
         game.awayteam,
       ]);
     });
+    res.send("games for the week updated in db");
   } catch (error) {
     console.error("Error fetching games:", error.message);
     res.status(500).send("Error fetching games");
@@ -47,7 +49,7 @@ const getGamesController = async (req, res) => {
 //this runs once a day, exactly at 00:10 to update cache and database
 const getGamesForDay = async (req, res) => {
   try {
-    const date = await getFutureDate(13);
+    const date = await getFutureDate(6);
     const currentYear = new Date().getUTCFullYear();
 
     const options = {
