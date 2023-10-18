@@ -1,6 +1,5 @@
 /* file to get the dates for the next 7 days, which will then be used to get all games for the next 7 days in datafetch*/
 
-var request = require("request");
 // Get the current date
 
 const next7days = async () => {

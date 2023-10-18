@@ -3,7 +3,7 @@ using queries from the queries folder*/
 
 const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
-const { GamesForNext7DaysCall } = require("../modules/datacaching.js");
+const { GamesForNext7DaysCall, Hello } = require("../modules/datacaching.js");
 const { GetScoresCall } = require("../modules/datacaching.js");
 const { getTodayDate } = require("../utils/dates.js");
 const {

@@ -6,4 +6,6 @@ const controller = require("../controllers/apidata-indb.js");
 
 router.get("/GetWeekGames", controller.GetGamesForWeekCache);
 
+router.get("/DockerTest", controller.DockerTest);
+
 module.exports = router;

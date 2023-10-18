@@ -124,7 +124,12 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   return gameObjectsArr;
 };
 
+Hello = () => {
+  console.log("hello");
+};
+
 module.exports = {
   GamesForNext7DaysCall,
   GetScoresCall,
+  Hello,
 };

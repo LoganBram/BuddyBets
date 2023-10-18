@@ -7,6 +7,10 @@ const client = redis.createClient({
   port: 6379,
 });
 
+const DockerTest = (req, res) => {
+  res.send("Docker is working");
+};
+
 const GetGamesForWeekCache = async (req, res) => {
   try {
     //cache games in redis
@@ -28,4 +32,5 @@ const GetGamesForWeekCache = async (req, res) => {
 
 module.exports = {
   GetGamesForWeekCache,
+  DockerTest,
 };
