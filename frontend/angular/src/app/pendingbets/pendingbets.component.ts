@@ -76,6 +76,7 @@ export class PendingbetsComponent {
     
     this.backendcalls.GetPendingBetsReceived(headers).subscribe(
       (data) => {
+        console.log(data)
         this.RecievedBets = data; // Assign the data to the games property
       },
       (error) => {
@@ -86,6 +87,7 @@ export class PendingbetsComponent {
 
     this.backendcalls.GetPendingBetsSent(headers).subscribe(
       (data) => {
+        console.log(data)
         this.SentBets = data; // Assign the data to the games property
       },
       (error) => {

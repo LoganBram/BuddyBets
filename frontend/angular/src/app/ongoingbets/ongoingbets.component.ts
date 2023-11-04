@@ -43,6 +43,7 @@ WhichUser = async (bet: any) => {
     })
     this.backendcalls.GetOngoingBets(headers).subscribe(
       (res) => {
+       
         this.ongoingbets = res
       },
       (err)=>{

@@ -1,20 +1,14 @@
-<h1>BETS</h1>
-
 <div>
-  <h2>OUTGOING BETS</h2>
+  <h1>OUTGOING BETS</h1>
   <div *ngFor="let bet of SentBets" class="Sentbets_for">
-    <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
+    <h3>{{ bet.awayteam }} @ {{ bet.hometeam }}</h3>
     <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
     <p>Time: {{ bet.time.slice(0, 5) }}</p>
     <p>Wager: ${{ bet.wager }}</p>
     <h4>Your Side</h4>
     <p>
       Team:
-      {{
-        bet.homebettor === bet.user1
-          ? bet.hometeam.slice(0, -1)
-          : bet.awayteam.slice(0, -1)
-      }}
+      {{ bet.homebettor === bet.user1 ? bet.hometeam : bet.awayteam }}
     </p>
     <p>
       Odds:
@@ -28,11 +22,7 @@
     <h4>Their Side:</h4>
     <p>
       Team:
-      {{
-        bet.homebettor === bet.user2
-          ? bet.hometeam.slice(0, -1)
-          : bet.awayteam.slice(0, -1)
-      }}
+      {{ bet.homebettor === bet.user2 ? bet.hometeam : bet.awayteam }}
     </p>
     <p>
       Odds:
@@ -43,21 +33,17 @@
       {{ CalculatePayout(bet.wager, bet.user2odds) }}
     </p>
   </div>
-  <h2>RECEIVED BETS</h2>
+  <h2>BET HISTORY</h2>
   {{ response }}
   <div *ngFor="let bet of RecievedBets">
-    <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
+    <h3>{{ bet.awayteam }} @ {{ bet.hometeam }}</h3>
     <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
     <p>Time: {{ bet.time.slice(0, 5) }}</p>
     <p>Wager: ${{ bet.wager }}</p>
     <h4>Your Side</h4>
     <p>
       Team:
-      {{
-        bet.homebettor === bet.user2
-          ? bet.hometeam.slice(0, -1)
-          : bet.awayteam.slice(0, -1)
-      }}
+      {{ bet.homebettor === bet.user2 ? bet.hometeam : bet.awayteam }}
     </p>
     <p>
       Odds:
@@ -71,11 +57,7 @@
     <h4>Their Side:</h4>
     <p>
       Team:
-      {{
-        bet.homebettor === bet.user1
-          ? bet.hometeam.slice(0, -1)
-          : bet.awayteam.slice(0, -1)
-      }}
+      {{ bet.homebettor === bet.user1 ? bet.hometeam : bet.awayteam }}
     </p>
     <p>
       Odds:

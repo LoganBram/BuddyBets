@@ -1,48 +1,35 @@
-<h1>Ongoing Bets</h1>
+<h1>ONGOING BETS</h1>
 <div *ngFor="let bet of ongoingbets">
-  <h3>{{ bet.awayteam.slice(0, -1) }} @ {{ bet.hometeam.slice(0, -1) }}</h3>
+  <h3>{{ bet.awayteam }} @ {{ bet.hometeam }}</h3>
   <p>Date: {{ bet.startdate | date : "yyyy-MM-dd" }}</p>
   <p>Time: {{ bet.time.slice(0, 5) }}</p>
   <p>Wager: ${{ bet.wager }}</p>
+  <h4>Your Side</h4>
+  <p>
+    Team:
+    {{ bet.homebettor === bet.user1 ? bet.hometeam : bet.awayteam }}
+  </p>
+  <p>
+    Odds:
+    {{ bet.user1odds >= 0 ? "+" + bet.user1odds : bet.user1odds }}
+  </p>
+  <p>
+    Payout:
+    {{ CalculatePayout(bet.wager, bet.user1odds) }}
+  </p>
 
-  <div *ngIf="currentuser == bet.user1">
-    <p>
-      {{ bet.user1_username }} Payout:
-      {{
-        CalculatePayout(bet.wager, bet.user1odds) +
-          " (" +
-          (bet.user1odds >= 0 ? "+" + bet.user1odds : bet.user1odds) +
-          ")"
-      }}
-    </p>
-    <p>
-      {{ bet.user2_username }}Payout:
-      {{
-        CalculatePayout(bet.wager, bet.user2odds) +
-          " (" +
-          (bet.user2odds >= 0 ? "+" + bet.user2odds : bet.user2odds) +
-          ")"
-      }}
-    </p>
-  </div>
-  <div *ngIf="currentuser == bet.user2">
-    <p>
-      {{ bet.user2_username }} Payout:
-      {{
-        CalculatePayout(bet.wager, bet.user2odds) +
-          " (" +
-          (bet.user2odds >= 0 ? "+" + bet.user2odds : bet.user2odds) +
-          ")"
-      }}
-    </p>
-    <p>
-      {{ bet.user1_username }} Payout:
-      {{
-        CalculatePayout(bet.wager, bet.user1odds) +
-          " (" +
-          (bet.user1odds >= 0 ? "+" + bet.user1odds : bet.user1odds) +
-          ")"
-      }}
-    </p>
-  </div>
+  <h4>Their Side:</h4>
+  <p>
+    Team:
+    {{ bet.homebettor === bet.user2 ? bet.hometeam : bet.awayteam }}
+  </p>
+  <p>
+    Odds:
+    {{ bet.user2odds >= 0 ? "+" + bet.user2odds : bet.user2odds }}
+  </p>
+  <p>
+    Payout:
+    {{ CalculatePayout(bet.wager, bet.user2odds) }}
+  </p>
 </div>
+<app-pendingbets></app-pendingbets>
