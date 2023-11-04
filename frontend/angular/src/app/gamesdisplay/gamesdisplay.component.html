@@ -115,6 +115,23 @@
                 {{ friend.receiver_username }}
               </button>
             </ng-container>
+            <ng-container
+              *ngIf="
+                friend.friend_id === friend.currentuser &&
+                friend.status === 'accepted'
+              "
+            >
+              <button
+                class="friendchoosebutton"
+                [value]="friend.user_id"
+                (click)="
+                  betdata.user2 = friend.user_id;
+                  showDropdowns[game.gameid] = false
+                "
+              >
+                {{ friend.sender_username }}
+              </button>
+            </ng-container>
           </ng-container>
         </div>
       </div>
