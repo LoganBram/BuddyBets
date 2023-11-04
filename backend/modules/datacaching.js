@@ -58,7 +58,7 @@ const GamesForNext7DaysCall = async () => {
     const apiCalls = thisweek.map((date) => {
       const options = {
         method: "GET",
-        url: `https://api-basketball.p.rapidapi.com/games?date=${date}&timezone=canada/vancouver`,
+        url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
         headers: {
           "x-rapidapi-host": "api-basketball.p.rapidapi.com",
           "x-rapidapi-key": process.env.APIKEY,
@@ -75,7 +75,7 @@ const GamesForNext7DaysCall = async () => {
     //this process is to keep the dates in order
 
     const gamesfortheweek = respfortheweek.map((resp) => resp.data.response);
-
+    console.log(gamesfortheweek);
     const filteredgames = FilteringGamesForNext7DaysCall(
       gamesfortheweek,
       thisweek
@@ -93,7 +93,7 @@ then filters it for nba games and stores it in database*/
 const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   //array to store filtered data for each game
   const gameObjectsArr = [];
-  //date from api is in wrong format, so using my own date array
+
   let daytracker = 0;
 
   //for loop into 0-6 indexed array, with each index containing game objects for the day

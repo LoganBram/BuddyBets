@@ -100,6 +100,7 @@ const DetermineWinners = async (req, res) => {
 };
 
 const GetPendingBetsReceived = async (req, res) => {
+  console.log(req.user);
   try {
     const receivedbets = await pool.query(queries.GetPendingBetsReceived, [
       req.user,

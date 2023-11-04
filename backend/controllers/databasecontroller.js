@@ -3,7 +3,7 @@ using queries from the queries folder*/
 
 const pool = require("../db.js");
 const queries = require("../queries/queriesfile.js");
-const { GamesForNext7DaysCall, Hello } = require("../modules/datacaching.js");
+const { GamesForNext7DaysCall } = require("../modules/datacaching.js");
 const { GetScoresCall } = require("../modules/datacaching.js");
 const { getTodayDate } = require("../utils/dates.js");
 const {
@@ -28,7 +28,6 @@ const getGamesController = async (req, res) => {
     games.map((game) => {
       //converts date from api call from 2023-08-29T23:00:00+00:00 to 2023-08-24
       game.date = game.date.split("T")[0];
-
       pool.query(queries.addGames, [
         game.id,
         game.date,
@@ -51,11 +50,10 @@ const getGamesController = async (req, res) => {
 const getGamesForDay = async (req, res) => {
   try {
     const date = await getFutureDate(6);
-    const currentYear = new Date().getUTCFullYear();
 
     const options = {
       method: "GET",
-      url: `https://api-basketball.p.rapidapi.com/games?date=${date}&season=${currentYear}&league=390`,
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
       headers: {
         "x-rapidapi-host": "api-basketball.p.rapidapi.com",
         "x-rapidapi-key": process.env.APIKEY,
@@ -67,19 +65,22 @@ const getGamesForDay = async (req, res) => {
     //add each game within the day to the database
     const AddNewGamesPromise = dayofgames.map(async (game) => {
       game.date = game.date.split("T")[0];
-      await pool.query(queries.addGames, [
-        game.id,
-        game.date,
-        game.teams.home.id,
-        game.teams.away.id,
-        game.time,
-        game.teams.home.name,
-        game.teams.away.name,
-      ]);
+      if (game.league.id === 13 || game.league.id === 12) {
+        await pool.query(queries.addGames, [
+          game.id,
+          game.date,
+          game.teams.home.id,
+          game.teams.away.id,
+          game.time,
+          game.teams.home.name,
+          game.teams.away.name,
+          game.league.id,
+        ]);
+      }
     });
 
     Promise.all([AddNewGamesPromise]).then(async (results) => {
-      //get games for next 7 days for DB and store in redis
+      //get games from db and store in redis
       gamesfornext7 = await pool.query(queries.GetGamesForNext7Days);
 
       await client.connect();
