@@ -59,6 +59,7 @@ const BetRequest = async (req, res) => {
 };
 
 const DetermineWinners = async (req, res) => {
+  console.log("det");
   const calculateWinnings = (wager, odds) => {
     if (odds > 0) {
       const winnings = ((wager * odds) / 100).toFixed(2);

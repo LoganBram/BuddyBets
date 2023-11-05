@@ -24,10 +24,6 @@ function automation() {
     await getScoresController();
     await DetermineWinners();
   });
-
-  //NEXT STEPS
-  //in get scores controller, add a function to update DB if game is completed
-  //then check all games that are completed and all assocaited bets and declare winner
 }
 
 automation();

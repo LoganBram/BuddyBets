@@ -16,33 +16,6 @@ class GameObject {
   }
 }
 
-//gets scores for game on specified day and updates table
-GetScoresCall = async (date, gameids) => {
-  try {
-    const call = await axios({
-      method: "GET",
-      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
-      headers: {
-        "x-rapidapi-host": "api-basketball.p.rapidapi.com",
-        "x-rapidapi-key": process.env.APIKEY,
-      },
-    });
-
-    //filter response to only include specified games
-    const response = call.data.response;
-
-    const filteredResponse = response.filter((game) =>
-      gameids.includes(game.id)
-    );
-
-    return filteredResponse;
-  } catch (error) {
-    // Handle any errors here
-    console.error(error);
-    return null;
-  }
-};
-
 //calls the next 7 days, then obtains all the games for the next 7 days and stores in database
 
 const GamesForNext7DaysCall = async () => {
@@ -128,12 +101,6 @@ const FilteringGamesForNext7DaysCall = (gamesfortheweek, thisweek) => {
   return gameObjectsArr;
 };
 
-Hello = () => {
-  console.log("hello");
-};
-
 module.exports = {
   GamesForNext7DaysCall,
-  GetScoresCall,
-  Hello,
 };

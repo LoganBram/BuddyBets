@@ -86,7 +86,6 @@ const getGamesForDay = async (req, res) => {
       await client.connect();
       //set games for the next 7 days in the redis cache
       await client.set("games", JSON.stringify(gamesfornext7.rows));
-      const games = await client.get("games");
       await client.quit();
     });
 
@@ -98,21 +97,38 @@ const getGamesForDay = async (req, res) => {
 };
 
 //updates scores for todays games
-const getScoresController = async (req, res) => {
-  const date = await getTodayDate();
-
-  //Gets gameids of games that happened today
-  const gameids = await getStoredGameid_BasedOnDate(date);
-
-  if (gameids === null) {
-    return "no games today";
-  }
-  //convert to array
-  const gameIdsArray = gameids.map((game) => game.gameid);
-
+const getScoresController = async () => {
   try {
+    const date = await getTodayDate();
+
+    //Gets gameids of games that happened today
+
+    const games = await pool.query(queries.getGameidForDay, [date]);
+    const gameids = games.rows;
+    console.log(gameids);
+    if (gameids === null) {
+      console.log("no games today");
+    }
+    //convert to array
+    const gameIdsArray = gameids.map((game) => game.gameid);
+
     //gets all games from today
-    const response = await GetScoresCall(date, gameIdsArray);
+    const call = await axios({
+      method: "GET",
+      url: `https://api-basketball.p.rapidapi.com/games?date=${date}`,
+      headers: {
+        "x-rapidapi-host": "api-basketball.p.rapidapi.com",
+        "x-rapidapi-key": process.env.APIKEY,
+      },
+    });
+
+    //filter response to only include specified games
+    const response_unfiltered = call.data.response;
+
+    const response = response_unfiltered.filter((game) =>
+      gameIdsArray.includes(game.id)
+    );
+    console.log(response);
 
     // Response contains an array of game objects for the specified day
     response.map(async (game) => {
