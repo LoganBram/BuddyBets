@@ -3,7 +3,7 @@ This is a sports gambling platform for those who want to gamble against friends 
 
 ## Motivation
 
-The purpose of this project was to learn and grow. After spending some time building multiple smaller frontend applications as well as learning the basics of backend I decided it was time to learn how to combine the two. I also wanted something that would be largely backend as well as something that would cause my mind to twist, which working with timezones, queries for bet judgement, and keeping track of games did for me. 
+The purpose of this project was to learn and grow. After spending some time building multiple smaller frontend applications as well as learning the basics of backend I decided it was time to learn how to combine the two. I also wanted something that would be largely backend as well as something that would cause my mind to twist, which working with timezones, queries for bet judgement, and keeping track of games surely achieved. 
 
 ## Technologies Used
 - Angular
