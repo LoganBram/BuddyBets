@@ -11,6 +11,7 @@ The purpose of this project was to learn and grow. After spending some time buil
 - Express
 - Postgres
 - Redis
+- Docker
 - JWT Tokens
 - Basketball API (Rapid API)
 
