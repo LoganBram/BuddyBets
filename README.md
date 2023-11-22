@@ -1,5 +1,5 @@
 # Buddy-Bets
-This is a sports gambling platform for those who want to gamble against friends rather than the books that I built over my 2023 summer. The website allows for account management via JWT tokens, full friends list functionalities, bet request/acceptance, automated bet judgment every minute, uses a REST API for backend communication, and data caching of games.
+This is a sports gambling platform for those who want to gamble against friends rather than the books that I built over my 2023 summer. The website allows for account management via JWT tokens, full friends list functionalities, bet request/acceptance, automated bet judgment every minute, uses a REST API for backend communication, and data caching of games via Redis.
 
 ## Motivation
 
